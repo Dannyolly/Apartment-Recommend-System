@@ -1,0 +1,374 @@
+{	
+	"easycom": {
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {  
+	        "^u-(.*)": "uview-plus/components/u-$1/u-$1.vue" 
+		}
+	},
+	"pages": [
+		{
+			"path":"pages/tabbar/HomeContainer",
+			"style":{
+				"navigationBarTitleText": "Home",
+				"navigationBarTextStyle":"black",
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#55aaff",
+				"navigationStyle":"custom"
+			}	
+		},
+		{
+			"path":"pages/preference",
+			"style":{
+				"navigationBarTitleText": "Home",
+				"navigationBarTextStyle":"black",
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#55aaff",
+				"navigationStyle":"custom"
+			}	
+		},
+		
+		{
+			"path":"pages/ownerpages/orderDetail",
+			"style":{
+				"navigationBarTitleText": "订单",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF",
+				"navigationStyle":"custom"
+			}	
+		},
+		{
+			"path":"pages/ownerpages/orderPage",
+			"style":{
+				"navigationBarTitleText": "预约订单",
+				"navigationBarTextStyle":"black",
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#FFF"
+			}	
+		},
+		
+		{
+			"path":"pages/lease",
+			"style":{
+				"navigationBarTitleText": "出租",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#fff"
+			}	
+		},
+	
+		{
+			"path":"pages/CaseDetail",
+			"style":{
+				"navigationBarTitleText": "委托案例",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#fff"
+			}	
+		},
+		
+		
+		
+		{
+			"path":"pages/switch",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#55aaff",
+				"navigationStyle":"custom"
+			}	
+		},
+		
+		{
+			"path":"pages/user/UserInfo",
+			"style":{
+				"navigationBarTitleText": "UserInfo",
+				"navigationStyle":"custom",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
+			"path":"pages/tabbar/UserInfoContainer",
+			"style":{
+				"navigationBarTitleText": "UserInfo",
+				"navigationStyle":"custom",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
+			"path":"pages/similarRoom",
+			"style":{
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#FFFFFF",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText": "相似客房"
+				
+			}
+		},
+		{
+			"path":"pages/tabbar/Service",
+			"style":{
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#FFFFFF",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText": "Dan家服"
+			}
+		},
+		{
+			"path":"pages/process",
+			"style":{
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor":"#FFFFFF",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText": "进度"
+			}
+		},
+		
+		{
+			"path":"pages/houseOrder/order",
+			"style":{
+				"navigationBarTitleText": "订单",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		
+		
+		{
+			"path":"pages/booking/serviceBooking",
+			"style":{
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTitleText": "预约服务",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		{
+			"path":"pages/tabbar/Community",
+			"style":{
+				"navigationBarBackgroundColor":"#55aaff",
+				"navigationBarTitleText": "Community",
+				"navigationStyle":"custom",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		{
+			"path":"pages/rent/rent",
+			"style":{
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTitleText": "租房",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
+			"path":"pages/booking/HouseBooking",
+			"style":{
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTitleText": "预约看房",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
+			"path":"pages/PublishPost",
+			"style":{
+				"navigationBarBackgroundColor":"#FFF",
+				"navigationBarTitleText": "上传帖子",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		
+		
+		{
+			"path":"pages/PostDetail",
+			"style":{
+				"navigationBarBackgroundColor":"#FFF",
+				"navigationBarTitleText": "Dan社区",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
+			"path":"pages/map/community",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationStyle":"custom"
+			}
+		},
+		
+		{
+			"path":"pages/serviceDetail/serviceDetail",
+			"style":{
+				"navigationBarTitleText": "UserInfo",
+				"navigationStyle":"custom",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		{
+			"path":"pages/HouseSearch/Search",
+			"style":{
+				"navigationBarTitleText": "Dan公寓",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		
+	
+		{
+			"path":"pages/appointment/AppointmentPage",
+			"style":{
+				"navigationBarTitleText": "看房单",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF",
+				"navigationStyle":"custom"
+
+			}
+			
+		},
+		
+		{
+			"path":"pages/serviceDetail/serviceComment",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF",
+				"navigationBarTitleText":"评价"
+			}
+		},
+		{
+			"path":"pages/houseOrder/orderDetail",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationStyle":"custom"
+			}
+		},
+	
+
+		{
+			"path":"pages/serviceOrder/orderDetail",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path":"pages/serviceOrder/order",
+			"style":{
+				"navigationBarTitleText": "订单",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		{
+			"path":"pages/appointment/appointmentDetail",
+			"style":{
+				"navigationBarTextStyle":"black",
+				"navigationStyle":"custom"
+			}
+		},
+	
+		{
+			"path":"pages/booking",
+			"style":{
+				"navigationBarTitleText": "看房记录",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		{
+			"path":"pages/collection",
+			"style":{
+				"enablePullDownRefresh":true,
+				"navigationBarTitleText": "收藏",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		{
+			"path":"pages/history",
+			"style":{
+				"enablePullDownRefresh":true,
+				"navigationBarTitleText": "足迹",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+		
+		{
+			"path":"pages/tabbar/appointment",
+			"style":{
+				"navigationBarTitleText": "看房单",
+				"navigationBarTextStyle":"black",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path":"pages/HouseDetail",
+			"style":{
+				"navigationBarTitleText": "公寓详情",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#FFF"
+			}
+		},
+
+		{
+			"path":"pages/location",
+			"style":{
+				"navigationBarBackgroundColor":"#ffffff",
+				"navigationBarTitleText": "选择城市",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		{
+			"path":"pages/search",
+			"style":{
+				"navigationBarBackgroundColor":"#ffffff",
+				"navigationBarTitleText": "搜索公寓",
+				"navigationBarTextStyle":"black"
+			}
+		}
+	],
+	"tabBar": {
+		"custom":true,
+		"color": "#CDCDCD",
+		"selectedColor": "#55aaff",
+		"fontSize":"12rpx",
+		"spacing": "3px",
+		"blurEffect":"light",
+		"borderStyle":"white",
+		"height":0,
+		"list": [{
+				"pagePath": "pages/tabbar/HomeContainer",
+				"iconPath":"/static/tabbar/home.png",
+				"selectedIconPath":"/static/tabbar/home-filling.png",
+				"text":"首页"
+			},{
+				"pagePath": "pages/tabbar/appointment",
+				"iconPath":"/static/tabbar/appointment.png",
+				"selectedIconPath":"/static/tabbar/appointment-clicked.png",
+				"text":"看客单"
+			},{
+				"pagePath": "pages/tabbar/Service",
+				"iconPath":"/static/tabbar/service.png",
+				"selectedIconPath":"/static/tabbar/service_fill.png",
+				"text":"服务"
+			},{
+				
+				"pagePath": "pages/tabbar/Community",
+				"iconPath":"/static/tabbar/community.png",
+				"selectedIconPath":"/static/tabbar/community_fill.png",
+				"text":"社区"
+			},{
+				"pagePath": "pages/tabbar/UserInfoContainer",
+				"iconPath":"/static/tabbar/app.png",
+				"selectedIconPath":"/static/tabbar/app.png",
+				"text":"我的"
+			}
+		],
+		"globalStyle": {
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "uni-app",
+			"navigationBarBackgroundColor":"#55aaff",
+			"backgroundColor": "#F8F8F8",
+			"transparentTitle":"always"
+		}	
+	}
+}

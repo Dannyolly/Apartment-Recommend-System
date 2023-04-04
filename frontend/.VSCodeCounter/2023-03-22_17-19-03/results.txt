@@ -1,0 +1,195 @@
+Date : 2023-03-22 17:19:03
+Directory : d:\vscode\graDes\housing-recommend-system\src
+Total : 132 files,  11946 codes, 191 comments, 955 blanks, all 13092 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| vue        |         71 |      9,459 |         19 |        594 |     10,072 |
+| TypeScript |         54 |      1,783 |        137 |        300 |      2,220 |
+| JSON       |          4 |        639 |          9 |         27 |        675 |
+| SCSS       |          1 |         38 |         25 |         13 |         76 |
+| Less       |          2 |         27 |          1 |         21 |         49 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                            |        132 |     11,946 |        191 |        955 |     13,092 |
+| . (Files)                                                                                    |          9 |        481 |         39 |         72 |        592 |
+| api                                                                                          |          3 |        123 |          3 |         18 |        144 |
+| components                                                                                   |         40 |      3,496 |          4 |        237 |      3,737 |
+| components\Appointment                                                                       |          3 |        376 |          0 |         27 |        403 |
+| components\FilterBar                                                                         |          8 |        820 |          0 |         40 |        860 |
+| components\House                                                                             |          4 |        279 |          0 |         18 |        297 |
+| components\HouseService                                                                      |          4 |        757 |          0 |         78 |        835 |
+| components\Navigation                                                                        |          9 |        416 |          0 |         19 |        435 |
+| components\public                                                                            |          9 |        499 |          0 |         38 |        537 |
+| components\user                                                                              |          3 |        349 |          4 |         17 |        370 |
+| constant                                                                                     |          2 |         45 |         18 |         15 |         78 |
+| data                                                                                         |          2 |        280 |          0 |          0 |        280 |
+| hooks                                                                                        |         10 |        172 |          6 |         38 |        216 |
+| hooks (Files)                                                                                |          8 |        131 |          6 |         36 |        173 |
+| hooks\component                                                                              |          2 |         41 |          0 |          2 |         43 |
+| pages                                                                                        |         30 |      5,936 |         15 |        351 |      6,302 |
+| pages (Files)                                                                                |         10 |      1,448 |          0 |         89 |      1,537 |
+| pages\Appointment                                                                            |          2 |        420 |          0 |         17 |        437 |
+| pages\HouseSearch                                                                            |          1 |        268 |          0 |         14 |        282 |
+| pages\Rent                                                                                   |          1 |        362 |          0 |         15 |        377 |
+| pages\booking                                                                                |          2 |        614 |          0 |         21 |        635 |
+| pages\houseOrder                                                                             |          2 |        389 |          0 |         36 |        425 |
+| pages\index                                                                                  |          1 |         36 |          0 |          5 |         41 |
+| pages\map                                                                                    |          1 |         82 |          0 |          2 |         84 |
+| pages\serviceDetail                                                                          |          2 |        541 |          0 |         27 |        568 |
+| pages\serviceOrder                                                                           |          2 |        356 |          0 |         31 |        387 |
+| pages\tabbar                                                                                 |          5 |      1,239 |         15 |         79 |      1,333 |
+| pages\user                                                                                   |          1 |        181 |          0 |         15 |        196 |
+| service                                                                                      |          7 |        285 |          4 |         51 |        340 |
+| store                                                                                        |          5 |        205 |         12 |         39 |        256 |
+| types                                                                                        |         12 |        424 |          8 |         39 |        471 |
+| types (Files)                                                                                |          8 |        353 |          8 |         35 |        396 |
+| types\Entity                                                                                 |          4 |         71 |          0 |          4 |         75 |
+| utils                                                                                        |         11 |        437 |         82 |         84 |        603 |
+| websocket                                                                                    |          1 |         62 |          0 |         11 |         73 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                     | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\vscode\graDes\housing-recommend-system\src\App.vue                                        | vue        |         27 |          0 |          6 |         33 |
+| d:\vscode\graDes\housing-recommend-system\src\api\config.ts                                  | TypeScript |         10 |          1 |          2 |         13 |
+| d:\vscode\graDes\housing-recommend-system\src\api\login.ts                                   | TypeScript |         40 |          2 |          5 |         47 |
+| d:\vscode\graDes\housing-recommend-system\src\api\request.ts                                 | TypeScript |         73 |          0 |         11 |         84 |
+| d:\vscode\graDes\housing-recommend-system\src\app.less                                       | Less       |         11 |          0 |          0 |         11 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Appointment\AppointmentBill.vue     | vue        |         51 |          0 |          3 |         54 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Appointment\AppointmentDetail.vue   | vue        |        162 |          0 |         12 |        174 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Appointment\AppointmentHistory.vue  | vue        |        163 |          0 |         12 |        175 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\Direction.vue             | vue        |         60 |          0 |          1 |         61 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\FilterBar.vue             | vue        |        118 |          0 |          5 |        123 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\House.vue                 | vue        |        106 |          0 |          4 |        110 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\Location.vue              | vue        |        208 |          0 |         18 |        226 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\More.vue                  | vue        |        124 |          0 |          5 |        129 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\Rent.vue                  | vue        |         75 |          0 |          2 |         77 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\Sort.vue                  | vue        |         64 |          0 |          2 |         66 |
+| d:\vscode\graDes\housing-recommend-system\src\components\FilterBar\SubmitBar.vue             | vue        |         65 |          0 |          3 |         68 |
+| d:\vscode\graDes\housing-recommend-system\src\components\HouseService\AdditionalOrder.vue    | vue        |        212 |          0 |         28 |        240 |
+| d:\vscode\graDes\housing-recommend-system\src\components\HouseService\HousingService.vue     | vue        |        125 |          0 |          4 |        129 |
+| d:\vscode\graDes\housing-recommend-system\src\components\HouseService\OrderServiceDetail.vue | vue        |        200 |          0 |         32 |        232 |
+| d:\vscode\graDes\housing-recommend-system\src\components\HouseService\orderService.vue       | vue        |        220 |          0 |         14 |        234 |
+| d:\vscode\graDes\housing-recommend-system\src\components\House\HouseBillDetail.vue           | vue        |         22 |          0 |          4 |         26 |
+| d:\vscode\graDes\housing-recommend-system\src\components\House\HouseCollection.vue           | vue        |         67 |          0 |          4 |         71 |
+| d:\vscode\graDes\housing-recommend-system\src\components\House\HouseHistory.vue              | vue        |         55 |          0 |          5 |         60 |
+| d:\vscode\graDes\housing-recommend-system\src\components\House\HousePost.vue                 | vue        |        135 |          0 |          5 |        140 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\Appointment.vue          | vue        |         34 |          0 |          2 |         36 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\AppointmentDetail.vue    | vue        |         41 |          0 |          1 |         42 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\AppointmentPage.vue      | vue        |         41 |          0 |          1 |         42 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\Community.vue            | vue        |         34 |          0 |          2 |         36 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\Home.vue                 | vue        |         73 |          0 |          5 |         78 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\NavigationBar.vue        | vue        |         60 |          0 |          5 |         65 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\OrderDetail.vue          | vue        |         41 |          0 |          1 |         42 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\UserInfo.vue             | vue        |         46 |          0 |          1 |         47 |
+| d:\vscode\graDes\housing-recommend-system\src\components\Navigation\service.vue              | vue        |         46 |          0 |          1 |         47 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\IconBtn.vue                  | vue        |         47 |          0 |          4 |         51 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\Input.vue                    | vue        |         72 |          0 |          3 |         75 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\NoMore.vue                   | vue        |         38 |          0 |          4 |         42 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\Notis.vue                    | vue        |         83 |          0 |          8 |         91 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\SafeBottom.vue               | vue        |          7 |          0 |          3 |         10 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\StatusBar.vue                | vue        |         13 |          0 |          4 |         17 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\SwiperList.vue               | vue        |        165 |          0 |          7 |        172 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\Tag.vue                      | vue        |         32 |          0 |          2 |         34 |
+| d:\vscode\graDes\housing-recommend-system\src\components\public\Tags.vue                     | vue        |         42 |          0 |          3 |         45 |
+| d:\vscode\graDes\housing-recommend-system\src\components\user\Friend.vue                     | vue        |        128 |          0 |          4 |        132 |
+| d:\vscode\graDes\housing-recommend-system\src\components\user\UserComment.vue                | vue        |         83 |          4 |          2 |         89 |
+| d:\vscode\graDes\housing-recommend-system\src\components\user\UserPost.vue                   | vue        |        138 |          0 |         11 |        149 |
+| d:\vscode\graDes\housing-recommend-system\src\constant\chat.ts                               | TypeScript |         10 |         15 |          7 |         32 |
+| d:\vscode\graDes\housing-recommend-system\src\constant\publish.ts                            | TypeScript |         35 |          3 |          8 |         46 |
+| d:\vscode\graDes\housing-recommend-system\src\data\house.json                                | JSON       |         47 |          0 |          0 |         47 |
+| d:\vscode\graDes\housing-recommend-system\src\data\wuhan.json                                | JSON       |        233 |          0 |          0 |        233 |
+| d:\vscode\graDes\housing-recommend-system\src\env.d.ts                                       | TypeScript |          5 |          2 |          2 |          9 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\component\useActionSheet.ts              | TypeScript |         15 |          0 |          1 |         16 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\component\useMapState.ts                 | TypeScript |         26 |          0 |          1 |         27 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\useInteract.ts                           | TypeScript |         47 |          5 |          7 |         59 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\useNavigation.ts                         | TypeScript |         11 |          0 |          2 |         13 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\useNoti.ts                               | TypeScript |         11 |          0 |          0 |         11 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\usePage.ts                               | TypeScript |          9 |          0 |          1 |         10 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\usePicker.ts                             | TypeScript |         13 |          0 |          3 |         16 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\usePubSub.ts                             | TypeScript |         11 |          1 |         11 |         23 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\useScroll.ts                             | TypeScript |         20 |          0 |          2 |         22 |
+| d:\vscode\graDes\housing-recommend-system\src\hooks\useState.ts                              | TypeScript |          9 |          0 |         10 |         19 |
+| d:\vscode\graDes\housing-recommend-system\src\main.ts                                        | TypeScript |         20 |          2 |          2 |         24 |
+| d:\vscode\graDes\housing-recommend-system\src\manifest.json                                  | JSON       |         72 |          8 |          3 |         83 |
+| d:\vscode\graDes\housing-recommend-system\src\pages.json                                     | JSON       |        287 |          1 |         24 |        312 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Appointment\AppointmentDetail.vue        | vue        |        265 |          0 |          7 |        272 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Appointment\AppointmentPage.vue          | vue        |        155 |          0 |         10 |        165 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Booking.vue                              | vue        |         75 |          0 |          3 |         78 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Collection.vue                           | vue        |         64 |          0 |          6 |         70 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\History.vue                              | vue        |         82 |          0 |          3 |         85 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\HouseDetail.vue                          | vue        |        500 |          0 |         17 |        517 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\HouseSearch\Search.vue                   | vue        |        268 |          0 |         14 |        282 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Location.vue                             | vue        |        104 |          0 |         10 |        114 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\PostDetail.vue                           | vue        |        206 |          0 |         19 |        225 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Process.vue                              | vue        |         88 |          0 |          7 |         95 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\PublishPost.vue                          | vue        |        136 |          0 |          6 |        142 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Rent\Rent.vue                            | vue        |        362 |          0 |         15 |        377 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\Search.vue                               | vue        |        147 |          0 |         12 |        159 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\SimilarRoom.vue                          | vue        |         46 |          0 |          6 |         52 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\booking\HouseBooking.vue                 | vue        |        314 |          0 |          7 |        321 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\booking\ServiceBooking.vue               | vue        |        300 |          0 |         14 |        314 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\houseOrder\Order.vue                     | vue        |        104 |          0 |          3 |        107 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\houseOrder\OrderDetail.vue               | vue        |        285 |          0 |         33 |        318 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\index\index.vue                          | vue        |         36 |          0 |          5 |         41 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\map\community.vue                        | vue        |         82 |          0 |          2 |         84 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\serviceDetail\serviceComment.vue         | vue        |        139 |          0 |          5 |        144 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\serviceDetail\serviceDetail.vue          | vue        |        402 |          0 |         22 |        424 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\serviceOrder\Order.vue                   | vue        |         92 |          0 |          1 |         93 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\serviceOrder\OrderDetail.vue             | vue        |        264 |          0 |         30 |        294 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\tabbar\Appointment.vue                   | vue        |        205 |          0 |         15 |        220 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\tabbar\Community.vue                     | vue        |        355 |          4 |         19 |        378 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\tabbar\Home.vue                          | vue        |        217 |          0 |         19 |        236 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\tabbar\Service.vue                       | vue        |        222 |         11 |         14 |        247 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\tabbar\UserInfo.vue                      | vue        |        240 |          0 |         12 |        252 |
+| d:\vscode\graDes\housing-recommend-system\src\pages\user\UserInfo.vue                        | vue        |        181 |          0 |         15 |        196 |
+| d:\vscode\graDes\housing-recommend-system\src\service\ClientService.ts                       | TypeScript |         60 |          1 |         11 |         72 |
+| d:\vscode\graDes\housing-recommend-system\src\service\PostService.ts                         | TypeScript |         70 |          2 |         10 |         82 |
+| d:\vscode\graDes\housing-recommend-system\src\service\RentInfoService.ts                     | TypeScript |         35 |          0 |          9 |         44 |
+| d:\vscode\graDes\housing-recommend-system\src\service\RoomBookingService.ts                  | TypeScript |         28 |          0 |          5 |         33 |
+| d:\vscode\graDes\housing-recommend-system\src\service\RoomService.ts                         | TypeScript |         42 |          1 |          7 |         50 |
+| d:\vscode\graDes\housing-recommend-system\src\service\UserSerivce.ts                         | TypeScript |         33 |          0 |          8 |         41 |
+| d:\vscode\graDes\housing-recommend-system\src\service\index.ts                               | TypeScript |         17 |          0 |          1 |         18 |
+| d:\vscode\graDes\housing-recommend-system\src\shime-uni.d.ts                                 | TypeScript |          5 |          0 |          1 |          6 |
+| d:\vscode\graDes\housing-recommend-system\src\store\Chat.ts                                  | TypeScript |         37 |          0 |          8 |         45 |
+| d:\vscode\graDes\housing-recommend-system\src\store\Filter.ts                                | TypeScript |         44 |          0 |          6 |         50 |
+| d:\vscode\graDes\housing-recommend-system\src\store\HouseAppointment.ts                      | TypeScript |         68 |          5 |          6 |         79 |
+| d:\vscode\graDes\housing-recommend-system\src\store\Notification.ts                          | TypeScript |         35 |          0 |         10 |         45 |
+| d:\vscode\graDes\housing-recommend-system\src\store\user.ts                                  | TypeScript |         21 |          7 |          9 |         37 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Entity\Area.ts                           | TypeScript |          8 |          0 |          2 |         10 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Entity\HouseInfo.ts                      | TypeScript |         50 |          0 |          1 |         51 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Entity\HousingService.ts                 | TypeScript |          7 |          0 |          1 |          8 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Entity\UserPost.ts                       | TypeScript |          6 |          0 |          0 |          6 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Icon.ts                                  | TypeScript |         18 |          0 |          2 |         20 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Notification.ts                          | TypeScript |         36 |          3 |          5 |         44 |
+| d:\vscode\graDes\housing-recommend-system\src\types\PublicCompType.ts                        | TypeScript |          5 |          0 |          3 |          8 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Room.ts                                  | TypeScript |        129 |          1 |          6 |        136 |
+| d:\vscode\graDes\housing-recommend-system\src\types\Service.ts                               | TypeScript |         79 |          1 |          7 |         87 |
+| d:\vscode\graDes\housing-recommend-system\src\types\chat.ts                                  | TypeScript |         23 |          3 |          4 |         30 |
+| d:\vscode\graDes\housing-recommend-system\src\types\post.ts                                  | TypeScript |         46 |          0 |          5 |         51 |
+| d:\vscode\graDes\housing-recommend-system\src\types\user.ts                                  | TypeScript |         17 |          0 |          3 |         20 |
+| d:\vscode\graDes\housing-recommend-system\src\uni.scss                                       | SCSS       |         38 |         25 |         13 |         76 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\Date.ts                                  | TypeScript |         24 |         10 |          7 |         41 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\Equipment.ts                             | TypeScript |         42 |          1 |         10 |         53 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\Measure.ts                               | TypeScript |         13 |          0 |          3 |         16 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\Notification.ts                          | TypeScript |         36 |          0 |         10 |         46 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\Num.ts                                   | TypeScript |          6 |          0 |          2 |          8 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\chat.ts                                  | TypeScript |         54 |          1 |         15 |         70 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\file.ts                                  | TypeScript |         14 |          0 |          1 |         15 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\localStorage.ts                          | TypeScript |         84 |         57 |         23 |        164 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\location.ts                              | TypeScript |        148 |         13 |         12 |        173 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\room.ts                                  | TypeScript |          5 |          0 |          1 |          6 |
+| d:\vscode\graDes\housing-recommend-system\src\utils\uuid.ts                                  | TypeScript |         11 |          0 |          0 |         11 |
+| d:\vscode\graDes\housing-recommend-system\src\var.less                                       | Less       |         16 |          1 |         21 |         38 |
+| d:\vscode\graDes\housing-recommend-system\src\websocket\index.ts                             | TypeScript |         62 |          0 |         11 |         73 |
+| Total                                                                                        |            |     11,946 |        191 |        955 |     13,092 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

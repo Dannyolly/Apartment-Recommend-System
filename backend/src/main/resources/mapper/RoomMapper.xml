@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.RoomMapper" >
+    <select id="recommendRooms" resultType="com.example.pojo.Room">
+        SELECT *
+        FROM room
+        where id in
+        <foreach collection="ids"  item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="hotRooms" resultType="com.example.pojo.Room">
+        SELECT *
+        FROM room
+        order by page_views desc
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="getCommunity" resultType="String">
+        SELECT distinct community
+        FROM room
+        where community like concat('%',#{community},'%')
+    </select>
+
+    <select id="getRoomByMul" resultType="com.example.pojo.Room">
+        SELECT *
+        FROM room
+        <where>
+            <if test="options.district != null">
+                and district = #{options.district}
+            </if>
+            <if test="options.traffic != null">
+                and traffic like concat('%',#{options.traffic},'%')
+            </if>
+            <if test="options.community != null">
+                and community like concat('%',#{options.community},'%')
+            </if>
+            <if test="options.road != null">
+                and road like concat('%',#{options.road},'%')
+            </if>
+            <if test="options.ori != null">
+                and ori like concat('%',#{options.ori},'%')
+            </if>
+            <if test="options.lowestPrice != null and options.highestPrice">
+                and price between #{options.lowestPrice} and #{options.highestPrice}
+            </if>
+            <if test="options.lowestAreaSize != null and options.highestAreaSize">
+                and areaSize between #{options.lowestAreaSize} and #{options.highestAreaSize}
+            </if>
+            <if test="options.floorInfo != null">
+                and floorInfo like concat('%',#{options.floorInfo},'%')
+            </if>
+        </where>
+        <if test="options.orderBy != null">
+            order by ${options.orderBy}
+        </if>
+        <if test="options.sort != null">
+            ${options.sort}
+        </if>
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="getHotRoomByMul" resultType="com.example.pojo.Room">
+        SELECT *
+        FROM room
+        <where>
+            <if test="options.community != null">
+                and community like concat('%',#{options.community},'%')
+            </if>
+            <if test="options.lowestPrice != null and options.highestPrice">
+                and price between #{options.lowestPrice} and #{options.highestPrice}
+            </if>
+            <if test="options.floorInfo != null">
+                and floorInfo like concat('%',#{options.floorInfo},'%')
+            </if>
+        </where>
+        order by page_views desc
+        limit #{page},#{pageSize}
+    </select>
+
+</mapper>
