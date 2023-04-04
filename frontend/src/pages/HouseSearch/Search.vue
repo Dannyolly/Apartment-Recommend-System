@@ -31,7 +31,7 @@ const filterOption = [
 ]
 
 const { text  , pageSize, currentPage ,dataList,isLoading,status } = useState({
-  ...usePage(0,5),
+  ...usePage(1,5),
   text:'',
   isLoading:false,
   dataList:[] as Room[],
@@ -45,6 +45,7 @@ const confirmPicker = (e:any)=>{
   show.value = false
   cur.value = e.value[0]
 }
+const input = ref<InstanceType<typeof MyInput>>()
 const filterBar =ref<InstanceType<typeof FilterBar>>()
 
 // 小区
@@ -102,6 +103,8 @@ const handleMore = (v:any,opt:FilterOption)=>{
 }
 const collectOpt = ()=>{
   let opt = {  } as FilterOption
+  console.log(filterSetting.value);
+  
   filterSetting.value.forEach((v,i)=>{
     switch(i){
       case 0:
@@ -127,10 +130,14 @@ const collectOpt = ()=>{
   return opt
 }
 
+const onFocus = ()=>{
+  uni.navigateBack()
+}
 const commitAllOptions = async ()=>{
   filterBar.value?.setCurrentIndex(-1)
   let opt = collectOpt()
   dataList.value = []
+  currentPage.value = 1
   const res = await ServiceManager.RoomService.getRoomsByOption(opt,currentPage.value++,pageSize.value);
   if(res.result.length === 0){
     status.value = 'nomore'
@@ -153,23 +160,25 @@ onReachBottom(async ()=>{
   //commitAllOptions()
 })
 
-onMounted(()=>{
-  setSubmitCb(commitAllOptions)
-})
 // @ts-ignore
 onLoad(async ({keyword,option})=>{
-    if(keyword!=='' && keyword!==undefined){
-      text.value = keyword
-      let obj = {
-        type:'小区',
-        val:keyword
-      }
-      submit(5,obj,obj)
-    }else{
-      commitAllOptions()
-      //dataList.value = (await ServiceManager.RoomService.getRoomsByOption({},currentPage.value++,pageSize.value)).result
+  setSubmitCb(commitAllOptions)  
+  if(keyword!=='' && keyword!==undefined){
+    text.value = keyword
+    let obj = {
+      type:'小区',
+      val:keyword
     }
+    submit(5,obj,obj)
+    nextTick(()=>{
+      input.value?.setText(keyword)
+    })
+  }else{
+    commitAllOptions()
+    //dataList.value = (await ServiceManager.RoomService.getRoomsByOption({},currentPage.value++,pageSize.value)).result
+  }
 })
+
 
 </script>
 <template>
@@ -183,9 +192,10 @@ onLoad(async ({keyword,option})=>{
                 <image class="img" src="/static/down.png" />
           </div>
           <MyInput 
+              ref="input"
               :commmit="commitText"
+              :onFocus="onFocus"
               :show-icon="false" 
-              :default-text="text" 
               border-radius="20" 
               width="100%" 
               box-shadow="''" 

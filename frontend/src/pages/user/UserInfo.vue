@@ -2,7 +2,7 @@
 import { toRefs, ref, watchEffect, onMounted } from 'vue';
 import { useState } from '@/hooks/useState';
 import { getDimension } from '@/utils/Equipment';
-import { onLoad, onPageScroll } from '@dcloudio/uni-app';
+import { onLoad, onPageScroll, onPullDownRefresh } from '@dcloudio/uni-app';
 import Navigation from '@/components/Navigation/UserInfo.vue'
 import { useNavigationScroll } from '@/hooks/useScroll';
 import { UserInfo } from '@/types/serviceEntity/user';
@@ -55,16 +55,12 @@ const prestige = [
         count: 294
     }
 ]
-
-watchEffect(()=>{
-    console.log(navigationHeight.value);
-    
-})
-onLoad(async (query) => {
-    return
+//@ts-ignore
+const setup = async (query)=>{
     // @ts-ignore
     const followId = query.userId
-    const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
+    //const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
+    const userId = 1
     if(userId === followId){
         isSelf.value = true
         return;
@@ -94,13 +90,17 @@ onLoad(async (query) => {
         v.picArr = v.pic.split(',').map(v=>baseUrl +v)
         return v
     })
-    dataList.value[1].data = dataList.value[1].data.map(v => {
-        v.picArr = v.pic.split(',').map(v=>baseUrl +v)
-        return v
-    })
     isLoad.value = true
+}
+onLoad(async (query) => {
+    setup(query)
     
 })
+
+onPullDownRefresh(()=>{
+
+})
+
 
 onPageScroll(() => { })
 </script>

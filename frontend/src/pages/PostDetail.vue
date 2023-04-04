@@ -96,16 +96,14 @@ onLoad(async (query) => {
         el.user = (await ServiceManager.UserService.getUserById(post.userId)).result
     }
     comments.value = temp
-    
-
-    console.log(isLike.value);
+    console.log(comments.value);
     
     
 })
 </script>
 <template>
     <div class="container">
-        <div class="swiper-container">
+        <div v-if="data.picArr" class="swiper-container">
             <u-swiper height="700" imgMode="aspectFill" :list="data.picArr" @change="onChange" @click="onClick" />
         </div>
         <div v-if="data.user" class="user-container">

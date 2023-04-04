@@ -62,7 +62,7 @@ const resetAll = ()=>{
 }
 onMounted(() => {
     const cache:Res = getCache(listIndex)
-    if(cache){
+    if(cache ){
         const [ optionsArrT ,choiceT ] = cache
         optionsArr.value =optionsArrT
         choice.value = choiceT

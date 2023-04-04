@@ -22,7 +22,7 @@ const sortRule = [
 ]
 onMounted(() => {
     const cache = getCache(listIndex)
-    if(cache){
+    if(cache !== undefined){
         curSortIndex.value = cache
     }
 })

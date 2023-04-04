@@ -13,11 +13,14 @@ import Login from '@/pages/login.vue'
 import { getUserInfo ,login } from '@/api/login';
 import { UserInfo } from '@/types/serviceEntity/user';
 import { ServiceManager } from '@/service';
+import { usePubSub } from '@/hooks/usePubSub';
 const height = getDimension().height +'px' 
-const { isLogin,isCheck } = useState({
+const { isLogin,isCheck ,isNewUser} = useState({
     isLogin:true,
-    isCheck:false
+    isCheck:false,
+    isNewUser:false
 })
+const pubsub = usePubSub()
 const { isTenant } = storeToRefs(useTabbarStore())
 const { setup } = useHouseAppointmentStore()
 onMounted(()=>{
@@ -25,19 +28,24 @@ onMounted(()=>{
 })
 const loginAction = async ()=>{
     const openId = await login()
-    
     const res = await ServiceManager.UserService.login(openId)
     let userInfo:UserInfo | undefined = undefined
     if(res.state ===  'ERROR'){
-        // 未注冊...
+        // 未注冊 --- 新用戶
         const registerInfo = await ServiceManager.UserService.register(openId);
         userInfo = registerInfo.result
+        LocalStorageManager.setLocalStorageInfo('userInfo',{userInfo:userInfo})
+        uni.navigateTo({
+            url:'/pages/preference'
+        })
+        
+        
     }else{
-        userInfo = (await ServiceManager.UserService.login(openId)).result;
+        userInfo = res.result;
+        LocalStorageManager.setLocalStorageInfo('userInfo',{userInfo:userInfo})
+        isLogin.value = true
+        setup()
     }
-    LocalStorageManager.setLocalStorageInfo('userInfo',{userInfo:userInfo})
-    isLogin.value = true
-    setup()
     
 }
 onLoad(async (query)=>{
@@ -46,9 +54,19 @@ onLoad(async (query)=>{
         // loginAction()
         isLogin.value = false
     }else{
+        const openId = usrInfo.openId     
+        const res = await ServiceManager.UserService.login(openId)
+        const userInfo = res.result;
+        LocalStorageManager.setLocalStorageInfo('userInfo',{userInfo:userInfo})
         setup()
     }
     isCheck.value = true
+
+    // 新注冊用戶流程 填偏好
+    pubsub.subscribe('perference',()=>{
+        isLogin.value = true
+        //setup()
+    })
 })
 onPageScroll(()=>{})
 </script>

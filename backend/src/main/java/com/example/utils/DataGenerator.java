@@ -47,7 +47,8 @@ public class DataGenerator {
         //name是一个随机的英文名称。
         template.put("name", "@name");
         // 设置
-        Mock.set(User.class, template);
+        Mock.reset(User.class, template);
+
         // 获取一个MockObject
         MockObject<User> mockUser = Mock.get(User.class);
         return mockUser.getList(num);

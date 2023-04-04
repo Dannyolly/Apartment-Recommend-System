@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {LocalStorageManager} from "@/utils/localStorage";
-const backendLocalHost = 'http://127.0.0.1:8084/'
+const backendLocalHost = 'http://127.0.0.1:8085/'
 
 const baseUrl = backendLocalHost
 

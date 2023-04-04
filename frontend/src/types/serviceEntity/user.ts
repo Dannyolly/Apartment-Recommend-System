@@ -5,7 +5,8 @@ interface UserInfo {
     avatar: string,
     follow?:number,
     fans?:number,
-    likeCount?:number
+    likeCount?:number,
+    openId:string
 }
 
 interface Follow {

@@ -2,7 +2,7 @@
 import pubsub from 'pubsub-js'
 
 type SubscribeCallBack = (message: string, data: any) => void
-type Message = 'post' | 'switch'
+type Message = 'post' | 'switch' | 'perference'
 interface PubSub {
     
     publish: (message: Message, data: any) => void;

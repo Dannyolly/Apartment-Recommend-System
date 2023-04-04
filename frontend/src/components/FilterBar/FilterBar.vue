@@ -36,7 +36,8 @@ onUnmounted(()=>{
   <div :style="{height:currentIndex!==-1?height+'px':0}" class='container'>
     <div class="top-container">
       <div @click="()=>onClick(index)" v-for="(item,index ) in filterOptions" class="item-container">
-          <div :style="{color:(currentIndex===index || filterSetting[index]) ?'rgb(36,172,242)':''}" class="title">
+          <div :style="{color:(currentIndex===index || filterSetting[index]) ?'rgb(36,172,242)':''}" 
+          class="title">
             {{ item }}
           </div>
           <div class="icon-container">

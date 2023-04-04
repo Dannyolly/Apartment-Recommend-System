@@ -2,13 +2,15 @@
 import { toRefs, ref, watchEffect, onMounted } from 'vue';
 import { useState } from '@/hooks/useState';
 import { usePicker } from '@/hooks/usePicker';
+import { ServiceManager } from '@/service';
 interface SearchProps {
     any: any
 }
 const { } = defineProps<SearchProps>()
-const { text } = useState({
+const { text ,community,open } = useState({
     text: '',
-    
+    community:[] as string[],
+    open:false
 })
 const { show, columns ,cur } = usePicker(['小区','道路'])
 const back = () => uni.navigateBack()
@@ -21,24 +23,25 @@ const recommendList: Array<{
             pic: '/static/home/community.png',
             title: '热门小区',
             list: [
-                '上海康城',
-                '龙湖北城天街',
-                '奥林匹克花园',
-                '万科城市花园',
-                '四季都会'
-            ]
-        },
-        {
-            pic: '/static/home/train.png',
-            title: '热搜地铁',
-            list: [
-                '九亭',
-                '中山公园',
-                '七宝',
-                '世纪大道',
-                '桃浦新村'
+                '铁机盛世家园',
+                '泛悦城',
+                '光谷青年城(一期)',
+                '碧桂园泰富城',
+                '成园小区'
             ]
         }
+        // ,
+        // {
+        //     pic: '/static/home/train.png',
+        //     title: '热搜地铁',
+        //     list: [
+        //         '九亭',
+        //         '中山公园',
+        //         '七宝',
+        //         '世纪大道',
+        //         '桃浦新村'
+        //     ]
+        // }
 ]
 const submit = ()=>{
     // do some request
@@ -50,6 +53,26 @@ const confirm = (e:any)=>{
     show.value = false
     cur.value = e.value[0]
 }
+
+const onInput = () =>{
+    // @ts-ignore
+    uni.$u.debounce(async()=>{
+       
+       const res = await ServiceManager.RoomService.getCommunityByKeyWord(text.value)
+        community.value = res.result
+    },500)
+    
+}
+const chooseCommunity = (v:string)=>{
+    text.value = v
+    submit()
+}
+const onFocus = ()=>{
+    open.value = true
+}
+const onBlur = ()=>{
+    open.value =false
+}
 </script>
 <template>
     <div class="search-container">
@@ -60,9 +83,13 @@ const confirm = (e:any)=>{
                 <image class="img" src="/static/down.png" />
             </div>
             
-            <input :focus="true" @confirm="submit" confirm-type="search" placeholder="你想住哪?" v-model="text" @change="() => { }" />
+            <input @focus="onFocus" @blur="onBlur"  @confirm="submit" confirm-type="search" placeholder="你想住哪?" v-model="text" @input="onInput" />
             <div @click="back" style="position: absolute;right: -40px;top: 0;font-size: 14px;">取消</div>
+            <div :class="{open:open}" class="community-list-container">
+                <div :style="{padding:'5px 20px'}" @click="()=>chooseCommunity(item)" v-for="item in community">{{ item }}</div>
+            </div>
         </div>
+        
         <div class="recommend-keyword-container">
             <div class="title">大家都在看</div>
             <div class="recommend-outer-container">
@@ -72,7 +99,7 @@ const confirm = (e:any)=>{
                         <div>{{ item.title }}</div>
                     </div>
                     <div class="recommend-list">
-                        <div class="item" v-for="(i, index) in item.list">{{ i }}</div>
+                        <div @click="chooseCommunity(i)" class="item" v-for="(i, index) in item.list">{{ i }}</div>
                     </div>
                 </div>
             </div>
@@ -114,8 +141,23 @@ const confirm = (e:any)=>{
             padding-left: 60px;
 
         }
+        .community-list-container{
+            width: calc( 100% - 60px );
+            height: 0px;
+            left: 60px;
+            position: absolute;
+            transition: all 0.3s ;
+            box-shadow: 0 0 10px #CDCDCD;
+            background-color: #FFF;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .open{
+            height: 250px;
+            overflow: scroll;
+        }
     }
-
+    
     .recommend-keyword-container {
         .title {
             font-size: 15px;

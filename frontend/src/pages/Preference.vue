@@ -12,18 +12,22 @@ import Tag from '@/components/public/Tag.vue';
 import { flowRight } from 'lodash';
 import { Perference } from '@/types/serviceEntity/user'
 import { LocalStorageManager } from '@/utils/localStorage';
+import Notis from '@/components/public/Notis.vue';
+import { useNoti } from '@/hooks/useNoti';
 interface SwitchProps {
   props?:any
 }
 const {} = defineProps<SwitchProps>()
-const { open , community,floor,lowestPrice,highestPrice,communityInfo} = useState({
+const { open , community,floor,lowestPrice,highestPrice,communityInfo,noti} = useState({
     open:false,
     community:[] as string[],
     communityInfo:'',
     floor:'',
     lowestPrice:'',
-    highestPrice:''
+    highestPrice:'',
+    ...useNoti()
 })
+const pubsub = usePubSub()
 const input = ref<InstanceType<typeof MyInput>>()
 const height = getDimension().height - 40 +'px' 
 const perferences = [
@@ -62,9 +66,12 @@ const submit = ()=>{
     LocalStorageManager.setLocalStorageInfo('perference',{
         perference:temp
     },userId)
-    uni.switchTab({
-        url:'/pages/tabbar/HomeContainer'
-    })
+    pubsub.publish('perference',temp)
+    noti.value?.open('提交成功')
+    setTimeout(()=>{
+        uni.navigateBack()
+    },0)
+    
 }
 
 const skip = ()=>{
@@ -78,9 +85,11 @@ const skip = ()=>{
     LocalStorageManager.setLocalStorageInfo('perference',{
         perference:temp
     },userId)
-    uni.switchTab({
-        url:'/pages/tabbar/HomeContainer'
-    })
+    pubsub.publish('perference',temp)
+    setTimeout(()=>{
+        uni.navigateBack()
+    },0)
+    
 }
 
 </script>
@@ -131,7 +140,9 @@ const skip = ()=>{
             提交
         </div>
     </div>
+    
 </div>
+<Notis ref="noti" />
 </template>
 
 <style lang='less' scoped>

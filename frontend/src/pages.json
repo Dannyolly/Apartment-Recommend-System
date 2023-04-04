@@ -17,6 +17,15 @@
 			}	
 		},
 		{
+			"path":"pages/search",
+			"style":{
+				"navigationBarBackgroundColor":"#ffffff",
+				"navigationBarTitleText": "搜索公寓",
+				"navigationBarTextStyle":"black"
+			}
+		},
+		
+		{
 			"path":"pages/preference",
 			"style":{
 				"navigationBarTitleText": "Home",
@@ -317,14 +326,7 @@
 				"navigationBarTextStyle":"black"
 			}
 		},
-		{
-			"path":"pages/search",
-			"style":{
-				"navigationBarBackgroundColor":"#ffffff",
-				"navigationBarTitleText": "搜索公寓",
-				"navigationBarTextStyle":"black"
-			}
-		}
+		
 	],
 	"tabBar": {
 		"custom":true,

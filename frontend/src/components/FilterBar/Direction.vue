@@ -21,7 +21,7 @@ const directions = [
 ]
 onMounted(() => {
     const cache = getCache(listIndex)
-    if(cache){
+    if(cache !== undefined ){
         currentIndex.value = cache
     }
 })

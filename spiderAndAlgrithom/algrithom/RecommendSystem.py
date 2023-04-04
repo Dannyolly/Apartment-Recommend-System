@@ -406,6 +406,7 @@ def setup():
 
 if __name__ == '__main__':
     setup()
+    # do sth. right there
     # getItemByTopXSimilarityUser(1,1)
     app.run(port=8086, debug=True)
     # getTopXSimilarityUser(2)

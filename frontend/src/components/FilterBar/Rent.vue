@@ -32,15 +32,20 @@ const rentsMap = {
 }
 onMounted(() => {
     const cache = getCache(listIndex)
-    if(cache){
+    if(cache!==undefined){
         currentIndex.value = cache
     }
+})
+watchEffect(()=>{
+    
 })
 </script>
 <template>
     <div style="position: relative;">
         <view  class='container'>
-            <div @click="currentIndex = index" :class="{click:index===currentIndex}" v-for="(item,index) in rents" class="item-container">
+            <div @click="currentIndex = index" 
+            :class="{click:index===currentIndex}" v-for="(item,index) in rents" 
+            class="item-container">
                 {{ item }}
             </div>
         </view>
