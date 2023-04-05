@@ -44,10 +44,13 @@ class MySpringBootWebSocketApplicationTests {
 	UserServiceImpl userService;
 
 	@Autowired
+	ServiceMapper serviceMapper;
+
+	@Autowired
 	RoomMapper roomMapper;
 	@Test
 	void contextLoads() throws Exception {
-
+		System.out.println(serviceMapper.selectByMap(null));
 	}
 
 }

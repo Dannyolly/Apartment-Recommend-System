@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.mapper.RentInfoMapper;
 import com.example.msg.Result;
 import com.example.pojo.RentInfo;
+import com.example.pojo.RoomBooking;
 import com.example.state.Message;
 import com.example.utils.IDate;
 import com.example.utils.PageUtil;
@@ -83,8 +84,38 @@ public class RentInfoController {
                 200,
                 Message.SUCCESS,
                 "OK",
-                rentInfoMapper.orders(id, PageUtil.cal(page,pageSize),pageSize)
+                rentInfoMapper.ordersById(id, PageUtil.cal(page,pageSize),pageSize)
         );
+    }
+
+    // 增刪查改
+    @GetMapping("/rentInfo/get")
+    public List<RentInfo> getRoomBookings(int page, int pageSize){
+        return rentInfoMapper.orders(page,pageSize);
+    }
+
+    @GetMapping("/rentInfo/getById")
+    public RentInfo getRoomBookings(int id){
+        return rentInfoMapper.selectById(id);
+    }
+
+
+    @GetMapping("/rentInfo/update")
+    public Integer update(RentInfo room){
+        return rentInfoMapper.updateById(room);
+
+    }
+
+    @GetMapping("/rentInfo/delete")
+    public Integer delete(int id){
+        return rentInfoMapper.deleteById(id);
+
+    }
+
+    @GetMapping("/rentInfo/add")
+    public RentInfo add(RentInfo room){
+        rentInfoMapper.insert(room);
+        return room;
     }
 
 

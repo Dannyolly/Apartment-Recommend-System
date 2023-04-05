@@ -1,8 +1,10 @@
 package com.example.controller;
 
 import com.example.mapper.RoomBookingMapper;
+import com.example.msg.Options;
 import com.example.msg.Result;
 import com.example.pojo.RentInfo;
+import com.example.pojo.Room;
 import com.example.pojo.RoomBooking;
 import com.example.state.Message;
 import com.example.utils.IDate;
@@ -69,9 +71,37 @@ public class RoomBookingController {
                 200,
                 Message.SUCCESS,
                 "OK",
-                roomBookingMapper.orders(id, PageUtil.cal(page,pageSize),pageSize)
+                roomBookingMapper.ordersById(id, PageUtil.cal(page,pageSize),pageSize)
         );
     }
 
 
+    // 增刪查改
+    @GetMapping("/roomBooking/select")
+    public List<RoomBooking> getRoomBookings( int page, int pageSize){
+        return roomBookingMapper.orders(page,pageSize);
+    }
+
+    @GetMapping("/roomBooking/getById")
+    public RoomBooking getRoomBookings( int id,int page, int pageSize){
+        return roomBookingMapper.selectById(id);
+    }
+
+    @GetMapping("/roomBooking/update")
+    public Integer update(RoomBooking room){
+        return roomBookingMapper.updateById(room);
+
+    }
+
+    @GetMapping("/roomBooking/delete")
+    public Integer delete(int id){
+        return roomBookingMapper.deleteById(id);
+
+    }
+
+    @GetMapping("/roomBooking/add")
+    public RoomBooking add(RoomBooking room){
+        roomBookingMapper.insert(room);
+        return room;
+    }
 }

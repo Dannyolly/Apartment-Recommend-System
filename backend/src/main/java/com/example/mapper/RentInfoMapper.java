@@ -9,5 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface RentInfoMapper extends BaseMapper<RentInfo> {
-    List<RentInfo> orders(int id,int page,int pageSize);
+    List<RentInfo> ordersById(int id,int page,int pageSize);
+
+    List<RentInfo> orders(int page,int pageSize);
 }

@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.mapper.LeaseOrderMapper;
 import com.example.msg.Result;
 import com.example.pojo.LeaseOrder;
+import com.example.pojo.RentInfo;
 import com.example.service.LeaseOrderService;
 import com.example.state.Message;
 import com.example.utils.IDate;
@@ -18,6 +20,9 @@ public class LeaseOrderController {
 
     @Autowired
     LeaseOrderService leaseOrderService;
+
+    @Autowired
+    LeaseOrderMapper leaseOrderMapper;
 
     @GetMapping("/lease/list")
     public Result<List<LeaseOrder>> getUserOrderList(int userId){
@@ -67,4 +72,31 @@ public class LeaseOrderController {
     }
 
 
+    // 增刪查改
+    @GetMapping("/leaseOrder/get")
+    public List<LeaseOrder> getRoomBookings(int page, int pageSize){
+        return leaseOrderMapper.orders(page,pageSize);
+    }
+
+    @GetMapping("/leaseOrder/getById")
+    public LeaseOrder getRoomBookings(int id){
+        return leaseOrderMapper.selectById(id);
+    }
+    @GetMapping("/leaseOrder/update")
+    public Integer update(LeaseOrder room){
+        return leaseOrderMapper.updateById(room);
+
+    }
+
+    @GetMapping("/leaseOrder/delete")
+    public Integer delete(int id){
+        return leaseOrderMapper.deleteById(id);
+
+    }
+
+    @GetMapping("/leaseOrder/add")
+    public LeaseOrder add(LeaseOrder room){
+        leaseOrderMapper.insert(room);
+        return room;
+    }
 }

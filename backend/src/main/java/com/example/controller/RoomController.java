@@ -57,7 +57,7 @@ public class RoomController {
     }
 
     @GetMapping("/getRoomsByOptions")
-    public Result<List<Room>> getRoomsByOptions(Options options,int page, int pageSize, Date date){
+    public Result<List<Room>> getRoomsByOptions(Options options,int page, int pageSize){
         return new Result<>(
                 200,
                 Message.SUCCESS,
@@ -97,5 +97,27 @@ public class RoomController {
         );
     }
 
+    // 增刪查改
+    @GetMapping("/room/get")
+    public List<Room> getRooms(Options options,int page,int pageSize){
+        return getRoomsByOptions(options,page,pageSize).getResult();
+    }
 
+    @GetMapping("/room/update")
+    public Integer update(Room room){
+        return roomMapper.updateById(room);
+
+    }
+
+    @GetMapping("/room/delete")
+    public Integer delete(int id){
+        return roomMapper.deleteById(id);
+
+    }
+
+    @GetMapping("/room/add")
+    public Room add(Room room){
+        roomMapper.insert(room);
+        return room;
+    }
 }

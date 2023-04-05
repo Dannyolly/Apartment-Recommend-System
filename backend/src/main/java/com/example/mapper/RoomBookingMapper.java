@@ -9,5 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface RoomBookingMapper extends BaseMapper<RoomBooking> {
-    List<RoomBooking> orders(int id, int page, int pageSize);
+    List<RoomBooking> ordersById(int id, int page, int pageSize);
+
+    List<RoomBooking> orders( int page, int pageSize);
 }

@@ -4,12 +4,14 @@ import com.example.mapper.FollowMapper;
 import com.example.mapper.UserMapper;
 import com.example.msg.Result;
 import com.example.pojo.Follow;
+import com.example.pojo.LeaseOrder;
 import com.example.pojo.User;
 import com.example.service.UserService;
 import com.example.service.impl.UserServiceImpl;
 import com.example.state.Message;
 import com.example.utils.DataGenerator;
 import com.example.utils.IdsUtil;
+import com.example.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -116,7 +118,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/user/get")
+    @GetMapping("/user/getById")
     public Result<User> getUser(int userId){
         return  new Result<>(
                 200,
@@ -174,5 +176,39 @@ public class UserController {
         );
     }
 
+
+    // 增刪查改
+    @GetMapping("/user/get")
+    public List<User> getRoomBookings(int page, int pageSize){
+        return userMapper.users(PageUtil.cal(page,pageSize),pageSize);
+    }
+
+    @GetMapping("/user/count")
+    public Long getCount(){
+        return userMapper.selectCount(null);
+    }
+
+    @GetMapping("/user/getItemById")
+    public User getRoomBookings(int id){
+        return getUser(id).getResult();
+    }
+
+    @GetMapping("/user/update")
+    public Integer update(User user){
+        return userMapper.updateById(user);
+
+    }
+
+    @GetMapping("/user/delete")
+    public Integer delete(int id){
+        return userMapper.deleteById(id);
+
+    }
+
+    @GetMapping("/user/add")
+    public User add(User user){
+        userMapper.insert(user);
+        return user;
+    }
 
 }

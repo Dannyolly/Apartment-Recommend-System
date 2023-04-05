@@ -3,11 +3,9 @@ package com.example.controller;
 import com.example.mapper.ServiceCommentMapper;
 import com.example.mapper.ServiceMapper;
 import com.example.mapper.ServiceOrderMapper;
+import com.example.msg.Options;
 import com.example.msg.Result;
-import com.example.pojo.RentInfo;
-import com.example.pojo.Service;
-import com.example.pojo.ServiceComment;
-import com.example.pojo.ServiceOrder;
+import com.example.pojo.*;
 import com.example.state.Message;
 import com.example.utils.IDate;
 import com.example.utils.PageUtil;
@@ -132,8 +130,7 @@ public class ServiceController {
                 serviceOrder
         );
     }
-
-
+    
     @GetMapping("/service/getOrder")
     public Result<List<ServiceOrder>> getOrders(int userId){
         HashMap<String, Object> params = new HashMap<>();
@@ -145,4 +142,51 @@ public class ServiceController {
                 serviceOrderMapper.selectByMap(params)
         );
     }
+
+
+    // service 增刪查改
+    @GetMapping("/service/get")
+    public List<Service> getServices(int page, int pageSize){
+        return serviceMapper.list();
+    }
+
+    @GetMapping("/service/update")
+    public Integer update(Service Service){
+        return serviceMapper.updateById(Service);
+    }
+
+    @GetMapping("/service/delete")
+    public Integer delete(int id){
+        return serviceMapper.deleteById(id);
+    }
+
+    @GetMapping("/service/add")
+    public Service add(Service Service){
+        serviceMapper.insert(Service);
+        return Service;
+    }
+
+
+    // service 增刪查改
+    @GetMapping("/serviceOrder/get")
+    public List<ServiceOrder> getServiceOrders(int page, int pageSize){
+        return serviceOrderMapper.list(page,pageSize);
+    }
+
+    @GetMapping("/serviceOrder/update")
+    public Integer updateOrder(ServiceOrder Service){
+        return serviceOrderMapper.updateById(Service);
+    }
+
+    @GetMapping("/serviceOrder/delete")
+    public Integer deleteOrder(int id){
+        return serviceOrderMapper.deleteById(id);
+    }
+
+    @GetMapping("/serviceOrder/add")
+    public ServiceOrder addOrder(ServiceOrder Service){
+        serviceOrderMapper.insert(Service);
+        return Service;
+    }
+
 }
