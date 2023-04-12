@@ -4,3 +4,7 @@ interface IApiResponseData<T> {
   data: T
   message: string
 }
+
+interface TestData{
+  data:string
+}

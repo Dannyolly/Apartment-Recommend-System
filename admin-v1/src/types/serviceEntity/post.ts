@@ -1,4 +1,3 @@
-import { UserInfo } from "./serviceEntity/uuserviceEntity/user";
 
 enum PostType {
   NORMAL =1,
@@ -41,11 +40,18 @@ interface PostLikeRel {
   userId: number;
 }
 
+interface PostOption{
+  id?:number,
+  userId?:number,
+  type?:number
+}
+
 export {
     Post,
     PostType,
     PostComment,
     PostLikeRel,
     CollectPost,
-    FormattedPost
+    FormattedPost,
+    PostOption
 }

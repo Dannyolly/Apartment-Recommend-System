@@ -91,7 +91,7 @@ public class RentInfoController {
     // 增刪查改
     @GetMapping("/rentInfo/get")
     public List<RentInfo> getRoomBookings(int page, int pageSize){
-        return rentInfoMapper.orders(page,pageSize);
+        return rentInfoMapper.orders(PageUtil.cal(page,pageSize),pageSize);
     }
 
     @GetMapping("/rentInfo/getById")
@@ -100,10 +100,14 @@ public class RentInfoController {
     }
 
 
-    @GetMapping("/rentInfo/update")
-    public Integer update(RentInfo room){
-        return rentInfoMapper.updateById(room);
+    @GetMapping("/rentInfo/count")
+    public Long getCount(){
+        return rentInfoMapper.selectCount(null);
+    }
 
+    @GetMapping("/rentInfo/update")
+    public Integer update(RentInfo rentInfo){
+        return rentInfoMapper.updateById(rentInfo);
     }
 
     @GetMapping("/rentInfo/delete")

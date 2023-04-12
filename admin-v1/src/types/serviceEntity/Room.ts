@@ -116,6 +116,11 @@ interface FilterOption {
   sort?:'desc' | 'asc'
 }
 
+interface FilterOptionPlus extends FilterOption{
+  id?:number,
+
+}
+
 interface RoomVisitHistory{
   date:Date,
   roomId:number
@@ -131,5 +136,6 @@ export {
     RoomBookingOrder,
     RoomBookingState,
     RoomBookingStateMap,
-    RoomVisitHistory
+    RoomVisitHistory,
+    FilterOptionPlus
 }

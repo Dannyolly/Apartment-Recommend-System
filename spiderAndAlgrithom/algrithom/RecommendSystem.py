@@ -373,8 +373,10 @@ def getItemByTopXSimilarityUser(userId, page):
 
         # 找出相似用戶所瀏覽的
         similar_user_df_row: DataFrame = browse_df.loc[int(userIdKey)]
+        # 過濾空值
         similar_user_df_row: Index = similar_user_df_row.replace(0, np.nan).dropna().index
         similar_user_df_row_list: list = similar_user_df_row.tolist()
+        # 刪除首列
         similar_user_df_row_list.remove(similar_user_df_row_list[0])
         res = res.union(OrderedSet(similar_user_df_row_list))
         # 過濾已瀏覽的

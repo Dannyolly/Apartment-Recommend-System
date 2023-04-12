@@ -5,7 +5,19 @@
 <mapper namespace="com.example.mapper.ServiceOrderMapper" >
     <select id="list" resultType="com.example.pojo.ServiceOrder">
         select * from service_order
+        <where>
+            <if test="options.id != null">
+                and id = #{options.id}
+            </if>
+            <if test="options.userId != null">
+                and user_id = #{options.userId}
+            </if>
+        </where>
         limit #{page},#{pageSize}
     </select>
+
+
+
+
 
 </mapper>

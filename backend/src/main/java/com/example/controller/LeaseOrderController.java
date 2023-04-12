@@ -1,13 +1,16 @@
 package com.example.controller;
 
 import com.example.mapper.LeaseOrderMapper;
+import com.example.msg.LeaseOption;
 import com.example.msg.Result;
 import com.example.pojo.LeaseOrder;
 import com.example.pojo.RentInfo;
 import com.example.service.LeaseOrderService;
 import com.example.state.Message;
 import com.example.utils.IDate;
+import com.example.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class LeaseOrderController {
 
     @Autowired
@@ -74,18 +78,13 @@ public class LeaseOrderController {
 
     // 增刪查改
     @GetMapping("/leaseOrder/get")
-    public List<LeaseOrder> getRoomBookings(int page, int pageSize){
-        return leaseOrderMapper.orders(page,pageSize);
+    public List<LeaseOrder> getRoomBookings(LeaseOption leaseOption, int page, int pageSize){
+        return leaseOrderMapper.list(leaseOption, PageUtil.cal(page,pageSize),pageSize);
     }
 
-    @GetMapping("/leaseOrder/getById")
-    public LeaseOrder getRoomBookings(int id){
-        return leaseOrderMapper.selectById(id);
-    }
-    @GetMapping("/leaseOrder/update")
-    public Integer update(LeaseOrder room){
-        return leaseOrderMapper.updateById(room);
-
+    @GetMapping("/leaseOrder/count")
+    public int count(LeaseOption leaseOption){
+        return leaseOrderMapper.list(leaseOption, 0,100000).size();
     }
 
     @GetMapping("/leaseOrder/delete")
@@ -99,4 +98,11 @@ public class LeaseOrderController {
         leaseOrderMapper.insert(room);
         return room;
     }
+
+    @GetMapping("/leaseOrder/update")
+    public Integer update(LeaseOrder room){
+        return leaseOrderMapper.updateById(room);
+
+    }
+
 }

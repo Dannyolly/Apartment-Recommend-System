@@ -5,6 +5,7 @@
 <mapper namespace="com.example.mapper.ServiceMapper" >
     <select id="list" resultType="com.example.pojo.Service">
       select * from service
+      limit #{page},#{pageSize}
     </select>
 
 </mapper>

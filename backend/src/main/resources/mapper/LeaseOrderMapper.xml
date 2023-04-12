@@ -16,4 +16,19 @@
         ORDER BY create_time DESC
         limit #{page},#{pageSize}
     </select>
+
+    <select id="list" resultType="com.example.pojo.LeaseOrder">
+        SELECT *
+        from lease_order
+        <where>
+            <if test="options.id != null">
+                and id = #{options.id}
+            </if>
+            <if test="options.userId != null">
+                and user_id = #{options.userId}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        limit #{page},#{pageSize}
+    </select>
 </mapper>

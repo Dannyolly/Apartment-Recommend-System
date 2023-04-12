@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class Options {
     // 地區
+    // add
+    public Integer id;
+
     public String district;
     public String traffic;
     public String community;

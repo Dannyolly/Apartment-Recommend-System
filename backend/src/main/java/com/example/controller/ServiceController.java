@@ -5,6 +5,7 @@ import com.example.mapper.ServiceMapper;
 import com.example.mapper.ServiceOrderMapper;
 import com.example.msg.Options;
 import com.example.msg.Result;
+import com.example.msg.ServiceOrderOption;
 import com.example.pojo.*;
 import com.example.state.Message;
 import com.example.utils.IDate;
@@ -37,7 +38,7 @@ public class ServiceController {
                 200,
                 Message.SUCCESS,
                 "OK",
-                serviceMapper.list()
+                serviceMapper.list(0,1000)
         );
     }
 
@@ -147,7 +148,17 @@ public class ServiceController {
     // service 增刪查改
     @GetMapping("/service/get")
     public List<Service> getServices(int page, int pageSize){
-        return serviceMapper.list();
+        return serviceMapper.list(PageUtil.cal(page,pageSize),pageSize);
+    }
+
+    @GetMapping("/service/getServiceById")
+    public Service getServicesById(int id){
+        return serviceMapper.selectById(id);
+    }
+
+    @GetMapping("/service/count")
+    public Long count(){
+        return serviceMapper.selectCount(null);
     }
 
     @GetMapping("/service/update")
@@ -169,8 +180,13 @@ public class ServiceController {
 
     // service 增刪查改
     @GetMapping("/serviceOrder/get")
-    public List<ServiceOrder> getServiceOrders(int page, int pageSize){
-        return serviceOrderMapper.list(page,pageSize);
+    public List<ServiceOrder> getServiceOrders(ServiceOrderOption options, int page, int pageSize){
+        return serviceOrderMapper.list(options,PageUtil.cal(page,pageSize),pageSize);
+    }
+
+    @GetMapping("/serviceOrder/count")
+    public int orderCount(ServiceOrderOption options){
+        return serviceOrderMapper.list(options,0,100000).size();
     }
 
     @GetMapping("/serviceOrder/update")

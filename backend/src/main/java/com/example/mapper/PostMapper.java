@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.msg.PostOption;
 import com.example.pojo.Post;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,5 +15,6 @@ public interface PostMapper extends BaseMapper<Post> {
     */
    List<Post> posts(int userId,int type,int page,int pageSize);
 
+   List<Post> list(PostOption options, int page, int pageSize);
 
 }

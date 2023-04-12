@@ -3,11 +3,9 @@ package com.example.controller;
 import com.example.mapper.PostCommentMapper;
 import com.example.mapper.PostLikeRelMapper;
 import com.example.mapper.PostMapper;
+import com.example.msg.PostOption;
 import com.example.msg.Result;
-import com.example.pojo.Post;
-import com.example.pojo.PostComment;
-import com.example.pojo.PostLikeRel;
-import com.example.pojo.User;
+import com.example.pojo.*;
 import com.example.service.UserService;
 import com.example.state.Message;
 import com.example.utils.IDate;
@@ -171,6 +169,23 @@ public class PostController {
                 "OK",
                 postCommentMapper.selectByMap(params).size()
         );
+    }
+
+
+    // crud
+    @GetMapping("/post/get")
+    public List<Post> select(PostOption options,int page, int pageSize){
+        return  postMapper.list(options,PageUtil.cal(page, pageSize),pageSize);
+    }
+
+    @GetMapping("/post/count")
+    public int count(PostOption options,int page, int pageSize){
+        return  postMapper.list(options,PageUtil.cal(page, pageSize),pageSize).size();
+    }
+
+    @GetMapping("/post/delete")
+    public Integer delete(int id){
+        return postMapper.deleteById(id);
     }
 
 

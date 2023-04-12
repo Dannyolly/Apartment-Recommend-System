@@ -39,6 +39,11 @@ interface ServiceComment {
   toUserId: number;
 }
 
+interface SerivceOrderOption{
+  id?:number,
+  userId?:number
+}
+
 enum ServiceOrderState{
     PAYING = 1,
     WAITSERVE,
@@ -83,5 +88,6 @@ export {
     ServiceOrder,
     ServiceOrderState,
     ServiceOrderStateMap,
-    ServiceTypeMap
+    ServiceTypeMap,
+    SerivceOrderOption
 }

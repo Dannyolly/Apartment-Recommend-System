@@ -22,10 +22,38 @@ function getByUserId(params:{
     return get<RoomBookingOrder[]>('/roomBooking/get',params)
 }
 
+function getOrder(params:{
+    page:number,
+    pageSize:number
+}){
+    return get<RoomBooking[]>('/roomBooking/select',params)
+}
+
+function count(){
+    return get<number>('/roomBooking/count')
+}
+
+function getOrderById(id:number){
+    return get<RoomBooking>('/roomBooking/getById',{id})
+}
+
+function update(roomBooking:RoomBooking){
+    return get<number>('/roomBooking/update',roomBooking)
+}
+
+function deleteById(id:number){
+    return get<number>('/roomBooking/delete',{id})
+}
+
 const RoomBookingService = {
     create,
     visit,
-    getByUserId
+    getByUserId,
+    getOrder,
+    getOrderById,
+    update,
+    deleteById,
+    count
 }
 
 export{

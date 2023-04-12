@@ -30,6 +30,9 @@
         SELECT *
         FROM room
         <where>
+            <if test="options.id != null">
+                and id = #{options.id}
+            </if>
             <if test="options.district != null">
                 and district = #{options.district}
             </if>

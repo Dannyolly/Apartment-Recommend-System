@@ -8,5 +8,5 @@ import java.util.List;
 
 @Mapper
 public interface ServiceMapper extends BaseMapper<Service> {
-    List<Service> list();
+    List<Service> list(int page,int pageSize);
 }

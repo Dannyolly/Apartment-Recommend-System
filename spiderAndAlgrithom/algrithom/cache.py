@@ -1,4 +1,9 @@
+"""
+@author:dannyolly
+@Time: 2023/4/11
+@desc: cache all data recommend function need .. user-simi matrix
 
+"""
 roomFileCache = {
     '上海': {
         'ids': None,

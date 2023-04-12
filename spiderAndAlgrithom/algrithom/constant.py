@@ -1,3 +1,9 @@
+"""
+@author:dannyolly
+@Time: 2023/4/11
+@desc: key map .
+
+"""
 cols = [
     'id', 'city', 'district', 'road', 'community',
     'price', 'areaSize', 'ori', 'floorInfo',

@@ -70,34 +70,112 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/menu",
+    path: "/rent",
     component: Layout,
-    redirect: "/menu/menu1",
-    name: "Menu",
+    redirect: "/rentOrder",
+    name: "Rent",
     meta: {
-      title: "多级菜单",
+      title: "租赁管理",
       svgIcon: "menu"
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/views/menu/menu1/index.vue"),
-        name: "Menu1",
+        path: "rentOrder",
+        component: () => import("@/views/rent/rentOrder/index.vue"),
+        name: "RentOrder",
         meta: {
-          title: "menu1"
+          title: "公寓订单"
         }
       },
       {
-        path: "menu2",
-        component: () => import("@/views/menu/menu2/index.vue"),
-        name: "Menu2",
+        path: "appointment",
+        component: () => import("@/views/rent/appointment/index.vue"),
+        name: "Appointment",
         meta: {
-          title: "menu2"
+          title: "公寓预约订单"
+        }
+      },
+      {
+        path: "room",
+        component: () => import("@/views/rent/room/index.vue"),
+        name: "Room",
+        meta: {
+          title: "公寓管理"
+        }
+      },
+    ]
+  },
+  {
+    path: "/property",
+    component: Layout,
+    redirect: "/service",
+    name: "Property",
+    meta: {
+      title: "物业管理",
+      svgIcon: "menu"
+    },
+    children: [
+      {
+        path: "service",
+        component: () => import("@/views/Property/Service.vue"),
+        name: "Service",
+        meta: {
+          title: "服务管理"
+        }
+      },
+      {
+        path: "serviceOrder",
+        component: () => import("@/views/Property/ServiceOrder.vue"),
+        name: "ServiceOrder",
+        meta: {
+          title: "服务订单管理"
         }
       }
     ]
   },
-  
+  {
+    path: "/info",
+    component: Layout,
+    redirect: "/info/post",
+    name: "Post",
+    meta: {
+      title: "信息交流管理",
+      svgIcon: "menu"
+    },
+    children: [
+      {
+        path: "post",
+        component: () => import("@/views/post/index.vue"),
+        name: "Post",
+        meta: {
+          title: "帖子管理",
+          svgIcon: "menu"
+        }
+      },
+    ]
+  },
+  {
+    path: "/lease",
+    component: Layout,
+    redirect: "/lease/leaseOrder",
+    name: "Lease",
+    meta: {
+      title: "出租管理",
+      svgIcon: "menu"
+    },
+    children: [
+      {
+        path: "leaseOrder",
+        component: () => import("@/views/lease/index.vue"),
+        name: "LeaseOrder",
+        meta: {
+          title: "出租订单管理",
+          svgIcon: "menu"
+          //svgIcon: "menu"
+        }
+      }
+    ]
+  },
 ]
 
 /**

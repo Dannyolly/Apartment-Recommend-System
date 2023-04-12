@@ -103,6 +103,12 @@ public class RoomController {
         return getRoomsByOptions(options,page,pageSize).getResult();
     }
 
+    @GetMapping("/room/count")
+    public Long count(){
+        return roomMapper.selectCount(null);
+    }
+
+
     @GetMapping("/room/update")
     public Integer update(Room room){
         return roomMapper.updateById(room);

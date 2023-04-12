@@ -10,6 +10,12 @@ interface LeaseOrder {
   state: 1 | 2
 }
 
+interface LeaseOrderOption{
+  id?:number,
+  userId?:number
+}
+
 export {
-    LeaseOrder
+    LeaseOrder,
+    LeaseOrderOption
 }
