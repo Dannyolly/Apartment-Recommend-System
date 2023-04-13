@@ -151,11 +151,18 @@ const commitAllOptions = async ()=>{
 
 onReachBottom(async ()=>{
   //console.log('reach bottom!');
+  if(status.value === 'nomore') return
   isLoading.value = true
   setTimeout(async ()=>{
     let opt = collectOpt()
-    dataList.value.push(...(await ServiceManager.RoomService.getRoomsByOption(opt, currentPage.value++, pageSize.value)).result)
+    let res = (await ServiceManager.RoomService.getRoomsByOption(opt, currentPage.value++, pageSize.value)).result
     
+    if(res.length===0){
+      status.value = 'nomore'
+      //isLoading.value = false
+    }else{
+      dataList.value.push(...res)
+    }
   },1000)
   //commitAllOptions()
 })

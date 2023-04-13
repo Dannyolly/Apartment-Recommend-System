@@ -122,7 +122,6 @@ onMounted(async ()=>{
   // 加載所有好友推薦列表..
   const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
   const res = await  ServiceManager.UserService.getRecommendUser(userId)
-  console.log(res);
   fdRecommendList.value = res
 
   // 訂閱發布事件
@@ -354,6 +353,7 @@ onUnmounted(()=>{
     z-index: 10;
     padding: 10px;
     padding-top: 20px;
+    padding-bottom: 80px;
     .fd-recommend-list-container{
       background-color: #FFFFFF;
       padding: 20px;

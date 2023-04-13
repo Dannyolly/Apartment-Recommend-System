@@ -26,7 +26,7 @@ function checkFollow(userId:number,followId:number){
 }
 
 function getUserById(userId:number){
-    return get<UserInfo>('/user/get',{userId})
+    return get<UserInfo>('/user/getById',{userId})
 }
 
 function getUsersByIds(ids:string){

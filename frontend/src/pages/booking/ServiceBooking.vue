@@ -74,7 +74,7 @@ async function submitOrder(){
         curPri: serviceInfo.value.curPri 
     })
     const { result: serviceT} = await ServiceManager.ClientService.getById(result.serviceId)
-    console.log(serviceT,result.id);
+    //console.log(serviceT,result.id);
     
     result.service = serviceT
     result.service.curPri = result.curPri
@@ -92,7 +92,7 @@ onLoad(async (query)=>{
     serviceInfo.value = JSON.parse(decodeURIComponent(query.serviceInfo))
     //console.log(serviceInfo.value);
     totalPrice.value += Number( serviceInfo.value?.curPri )
-    console.log(serviceInfo.value);
+   // console.log(serviceInfo.value);
     
 })
 onPageScroll(()=>{})

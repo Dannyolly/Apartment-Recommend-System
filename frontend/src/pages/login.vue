@@ -9,7 +9,7 @@ import { usePubSub } from '@/hooks/usePubSub';
 interface SwitchProps {
   login:()=>void
 }
-const {} = defineProps<SwitchProps>()
+const { login } = defineProps<SwitchProps>()
 const height = getDimension().height - 40 +'px' 
 const {  isTenant  ,currentTabIndex }  = storeToRefs(useTabbarStore())
 const imgs = ['/static/switch/1.png','/static/switch/2.png']
@@ -27,10 +27,10 @@ const change = (index: number) =>{
 <div  :style='{height:height}' class='container'>
     <div class="content">
         <div class="title">欢迎来Dan</div>
-        <div class="sub-title">請先登入</div>
+        <div class="sub-title">请先登入</div>
         <div >
             <div @click="login" class="login-btn">
-                使用微信一鍵登入
+                使用微信一键登入
             </div>
         </div>
     </div>

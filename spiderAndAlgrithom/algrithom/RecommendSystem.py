@@ -13,6 +13,9 @@ import json
 from spiderRoot.database.sqldb import DataBase
 from cache import cfFileCache, roomFileCache, followFileCache
 from constant import cols, cities, DataMapKey, DataMap
+from sklearn.feature_selection import VarianceThreshold, SelectKBest
+from sklearn.decomposition import PCA
+from sklearn.datasets import load_iris
 
 """
 @author:dannyolly
@@ -40,62 +43,32 @@ def calTime(cb):
     print((endTime - startTime))
 
 
-def calculateFollowSimilarity():
-    data: DataFrame = pd.read_csv('../dataset/follow_dataset.csv')
-    userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
-    df = pd.DataFrame(data=userSimilarity)
-    df.to_csv('../trainedData/user_similarity.csv')
-
-
-def calculateBrowseHistorySimilarity():
-    data: DataFrame = pd.read_csv('../dataset/browse_history_dataset.csv')
-    userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
-    df = pd.DataFrame(data=userSimilarity)
-    df.to_csv('../trainedData/user_based_room_similarity.csv')
-
-
-def cosineSimilarityRoomRes(city: str, isSave=True):
-    # 讀取文件
-    data = pd.read_csv('../dataset/room_dataset.csv')
-    # 選擇城市
-    city_room: DataFrame = data[data['city'] == city]
-    # 重置索引
-    city_room.reset_index(inplace=True, drop=True)
-
-    ids = city_room['id']
-    # one - hot
-    codeResult = pd.get_dummies(city_room)
-    # 歸一化
-    standardResult = MinMaxScaler().fit_transform(codeResult)
-    # cosine 相似度
-    itemSimilarity: ndarray = cosine_similarity(standardResult)
-
-    dataframe = pd.DataFrame(data=itemSimilarity[0:, 0:])
-
-    idListDf = pd.DataFrame(ids)
-    # print(dataframe)
-    if isSave:
-        idListDf.to_csv(f'../trainedData/{cities[city]}_cosineIds.csv')
-        dataframe.to_csv(f'../trainedData/{cities[city]}_cosineRes.csv')
-        print(f'the calculation of {cities[city]} has done')
-
-
-@scheduler.task('cron', id='recall_stage', day='*', hour='5', minute='50', second='0')
-def recall():
-    DataLoader.loadInfoFromMysql(
+@scheduler.task('cron', id='data_collection_stage', day='*', hour='5', minute='50', second='0')
+def dataCollection():
+    RecommendModel.DataLoader.loadInfoFromMysql(
         fileName=DataMap.BROWSEHISTORY[DataMapKey['fileName']],
         tableName=DataMap.BROWSEHISTORY[DataMapKey['tableName']]
     )
 
-    DataLoader.loadInfoFromMysql(
+    RecommendModel.DataLoader.loadInfoFromMysql(
         fileName=DataMap.ROOM[DataMapKey['fileName']],
         tableName=DataMap.ROOM[DataMapKey['tableName']]
     )
 
-    DataLoader.loadInfoFromMysql(
+    RecommendModel.DataLoader.loadInfoFromMysql(
         fileName=DataMap.FOLLOW[DataMapKey['fileName']],
         tableName=DataMap.FOLLOW[DataMapKey['tableName']]
     )
+
+
+@scheduler.task('cron', id='preprocessing_stage', day='*', hour='5', minute='55', second='0')
+def preprocessing():
+    # 基于內容
+    RecommendModel.PreProcessor.transformRoomToDataSet()
+
+    # 基于用戶的協同過濾
+    RecommendModel.PreProcessor.transformFollowsToDataSet()
+    RecommendModel.PreProcessor.transformBrowseHistoryToDataSet()
 
 
 @scheduler.task('cron', id='train_stage', day='*', hour='6', minute='0', second='0')
@@ -105,103 +78,167 @@ def Training():
     RecommendModel.trainingFollowData()
 
 
-# 加載數據庫資料變為csv
-class DataLoader:
-    """
-     fileName  : DataType
-     tableName : TableName
-    """
-
-    @staticmethod
-    def loadInfoFromMysql(fileName, tableName):
-        cursor = db.db.cursor()
-        sql = f"select * from {tableName}"
-        cursor.execute(sql)
-        des = cursor.description
-        title = [each[0] for each in des]
-        # 拿到数据库查询的内容
-        result_list = []
-        for each in cursor.fetchall():
-            result_list.append(list(each))
-
-        # 保存成dataframe
-        df_dealed = pd.DataFrame(result_list, columns=title)
-
-        if fileName == DataMap.ROOM[DataMapKey['fileName']]:
-            df_dealed.to_csv(f"{fileName}_dataset.csv", index=None, encoding='utf_8')
-        else:
-            df_dealed.to_csv(f"{fileName}_data.csv", index=None, encoding='utf_8')
-
-
-class PreProcessor:
-    # 下面兩個方法把矩陣壓成1 對 多
-    """
-    userid  action                          2   3
-    1       2                   userid 1    1   1
-    1       3           ===>
-    """
-
-    # 針對follows 作處理
-    @staticmethod
-    def transformFollowsToDataSet():
-        data: DataFrame = pd.read_csv('../dataset/follow_data.csv')
-        dataList = []
-        dict = {}
-        for rowIndex, rowData in data.iterrows():
-            userId = int(rowData['user_id'])
-            followId = int(rowData['follow_id'])
-            if dict.get(userId) is None:
-                arr = np.pad([], (0, 500))
-                arrList: list = arr.tolist()
-                arrList[followId - 1] = 1
-                dict.setdefault(userId, arrList)
-            else:
-                origin = dict.get(userId)
-                origin[followId - 1] = 1
-                dict.update({userId: origin})
-        for key in dict.keys():
-            dataList.append(dict[key])
-        df = pd.DataFrame(dataList)
-        df.to_csv('../dataset/follow_dataset.csv')
-
-    # 針對history 作處理
-    @staticmethod
-    def transformBrowseHistoryToDataSet():
-        data: DataFrame = pd.read_csv('../dataset/browse_history_data.csv')
-        dataList = []
-        dict = {}
-        for rowIndex, rowData in data.iterrows():
-            userId = int(rowData['user_id'])
-            roomId = int(rowData['room_id'])
-            if dict.get(userId) is None:
-                arr = np.pad([], (0, 1975))
-                arrList: list = arr.tolist()
-                arrList[roomId - 1] = 1
-                dict.setdefault(userId, arrList)
-            else:
-                origin = dict.get(userId)
-                origin[roomId - 1] = 1
-                dict.update({userId: origin})
-        for key in dict.keys():
-            dataList.append(dict[key])
-        df = pd.DataFrame(dataList)
-        df.to_csv('../dataset/browse_history_dataset.csv')
-
-
 class RecommendModel:
+    # 加载数据库资料变为csv
+    class DataLoader:
+        """
+         fileName  : DataType
+         tableName : TableName
+        """
+
+        @staticmethod
+        def loadInfoFromMysql(fileName, tableName):
+            cursor = db.db.cursor()
+            sql = f"select * from {tableName}"
+            cursor.execute(sql)
+            des = cursor.description
+            title = [each[0] for each in des]
+            # 拿到数据库查询的内容
+            result_list = []
+            for each in cursor.fetchall():
+                result_list.append(list(each))
+
+            # 保存成dataframe
+            df_dealed = pd.DataFrame(result_list, columns=title)
+            df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=None, encoding='utf_8')
+
+            # if fileName == DataMap.ROOM[DataMapKey['fileName']]:
+            #     df_dealed.to_csv(f"../dataset/{fileName}_dataset.csv", index=None, encoding='utf_8')
+            # else:
+            #     df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=None, encoding='utf_8')
+
+    # 預處理
+    class PreProcessor:
+        # 下面两个方法把矩阵压成1 对 多
+        """
+        userid  action                          2   3
+        1       2                   userid 1    1   1
+        1       3           ===>
+        """
+
+        # 针对follows 作处理
+        @staticmethod
+        def transformFollowsToDataSet():
+            data: DataFrame = pd.read_csv('../dataset/follow_data.csv')
+            dataList = []
+            dict = {}
+            for rowIndex, rowData in data.iterrows():
+                userId = int(rowData['user_id'])
+                followId = int(rowData['follow_id'])
+                if dict.get(userId) is None:
+                    arr = np.pad([], (0, 500))
+                    arrList: list = arr.tolist()
+                    arrList[followId - 1] = 1
+                    dict.setdefault(userId, arrList)
+                else:
+                    origin = dict.get(userId)
+                    origin[followId - 1] = 1
+                    dict.update({userId: origin})
+            for key in dict.keys():
+                dataList.append(dict[key])
+            df = pd.DataFrame(dataList)
+            df.to_csv('../dataset/follow_dataset.csv')
+
+        # 针对history 作处理
+        @staticmethod
+        def transformBrowseHistoryToDataSet():
+            data: DataFrame = pd.read_csv('../dataset/browse_history_data.csv')
+            dataList = []
+            dict = {}
+            for rowIndex, rowData in data.iterrows():
+                userId = int(rowData['user_id'])
+                roomId = int(rowData['room_id'])
+                if dict.get(userId) is None:
+                    arr = np.pad([], (0, 1975))
+                    arrList: list = arr.tolist()
+                    arrList[roomId - 1] = 1
+                    dict.setdefault(userId, arrList)
+                else:
+                    origin = dict.get(userId)
+                    origin[roomId - 1] = 1
+                    dict.update({userId: origin})
+            for key in dict.keys():
+                dataList.append(dict[key])
+            df = pd.DataFrame(dataList)
+            df.to_csv('../dataset/browse_history_dataset.csv')
+
+        # 這里是對room 做一些預處理
+        @staticmethod
+        def transformRoomToDataSet():
+            # 读取文件
+            data = pd.read_csv('../dataset/room_data.csv')
+            # 重置索引
+            data.reset_index(inplace=True, drop=True)
+            # ids
+            ids = data['id']
+            # 把idList 轉為 dataFrame 并保存
+            idListDf = pd.DataFrame(ids)
+            idListDf.to_csv(f'../trainedData/Wuhan_cosineIds_1.csv')
+            # one - hot
+            one_hot = RecommendModel.FeatureEngineering.onehot(data)
+            # 列標簽
+            ori_columns = one_hot.columns
+            # 歸一化
+            standardizedNdarray = RecommendModel.FeatureEngineering.minMaxStandardization(one_hot)
+            dataframe = pd.DataFrame(data=standardizedNdarray[0:, 0:])
+            dataframe.columns = ori_columns
+            # 選取向量
+            filter_df = RecommendModel.FeatureEngineering.featureSelectionByFilter(dataframe)
+            # 保存到dataset
+            filter_df.to_csv('../dataset/room_dataset_1.csv')
+
+    # 數值轉換
+    class FeatureEngineering:
+        @staticmethod
+        def onehot(dataFrame: DataFrame):
+            """
+            one - hot
+            :param dataFrame: 任意df
+            :return:
+            """
+            return pd.get_dummies(dataFrame)
+
+        @staticmethod
+        def minMaxStandardization(codeResult: DataFrame) -> ndarray:
+            """
+            归一化
+            :param codeResult: 經過one-hot 轉化的
+            :return: ndarray
+            """
+            return MinMaxScaler().fit_transform(codeResult)
+
+        @staticmethod
+        def featureSelectionByFilter(df: DataFrame):
+            # 創建 VarianceThreshold
+            selector = VarianceThreshold()
+            selector.fit_transform(df)
+            # 開始過濾方差為x的
+            # 首先獲取列ids并根據列ids獲取列標簽
+            # 最後過濾
+            mask = selector.get_support()
+            maskPd = pd.DataFrame(mask)
+            ori_columns = df.columns
+            ori_columns_pd = pd.DataFrame(ori_columns)
+            filterDf = maskPd[maskPd[0] == False]
+            filterIds = filterDf.index.tolist()
+            title_list = ori_columns_pd.loc[filterIds].values.tolist()
+            filter_title_list = list(map(lambda x: x[0], title_list))
+            filter_df = df.drop(labels=filter_title_list, axis=1)
+            return filter_df
+
     @staticmethod
     def trainingCityDataByCity(city):
-        cosineSimilarityRoomRes(city)
+        RecommendModel.cosineSimilarityRoomRes(city)
 
     @staticmethod
     def trainingFollowData():
-        calculateFollowSimilarity()
+        RecommendModel.calculateFollowSimilarity()
 
     @staticmethod
     def trainingBrowseHistoryData():
-        calculateBrowseHistorySimilarity()
+        RecommendModel.calculateBrowseHistorySimilarity()
 
-    # 公寓相似推薦
+    # 公寓相似推荐
     @staticmethod
     def preLoadingByCity(cityName):
         startTime = datetime.now()
@@ -212,7 +249,7 @@ class RecommendModel:
         print((endTime - startTime))
         print('Loaded city ')
 
-    # 加載用戶推薦
+    # 加载用户推荐
     @staticmethod
     def preLoadingUserSimilarity():
         startTime = datetime.now()
@@ -222,7 +259,7 @@ class RecommendModel:
         print((endTime - startTime))
         print('Loaded user similarity metrics ')
 
-    # 加載基于協同過濾的公寓推薦
+    # 加载基于协同过滤的公寓推荐
     @staticmethod
     def preLoadingUserBasedCF():
         startTime = datetime.now()
@@ -246,10 +283,58 @@ class RecommendModel:
         print((endTime - startTime))
         print('Loaded all trainedData ')
 
+    @staticmethod
+    def setup():
+        db.initConnect()
+        RecommendModel.preLoadingAll()
+        # scheduler.api_enabled = True
+        # scheduler.init_app(app)
+        # scheduler.start()
+
+    @staticmethod
+    def calculateFollowSimilarity():
+        data: DataFrame = pd.read_csv('../dataset/follow_dataset.csv')
+        userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
+        df = pd.DataFrame(data=userSimilarity)
+        df.to_csv('../trainedData/user_similarity.csv')
+
+    @staticmethod
+    def calculateBrowseHistorySimilarity():
+        data: DataFrame = pd.read_csv('../dataset/browse_history_dataset.csv')
+        userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
+        df = pd.DataFrame(data=userSimilarity)
+        df.to_csv('../trainedData/user_based_room_similarity.csv')
+
+    @staticmethod
+    def cosineSimilarityRoomRes(city: str, isSave=True):
+        # 读取文件
+        data = pd.read_csv('../dataset/room_dataset_1.csv')
+        # 选择城市
+        # city_room: DataFrame = data[data['city'] == city]
+        # 重置索引
+        # city_room.reset_index(inplace=True, drop=True)
+
+        # ids = data['id']
+        # one - hot
+        # codeResult = pd.get_dummies(city_room)
+        # 归一化
+        # standardResult = MinMaxScaler().fit_transform(codeResult)
+        # cosine 相似度
+        itemSimilarity: ndarray = cosine_similarity(data)
+
+        dataframe = pd.DataFrame(data=itemSimilarity[0:, 0:])
+
+        # idListDf = pd.DataFrame(ids)
+        # print(dataframe)
+        if isSave:
+            # idListDf.to_csv(f'../trainedData/{cities[city]}_cosineIds_1.csv')
+            dataframe.to_csv(f'../trainedData/{cities[city]}_cosineRes_1.csv')
+            print(f'the calculation of {cities[city]} has done')
+
 
 @app.route('/expect/<city>/<int:houseId>/<int:num>')
 def getTopXSimilarityItems(city: str, houseId: int, num=5):
-    # 讀取矩陣 和 對應的id
+    # 读取矩阵 和 对应的id
     startTime = datetime.now()
     resDF = None
     if roomFileCache[city]['trainedData'] is not None:
@@ -260,15 +345,15 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
         resDF = roomFileCache[city]['trainedData']
     endTime = datetime.now()
     print((endTime - startTime))
-    # 把id轉為list
+    # 把id转为list
     realIds = roomFileCache[city]['ids']['id'].tolist()
-    # 獲取對應行的index
+    # 获取对应行的index
     houseIdIndex = realIds.index(houseId)
-    # 獲取對應的行
+    # 获取对应的行
     firstRow: ndarray = resDF.values[houseIdIndex]
-    # 把對應的行轉為list
+    # 把对应的行转为list
     res: list = firstRow.tolist()
-    # 刪除首列 -- 序號
+    # 删除首列 -- 序号
     del (res[0])
     # 浅拷贝并排序
     originRes = res.copy()
@@ -295,31 +380,30 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
     })
 
 
-
 @app.route('/expect/user/<int:userId>')
 def getTopXSimilarityUser(userId, num=9):
     user_df: DataFrame = followFileCache['userSimilarity']
     follow_df: DataFrame = followFileCache['followDataset']
 
-    # 排序結果..
+    # 排序结果..
     user_df: DataFrame = user_df.loc[userId - 1]
     user_df_sorted = user_df.sort_values(ascending=False)
     top5 = list(user_df_sorted.index[2:5])
 
-    # 找出原本用戶所關注的人
+    # 找出原本用户所关注的人
     origin_user_df_row: DataFrame = follow_df.loc[userId - 1]
     origin_user_df_row: Index = origin_user_df_row.replace(0, np.nan).dropna().index
     origin_user_df_row_list: list = origin_user_df_row.tolist()
     origin_user_df_row_list.remove(origin_user_df_row_list[0])
 
-    # 結果集
+    # 结果集
     # 提取top3相似的人
-    # 每個list都取前9位
+    # 每个list都取前9位
     res_list = []
     for userIdKey in top5:
         res = OrderedSet()
 
-        # 找出相似用戶所關注的人
+        # 找出相似用户所关注的人
         similar_user_df_row: DataFrame = follow_df.loc[int(userIdKey)]
         similar_user_df_row: Index = similar_user_df_row.replace(0, np.nan).dropna().index
 
@@ -327,16 +411,16 @@ def getTopXSimilarityUser(userId, num=9):
         similar_user_df_row_list.remove(similar_user_df_row_list[0])
         res = res.union(OrderedSet(similar_user_df_row_list))
 
-        # 過濾已關注的人
+        # 过滤已关注的人
         res -= OrderedSet(origin_user_df_row_list)
 
-        # 存到數組
+        # 存到数组
         res_list.extend(list(res)[:num])
-    # 去重 有可能重覆
+    # 去重 有可能重复
     res_list = list(OrderedSet(res_list))
     res_list.remove(res_list[0])
 
-    # 全部轉為int
+    # 全部转为int
     res_list = list(map(lambda x: int(x) + 1, res_list[:num]))
     return json.dumps({
         'code': 200,
@@ -352,42 +436,42 @@ def getItemByTopXSimilarityUser(userId, page):
     maxLen = 200
     user_df = cfFileCache['user_based']
     browse_df = cfFileCache['browse_history']
-    # 排序結果..
+    # 排序结果..
     user_df: DataFrame = user_df.loc[userId - 1]
     user_df_sorted = user_df.sort_values(ascending=False)
     top5 = list(user_df_sorted.index[1:6])
 
-    # 找出原本用戶所關注的人
+    # 找出原本用户所关注的人
     origin_user_df_row: DataFrame = browse_df.loc[userId - 1]
     origin_user_df_row: Index = origin_user_df_row.replace(0, np.nan).dropna().index
     origin_user_df_row_list: list = origin_user_df_row.tolist()
     origin_user_df_row_list.remove(origin_user_df_row_list[0])
 
-    # 結果集
+    # 结果集
     # 提取top3相似的人
-    # 每個list都取前9位
+    # 每个list都取前9位
     res_list = []
 
     for userIdKey in top5:
         res = OrderedSet()
 
-        # 找出相似用戶所瀏覽的
+        # 找出相似用户所浏览的
         similar_user_df_row: DataFrame = browse_df.loc[int(userIdKey)]
-        # 過濾空值
+        # 过滤空值
         similar_user_df_row: Index = similar_user_df_row.replace(0, np.nan).dropna().index
         similar_user_df_row_list: list = similar_user_df_row.tolist()
-        # 刪除首列
+        # 删除首列
         similar_user_df_row_list.remove(similar_user_df_row_list[0])
         res = res.union(OrderedSet(similar_user_df_row_list))
-        # 過濾已瀏覽的
+        # 过滤已浏览的
         res -= OrderedSet(origin_user_df_row_list)
-        # 存到數組
+        # 存到数组
         res_list.extend(list(res)[:40])
-    # 去重 有可能重覆
+    # 去重 有可能重复
 
     res_list = list(OrderedSet(res_list))
-    # 全部轉為int
-    res_list = list(map(lambda x: int(x)+1, res_list[:maxLen]))
+    # 全部转为int
+    res_list = list(map(lambda x: int(x) + 1, res_list[:maxLen]))
     start = page * 3
     end = (page + 1) * 3
     return json.dumps({
@@ -398,19 +482,10 @@ def getItemByTopXSimilarityUser(userId, page):
     })
 
 
-def setup():
-    db.initConnect()
-    RecommendModel.preLoadingAll()
-    # scheduler.api_enabled = True
-    # scheduler.init_app(app)
-    # scheduler.start()
+def evaluate():
+    pass
 
 
 if __name__ == '__main__':
-    setup()
-    # do sth. right there
-    # getItemByTopXSimilarityUser(1,1)
-    app.run(port=8086, debug=True)
-    # getTopXSimilarityUser(2)
-    # print(getTopXSimilarityUser())
-    # RecommendModel.trainingCityDataByCity('武汉')
+    RecommendModel.setup()
+    # app.run(port=8088, debug=True)
