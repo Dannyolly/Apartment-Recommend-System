@@ -6,13 +6,13 @@
     Dan
 </h1>
 
-<h2 align="center">
+<h3 align="center">
     Housing-Recommend-System
-</h2>
+</h3>
 
 ## 项目介绍
 公寓/房屋推荐系统，论文题目为基于小程序的快捷租赁平台,系统主要是一个推荐系统,包括基于用户的协同过滤去推荐用户和相似公寓,也有基于内容的推荐算法.系统也有完整的业务.
-题外话:这应该是我最后写的一个 Adivdiv 了吧,哈哈,3年的 CRUD ,这里也算是记念下大学几年学到的东西吧...
+题外话:这应该是我最后写的一个 APP 了吧,哈哈,3年的 CRUD ,这里也算是记念下大学几年学到的东西吧...
 
 ## 摘要
 推荐系统是一种信息过滤系统，旨在解决人们所面临着的信息冗余、过载的问题.随着互联网上房源信息越来越多,人们从大量的房产信息中找到自己需要的信息也变得 越来越困难,传统的搜索引擎具有明确的目的性，但需要用户提供明确的信息，而推荐系统可以发掘信息，主动给用户推荐满足用户兴趣的信息。本系统使用的是混合推荐算法,一个是基于内容推荐算法,利用房源的面积、户型、价格等属性字段去计算不同房源之间的相似度.另外一个是基于用户的协同过滤算法,根据和你有相同兴趣的人去推荐你可能喜欢的公寓.最后把这两个结果混合起来再返回推荐结果.本系统还有相似推荐和用户推荐,分别使用基于内容和基于用户的协同算法去推荐相似公寓和用户可能感兴趣的用户.
@@ -465,36 +465,36 @@ E-R图:
 <image style="margin-bottom:10px" src='UI/1.png' />
 
 - 看房单
-<image style="margin-bottom:10px" src='ui/2.png' />
+<image style="margin-bottom:10px" src='UI/2.png' />
 
 - 服务
-<image style="margin-bottom:10px" src='ui/3.png' />
+<image style="margin-bottom:10px" src='UI/3.png' />
 
 - 社区
-<image style="margin-bottom:10px" src='ui/4.png' />
+<image style="margin-bottom:10px" src='UI/4.png' />
 
 - 公寓详情
-<image style="margin-bottom:10px" src='ui/6.png' />
+<image style="margin-bottom:10px" src='UI/6.png' />
 
 - 服务详情
-<image style="margin-bottom:10px" src='ui/7.png' />
+<image style="margin-bottom:10px" src='UI/7.png' />
 
 - 服务订单
-<image style="margin-bottom:10px" src='ui/8.png' />
+<image style="margin-bottom:10px" src='UI/8.png' />
 
 - 服务订单详情
-<image style="margin-bottom:10px" src='ui/9.png' />
+<image style="margin-bottom:10px" src='UI/9.png' />
 
 - 业主首页
-<image style="margin-bottom:10px" src='ui/10.png' />
+<image style="margin-bottom:10px" src='UI/10.png' />
 
 
 - 案例详情
-<image style="margin-bottom:10px" src='ui/11.png' />
+<image style="margin-bottom:10px" src='UI/11.png' />
 
 
 - 出租
-<image style="margin-bottom:10px" src='ui/12.png' />
+<image style="margin-bottom:10px" src='UI/12.png' />
 
 
 ## 备注
