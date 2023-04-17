@@ -443,7 +443,7 @@ E-R图:
 
 ## 效果展示
 - 首页
-<image style="margin-bottom:10px" src='ui/1.png' />
+<image style="margin-bottom:10px" src='UI/1.png' />
 
 - 看房单
 <image style="margin-bottom:10px" src='ui/2.png' />
