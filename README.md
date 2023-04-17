@@ -19,15 +19,15 @@
 
 ## 系统整体架构
 <img  src="system_design.png">
-<div class="container" style="display:flex;flex-direction:column;gap:8px">
+<div class="container" style="display:flex;flex-direction:column;gap:10px">
 <div >
 本系统主要分为4层展现层、应用层、服务层和数据存储层.
 </div>
 <div>
-展现层: 因为本系统也包括后台页面和Adivdiv页面,而这两个页面都是用Vue来写,只是为了写Adivdiv端需要用到uniadivdiv来转换为微信小程序的代码.
+展现层: 因为本系统也包括后台页面和App页面,而这两个页面都是用Vue来写,只是为了写App端需要用到uniapp来转换为微信小程序的代码.
 </div>
 <div>
-服务层: 利用divython实现余弦相似度算法计算房源之间相似度,再使flask搭建接口服务供后台调用，服务端则使用 SdivringBoot 框架搭建 Restful AdivI 接口.
+服务层: 利用divython实现余弦相似度算法计算房源之间相似度,再使flask搭建接口服务供后台调用，服务端则使用 SpringBoot 框架搭建 Restful API 接口.
 </div>
 <div>
 数据层: 以 Mysql 数据库作为支撑，存储关系型数据，同时使用 Redis 缓存作为辅 助来存储推荐结果，从而提高推荐系统对于前端的响应速度。
@@ -253,7 +253,7 @@ const owner:TabBar = []
             return pd.get_dummies(dataFrame)
    ```
 
-5. 归一化
+4. 归一化
    对原始数据缩放到 0-1 之间，是线性变换。也叫最大最小标准化，离散标准化。公寓数据中比如“价格”，若不经过量化处理直接参与运算，则容易导致计算结果偏差较大，因而需要标准化处理。标准化处理的具体过程是使用某个数值与该字段最小值的差除以该字段的区间长度，相当于进行了一次区间放缩。
    ```python
     class FeatureEngineering:
@@ -265,7 +265,7 @@ const owner:TabBar = []
             """
             return MinMaxScaler().fit_transform(codeResult)
     ```
-6. 特征选取
+5. 特征选取
    方差选择法,原理是先计算各个特征的方差，然后根据阈值，选择方差大于阈值的特征.这里主要是过滤掉某个所有取值相同的特征
    
    ```python
@@ -292,7 +292,7 @@ const owner:TabBar = []
             filter_df = df.drop(labels=filter_title_list, axis=1)
             return filter_df
     ```
-7. 计算相似度
+6. 计算相似度
 - 余弦相似度算法
   
     <div style="margin-bottom:10px">
@@ -315,7 +315,26 @@ const owner:TabBar = []
         print(f'the calculation of {cities[city]} has done')
     ```
 
-8. 获取相似公寓结果
+- Jaccard相似度
+  
+    <div style="margin-bottom:10px">
+    Jaccard距离是另一个量的函数，这个量被称为Jaccard相似度。根据定义，集合S和T的Jaccard相似度是S和T的交集大小与它们的并集大小之比
+    </div>
+
+    Jaccard相似度公式为：
+    <div style="margin-bottom:10px">
+    <image style="display:flex" src="user_base.png"/>
+    </div>
+
+    ```python
+    def calculateBrowseHistorySimilarity(fileName,savePath):
+        data: DataFrame = pd.read_csv(fileName)
+        userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
+        df = pd.DataFrame(data=userSimilarity)
+        df.to_csv(savePath)
+    ```
+   
+7. 获取相似公寓结果
 ```python
 def getTopXSimilarityItems(city: str, houseId: int, num=5):
     # 读取矩阵 和 对应的id
@@ -443,7 +462,7 @@ E-R图:
 
 ## 效果展示
 - 首页
-<image style="margin-bottom:10px" src='ui/1.png' />
+<image style="margin-bottom:10px" src='UI/1.png' />
 
 - 看房单
 <image style="margin-bottom:10px" src='ui/2.png' />
