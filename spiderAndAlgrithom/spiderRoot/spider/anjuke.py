@@ -31,7 +31,6 @@ author:dannyolly
 """
 
 
-
 class Spider:
     def __init__(self, cityList: List[str], room: Dict, db: DataBase):
         self.cityList = cityList  # 加载城市信息
@@ -42,6 +41,7 @@ class Spider:
         self.proxies = None
         self.proxy = None
 
+    # 获取代理ip
     def getProxies(self):
         """
         # 获取代理ip
@@ -61,6 +61,7 @@ class Spider:
             self.proxies = ipList
             self.proxy = self.proxies[random.randint(0, len(self.proxies))]
 
+    # 获取useragent代理库
     def getUserAgent(self):
         """
         # 获取useragent代理库
@@ -74,6 +75,7 @@ class Spider:
                 print(e)
                 print('连接useragent库出错，正在准备重新连接...')
 
+    # 获取房屋信息页面
     def getHousingDetailPage(self, url: str, isPic=False):
         """
         获取房屋信息页面
@@ -95,6 +97,7 @@ class Spider:
         except requests.exceptions.ConnectionError:
             print("Connection refused")
 
+    # 根據url 獲取lxml
     def getTextByLink(self, url: str):
         """
         根據url 獲取lxml
@@ -114,6 +117,7 @@ class Spider:
         except requests.exceptions.ConnectionError:
             print("Connection refused")
 
+    # 提取房屋信息
     def getHousingInfo(self, content):
         """
         提取房屋信息
@@ -221,7 +225,9 @@ class Spider:
         room['description'] = re.sub('\n', '', str(result))
         return room
 
-    def extractOwnerComment(self, txt):
+    # 提取房东评论"
+    @staticmethod
+    def extractOwnerComment(txt):
         """提取房东评论"""
         pattern = re.compile("[\u4e00-\u9fa5]")
         return "".join(pattern.findall(txt))
@@ -230,6 +236,7 @@ class Spider:
     def getCityLink(self):
         return self.cityList
 
+    # 城市网址拼接
     @staticmethod
     def splicingCityLink(cityList, house=True):
         """城市网址拼接"""
@@ -240,6 +247,7 @@ class Spider:
                 cityList[i]['url'] = cityList[i]['url'] + str('/fangyuan/')
         return cityList
 
+    # 獲取vr info
     def getVRInfo(self, content):
         baseUrl = "https://apphouse.58.com/api/detail/vrpano"
         params = {}
@@ -266,6 +274,7 @@ class Spider:
         self.room['vrInfo'] = resultUrl
         print(resultUrl)
 
+    # 获取某個城市房源信息
     def getCityInfo(self, city, sleepTime, startPage=1):
         """
         # 获取每个城市房源信息
@@ -326,11 +335,13 @@ class Spider:
             time.sleep(sleepTime)
             print('总共已爬取%d条' % sum)
 
+    # 獲取社區列表
     def getCommunityLinkListText(self, url):
         communityText = self.getTextByLink(url)
         community_soup = BeautifulSoup(communityText, 'lxml')
         return community_soup.find(attrs={'class': 'sub-items sub-level2'})
 
+    # 獲取城市所有地區
     def getCityArea(self, city, cityName):
 
         pageUrl = city['url']
@@ -374,7 +385,8 @@ class Spider:
         with open(filename, 'w', encoding='utf8') as file_obj:
             json.dump(areaLinkList, file_obj, ensure_ascii=False, indent=2)
 
-    def getAllCityArea(self, cityList, spider):
+    @staticmethod
+    def getAllCityArea( cityList, spider):
         for i in range(cityList):
             cityItem = cityList[i]
             spider.getCityArea(city=cityList[i], cityName=cityItem['name'])
@@ -395,8 +407,6 @@ def setup():
     return anjuke, cityList
 
 
-
-
 if __name__ == '__main__':
     aujuke, cityList = setup()
     # 收集城市的區域
@@ -405,4 +415,3 @@ if __name__ == '__main__':
     # anjuke.getAllCityArea(spiderRoot=anjuke, cityList=cityList)
     # 对单个城市房源进行爬取
     aujuke.getCityInfo(city=cityList[5], sleepTime=3, startPage=0)
-

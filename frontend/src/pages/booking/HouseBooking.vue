@@ -63,6 +63,7 @@ function formatter(type, value) {
 }
 async function bookAction(){
     const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
+    const roomId = roomInfoArr.value[0].id
     const { result } = await ServiceManager.RoomBookingService.create({
         userId,
         // @ts-ignore
@@ -74,9 +75,20 @@ async function bookAction(){
         ...result,
         room: (await ServiceManager.RoomService.getRoomsByIds(`${result.houseId}`)).result[0]
     }
+    
+    // 從看房表去掉
+    const roomVisitIds = LocalStorageManager.getLocalStorageInfo('roomVisitIds',userId) ?? []
+    if(roomVisitIds.length){
+        const index = roomVisitIds.findIndex( v=>v === roomId)
+        let res = roomVisitIds.splice(index,1)
+        LocalStorageManager.setLocalStorageInfo('roomVisitIds',{
+            roomVisitIds:res,
+        },userId)
+    }
+
     noti.value?.open("预约成功")
     setTimeout(()=>{
-        uni.navigateTo({
+        uni.redirectTo({
             url:'/pages/appointment/appointmentDetail?orderInfo='+encodeURIComponent(JSON.stringify(roomBookingOrder))
         })
     },1000)

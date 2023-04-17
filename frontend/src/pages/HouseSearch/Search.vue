@@ -2,7 +2,6 @@
 import { toRefs, ref, watchEffect, onMounted, unref, nextTick } from 'vue';
 import { useState } from '@/hooks/useState';
 import Area from '@/data/wuhan.json'
-import { Area as AreaEntity } from '@/types/Entity/Area'
 import FilterSearch from '@/components/Navigation/FilterSearch.vue'
 import MyInput from '@/components/public/Input.vue'
 import FilterBar from '@/components/FilterBar/FilterBar.vue';
@@ -22,7 +21,7 @@ import { ServiceManager } from '@/service';
 import { usePage } from '@/hooks/usePage'
 interface SearchProps { }
 const { } = defineProps<SearchProps>()
-const areaList = Area as Array<AreaEntity>
+const areaList = Area as Array<any>
 const filterOption = [
   '位置',
   '朝向',

@@ -38,7 +38,7 @@ public class UploadController {
             res.put("reason","文件上传失败");
             return  new Result<>(
                     200,
-                    Message.SUCCESS,
+                    Message.ERROR,
                     "OK",
                     res
             );

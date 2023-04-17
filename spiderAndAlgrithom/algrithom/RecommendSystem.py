@@ -1,21 +1,23 @@
-from ordered_set import OrderedSet
-from flask_apscheduler import APScheduler
-from pandas import DataFrame, Index
-import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics.pairwise import pairwise_distances
-from datetime import datetime
-from numpy import ndarray
-import numpy as np
-from flask import Flask, request, Response, jsonify, current_app
 import json
-from spiderRoot.database.sqldb import DataBase
-from cache import cfFileCache, roomFileCache, followFileCache
-from constant import cols, cities, DataMapKey, DataMap
-from sklearn.feature_selection import VarianceThreshold, SelectKBest
-from sklearn.decomposition import PCA
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+from flask import Flask
+from flask_apscheduler import APScheduler
+from numpy import ndarray
+from ordered_set import OrderedSet
+from pandas import DataFrame, Index
+from sklearn.feature_selection import VarianceThreshold, SelectFromModel
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import pairwise_distances
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, LabelEncoder
 from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from cache import cfFileCache, roomFileCache, followFileCache
+from constant import cities, DataMapKey, DataMap
+from spiderRoot.database.sqldb import DataBase
+from sklearn.decomposition import PCA
 
 """
 @author:dannyolly
@@ -63,10 +65,10 @@ def dataCollection():
 
 @scheduler.task('cron', id='preprocessing_stage', day='*', hour='5', minute='55', second='0')
 def preprocessing():
-    # 基于內容
+    # 基于内容
     RecommendModel.PreProcessor.transformRoomToDataSet()
 
-    # 基于用戶的協同過濾
+    # 基于用户的协同过滤
     RecommendModel.PreProcessor.transformFollowsToDataSet()
     RecommendModel.PreProcessor.transformBrowseHistoryToDataSet()
 
@@ -107,7 +109,51 @@ class RecommendModel:
             # else:
             #     df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=None, encoding='utf_8')
 
-    # 預處理
+        @staticmethod
+        def preLoadingByCity(cityName):
+            startTime = datetime.now()
+            city = cities[cityName]
+            roomFileCache[cityName]['ids'] = pd.read_csv(f'../trainedData/{city}_cosineIds.csv')
+            roomFileCache[cityName]['trainedData'] = pd.read_csv(f'../trainedData/{city}_cosineRes.csv')
+            endTime = datetime.now()
+            print((endTime - startTime))
+            print('Loaded city ')
+
+        # 加载用户推荐
+        @staticmethod
+        def preLoadingUserSimilarity():
+            startTime = datetime.now()
+            followFileCache['userSimilarity'] = pd.read_csv('../trainedData/user_similarity.csv')
+            followFileCache['followDataset'] = pd.read_csv('../dataset/follow_dataset.csv')
+            endTime = datetime.now()
+            print((endTime - startTime))
+            print('Loaded user similarity metrics ')
+
+        # 加载基于协同过滤的公寓推荐
+        @staticmethod
+        def preLoadingUserBasedCF():
+            startTime = datetime.now()
+            cfFileCache['user_based'] = pd.read_csv('../trainedData/user_based_room_similarity.csv')
+            cfFileCache['browse_history'] = pd.read_csv('../dataset/browse_history_dataset.csv')
+            endTime = datetime.now()
+            print((endTime - startTime))
+            print('Loaded user-based room similarity metrics ')
+
+        @staticmethod
+        def preLoadingAll():
+            # for key in roomFileCache:
+            #     city = cities[key]
+            #     roomFileCache[key]['ids'] = pd.read_csv(f'../trainedData/{city}_cosineIds.csv')
+            #     roomFileCache[key]['trainedData'] = pd.read_csv(f'../trainedData/{city}_cosineRes.csv')
+            startTime = datetime.now()
+            RecommendModel.DataLoader.preLoadingUserSimilarity()
+            RecommendModel.DataLoader.preLoadingByCity('武汉')
+            RecommendModel.DataLoader.preLoadingUserBasedCF()
+            endTime = datetime.now()
+            print((endTime - startTime))
+            print('Loaded all trainedData ')
+
+    # 预处理
     class PreProcessor:
         # 下面两个方法把矩阵压成1 对 多
         """
@@ -162,7 +208,7 @@ class RecommendModel:
             df = pd.DataFrame(dataList)
             df.to_csv('../dataset/browse_history_dataset.csv')
 
-        # 這里是對room 做一些預處理
+        # 这里是对room 做一些预处理
         @staticmethod
         def transformRoomToDataSet():
             # 读取文件
@@ -171,23 +217,25 @@ class RecommendModel:
             data.reset_index(inplace=True, drop=True)
             # ids
             ids = data['id']
-            # 把idList 轉為 dataFrame 并保存
+            # 把idList 转为 dataFrame 并保存
             idListDf = pd.DataFrame(ids)
             idListDf.to_csv(f'../trainedData/Wuhan_cosineIds_1.csv')
             # one - hot
             one_hot = RecommendModel.FeatureEngineering.onehot(data)
-            # 列標簽
+            # 列标签
             ori_columns = one_hot.columns
-            # 歸一化
+            # 归一化
             standardizedNdarray = RecommendModel.FeatureEngineering.minMaxStandardization(one_hot)
             dataframe = pd.DataFrame(data=standardizedNdarray[0:, 0:])
             dataframe.columns = ori_columns
-            # 選取向量
+            # 选取向量
             filter_df = RecommendModel.FeatureEngineering.featureSelectionByFilter(dataframe)
+            # embedding
+            # RecommendModel.FeatureEngineering.embedding(dataframe)
             # 保存到dataset
             filter_df.to_csv('../dataset/room_dataset_1.csv')
 
-    # 數值轉換
+    # 数值转换
     class FeatureEngineering:
         @staticmethod
         def onehot(dataFrame: DataFrame):
@@ -202,29 +250,55 @@ class RecommendModel:
         def minMaxStandardization(codeResult: DataFrame) -> ndarray:
             """
             归一化
-            :param codeResult: 經過one-hot 轉化的
+            :param codeResult: 经过one-hot 转化的
             :return: ndarray
             """
             return MinMaxScaler().fit_transform(codeResult)
 
         @staticmethod
         def featureSelectionByFilter(df: DataFrame):
-            # 創建 VarianceThreshold
+            # 创建 VarianceThreshold
+
             selector = VarianceThreshold()
+            # selector = VarianceThreshold()
             selector.fit_transform(df)
-            # 開始過濾方差為x的
-            # 首先獲取列ids并根據列ids獲取列標簽
-            # 最後過濾
+            # 开始过滤方差为x的
+            # 首先获取列ids并根据列ids获取列标签
+            # 最后过滤
             mask = selector.get_support()
             maskPd = pd.DataFrame(mask)
             ori_columns = df.columns
+
             ori_columns_pd = pd.DataFrame(ori_columns)
             filterDf = maskPd[maskPd[0] == False]
+            print(f'before_feature_length: {len(df.columns)}')
+            print(f'after_feature_length: {len(filterDf)}')
+
             filterIds = filterDf.index.tolist()
             title_list = ori_columns_pd.loc[filterIds].values.tolist()
             filter_title_list = list(map(lambda x: x[0], title_list))
             filter_df = df.drop(labels=filter_title_list, axis=1)
             return filter_df
+
+        @staticmethod
+        def embedding(df: DataFrame):
+            pass
+            # selector = SelectFromModel(LogisticRegression(penalty="l1", C=0.1, solver='liblinear'))
+            # selector.fit_transform(df)
+            # mask = selector.get_support()
+            # maskPd = pd.DataFrame(mask)
+            # maskPd.to_csv('./mask.csv')
+            #
+            # ori_columns = df.columns
+            # ori_columns_pd = pd.DataFrame(ori_columns)
+            # ori_columns_pd.to_csv('./mask_col.csv')
+            #
+            # embeddedDf = maskPd[maskPd[0] == False]
+            # embeddedIds = embeddedDf.index.tolist()
+            # title_list = ori_columns_pd.loc[embeddedIds].values.tolist()
+            # embedded_title_list = list(map(lambda x: x[0], title_list))
+            # embedded_df = df.drop(labels=embedded_title_list, axis=1)
+            # return embedded_df
 
     @staticmethod
     def trainingCityDataByCity(city):
@@ -238,55 +312,10 @@ class RecommendModel:
     def trainingBrowseHistoryData():
         RecommendModel.calculateBrowseHistorySimilarity()
 
-    # 公寓相似推荐
-    @staticmethod
-    def preLoadingByCity(cityName):
-        startTime = datetime.now()
-        city = cities[cityName]
-        roomFileCache[cityName]['ids'] = pd.read_csv(f'../trainedData/{city}_cosineIds.csv')
-        roomFileCache[cityName]['trainedData'] = pd.read_csv(f'../trainedData/{city}_cosineRes.csv')
-        endTime = datetime.now()
-        print((endTime - startTime))
-        print('Loaded city ')
-
-    # 加载用户推荐
-    @staticmethod
-    def preLoadingUserSimilarity():
-        startTime = datetime.now()
-        followFileCache['userSimilarity'] = pd.read_csv('../trainedData/user_similarity.csv')
-        followFileCache['followDataset'] = pd.read_csv('../dataset/follow_dataset.csv')
-        endTime = datetime.now()
-        print((endTime - startTime))
-        print('Loaded user similarity metrics ')
-
-    # 加载基于协同过滤的公寓推荐
-    @staticmethod
-    def preLoadingUserBasedCF():
-        startTime = datetime.now()
-        cfFileCache['user_based'] = pd.read_csv('../trainedData/user_based_room_similarity.csv')
-        cfFileCache['browse_history'] = pd.read_csv('../dataset/browse_history_dataset.csv')
-        endTime = datetime.now()
-        print((endTime - startTime))
-        print('Loaded user-based room similarity metrics ')
-
-    @staticmethod
-    def preLoadingAll():
-        # for key in roomFileCache:
-        #     city = cities[key]
-        #     roomFileCache[key]['ids'] = pd.read_csv(f'../trainedData/{city}_cosineIds.csv')
-        #     roomFileCache[key]['trainedData'] = pd.read_csv(f'../trainedData/{city}_cosineRes.csv')
-        startTime = datetime.now()
-        RecommendModel.preLoadingUserSimilarity()
-        RecommendModel.preLoadingByCity('武汉')
-        RecommendModel.preLoadingUserBasedCF()
-        endTime = datetime.now()
-        print((endTime - startTime))
-        print('Loaded all trainedData ')
-
     @staticmethod
     def setup():
         db.initConnect()
-        RecommendModel.preLoadingAll()
+        RecommendModel.DataLoader.preLoadingAll()
         # scheduler.api_enabled = True
         # scheduler.init_app(app)
         # scheduler.start()
@@ -308,7 +337,7 @@ class RecommendModel:
     @staticmethod
     def cosineSimilarityRoomRes(city: str, isSave=True):
         # 读取文件
-        data = pd.read_csv('../dataset/room_dataset_1.csv')
+        data = pd.read_csv('../dataset/room_dataset_2.csv')
         # 选择城市
         # city_room: DataFrame = data[data['city'] == city]
         # 重置索引
@@ -488,4 +517,16 @@ def evaluate():
 
 if __name__ == '__main__':
     RecommendModel.setup()
-    # app.run(port=8088, debug=True)
+    # RecommendModel.PreProcessor.transformRoomToDataSet()
+    # RecommendModel.cosineSimilarityRoomRes('武汉')
+    # 31, 1153, 120, 1836, 12, 30, 1719, 863, 751, 1694, 26, 1462, 1466, 643, 677, 848, 934, 1716, 93, 20
+    # 31, 1153, 120, 1836, 12, 30, 1719, 863, 751, 1694, 26, 1462, 1466, 643, 677, 848, 934, 1716, 93, 20
+    # print(getTopXSimilarityItems('武汉', 1, 20))
+    # df = pd.read_csv('../dataset/room_dataset_1.csv')
+    # selector = PCA(n_components=700)
+    # res = selector.fit_transform(df.values)
+    # resDf = pd.DataFrame(res)
+    # resDf.to_csv('../dataset/room_dataset_2.csv')
+    # RecommendModel.trainingCityDataByCity('武汉')
+    app.run(port=8088, debug=True)
+    # dataFrame = pd.read_csv('../dataset/room_dataset_1.csv', encoding='utf-8')

@@ -243,7 +243,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
       width="30%"
     >
       <el-form ref="formRef" :model="formData"  label-width="100px" label-position="left">
-        <el-form-item prop="state" label="用户名">
+        <el-form-item prop="state" label="状态">
           <el-cascader
             v-model="formData.state"
             :options="options"

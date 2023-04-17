@@ -15,7 +15,7 @@ import Tabbar from '@/components/Tabbar.vue';
 const height = getDimension().height 
 const { user ,isLogin } = useState({
   user:{
-    id:1,
+    id:0,
     icon:'',
     title:'',
     subTitle:'hello!'
@@ -83,9 +83,13 @@ const others =[
 ]
 
 onMounted(()=>{
-  
-
-  
+  let { id , avatar , name } = LocalStorageManager.getLocalStorageInfo('userInfo')
+    user.value = {
+      id,
+      title:name,
+      icon:avatar,
+      subTitle:'hello!'
+    }
 })
 
 </script>

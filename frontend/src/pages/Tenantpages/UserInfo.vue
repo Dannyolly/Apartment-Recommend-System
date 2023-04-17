@@ -115,8 +115,6 @@ onMounted(()=>{
       icon:avatar,
       subTitle:'hello!'
     }
-    console.log(user.value);
-    
 })
 
 </script>

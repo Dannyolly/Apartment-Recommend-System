@@ -81,7 +81,7 @@ async function submitOrder(){
     result.service.curSer = result.curSer
     noti.value.open('已预订')
     setTimeout(()=>{
-        uni.navigateTo({
+        uni.redirectTo({
             url:'/pages/serviceOrder/orderDetail?orderInfo='+encodeURIComponent(JSON.stringify(result))
         })
     },1000)
