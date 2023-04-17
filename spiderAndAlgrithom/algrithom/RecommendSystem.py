@@ -102,12 +102,7 @@ class RecommendModel:
 
             # 保存成dataframe
             df_dealed = pd.DataFrame(result_list, columns=title)
-            df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=None, encoding='utf_8')
-
-            # if fileName == DataMap.ROOM[DataMapKey['fileName']]:
-            #     df_dealed.to_csv(f"../dataset/{fileName}_dataset.csv", index=None, encoding='utf_8')
-            # else:
-            #     df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=None, encoding='utf_8')
+            df_dealed.to_csv(f"../dataset/{fileName}_data.csv", index=False, encoding='utf_8')
 
         @staticmethod
         def preLoadingByCity(cityName):
@@ -152,6 +147,24 @@ class RecommendModel:
             endTime = datetime.now()
             print((endTime - startTime))
             print('Loaded all trainedData ')
+
+    # 數據清洗
+    class DataCleaner:
+        @staticmethod
+        def clean(fileName):
+            path = f'../dataset/{fileName}.csv'
+            # 讀取
+            df = pd.DataFrame(path)
+            # 行列數
+            row, col = df.shape
+            # 刪除缺失值較多的列
+            rowThreshold = int(row / 2)
+            df.dropna(axis=1, thresh=rowThreshold)
+
+            # 刪除重覆行
+            df.drop_duplicates('title', inplace=True)
+            # 寫入
+            df.to_csv(path)
 
     # 预处理
     class PreProcessor:
@@ -316,9 +329,9 @@ class RecommendModel:
     def setup():
         db.initConnect()
         RecommendModel.DataLoader.preLoadingAll()
-        # scheduler.api_enabled = True
-        # scheduler.init_app(app)
-        # scheduler.start()
+        scheduler.api_enabled = True
+        scheduler.init_app(app)
+        scheduler.start()
 
     @staticmethod
     def calculateFollowSimilarity():

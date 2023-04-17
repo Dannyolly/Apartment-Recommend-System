@@ -76,7 +76,7 @@ class Spider:
                 print('连接useragent库出错，正在准备重新连接...')
 
     # 获取房屋信息页面
-    def getHousingDetailPage(self, url: str, isPic=False):
+    def getXmlByUrl(self, url: str, isPic=False):
         """
         获取房屋信息页面
         """
@@ -274,6 +274,48 @@ class Spider:
         self.room['vrInfo'] = resultUrl
         print(resultUrl)
 
+    @staticmethod
+    def getAllRoomUrlByPage(content):
+        roomUrls = []
+        items = content
+        for m in range(len(items)):  # 获取页面中所有房源url
+            roomUrls.append(items[m].attrs['link'])
+        print('当前页面房源个数：%s' % len(roomUrls))
+        return roomUrls
+
+    def handleDetailPage(self, roomUrls, city, sleepTime, stopFlag, startPage, sum):
+        count = 0
+        length = len(roomUrls)
+        i = 0
+        while True:  # 单个房源信息提取
+            if i == length:
+                break
+            item = roomUrls[i]
+            try:
+                content = self.getXmlByUrl(item)
+                room = self.getHousingInfo(content)
+                # self.getVRInfo(content)
+                room['url'] = item
+                room['city'] = city['name']
+                room['saveTime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                count += 1
+                i += 1
+                print('第：%s 条' % count)
+                self.db.insertionData(room_data=room)
+                time.sleep(random.randint(3, 6))
+            except Exception as e:
+                i += 1
+                time.sleep(sleepTime)
+                continue
+            if stopFlag is None:  # 没有下一页时跳出
+                self.db.cursor.close()  # 关闭数据库连接
+                self.db.db.close()
+                break
+            startPage += 1
+            sum += count
+            time.sleep(sleepTime)
+            print('总共已爬取%d条' % sum)
+
     # 获取某個城市房源信息
     def getCityInfo(self, city, sleepTime, startPage=1):
         """
@@ -285,55 +327,18 @@ class Spider:
         while True:
             print('正在爬取第%s页' % j)
             pageUrl = base_url + 'p' + str(j) + '/'
-            text = self.getHousingDetailPage(url=pageUrl)
-            roomUrls = []
-            print(pageUrl)
-            time.sleep(3)
-            soup = BeautifulSoup(text, 'lxml')
-            items = soup.find_all(attrs={'class': 'zu-itemmod'})
+            # 獲取公寓頁面
+            roomsPageXml = self.getXmlByUrl(url=pageUrl)
+            soup = BeautifulSoup(roomsPageXml, 'lxml')
+            # 停止標誌..
             stopFlag = soup.find(attrs={'class': 'aNxt'})
-            for m in range(len(items)):  # 获取页面中所有房源url
-                # print(items[m].attrs['link'])
-                roomUrls.append(items[m].attrs['link'])
-            print('当前页面房源个数：%s' % len(roomUrls))
-            count = 0
-            length = len(roomUrls)
-            i = 0
-            while True:  # 单个房源信息提取
-                if (i == length):
-                    break
-                item = roomUrls[i]
-                try:
-                    print(item)
-                    content = self.getHousingDetailPage(item)
-                    room = self.getHousingInfo(content)
-                    # self.getVRInfo(content)
-                    room['url'] = item
-                    room['city'] = city['name']
-                    room['saveTime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                    print(room)
-
-                    count += 1
-                    i += 1
-                    print('第：%s 条' % count)
-                    self.db.insertionData(room_data=room)
-                    time.sleep(random.randint(3, 6))
-                except Exception as e:
-                    # self.proxy = self.proxies[random.randint(0, len(self.proxies))]
-                    # print(f'changing Ip:{self.proxy}')
-                    # print(f'reason:{e}')
-                    i += 1
-                    time.sleep(sleepTime)
-                    continue
-
-            if stopFlag == None:  # 没有下一页时跳出
-                self.db.cursor.close()  # 关闭数据库连接
-                self.db.db.close()
-                break
-            j += 1
-            sum += count
-            time.sleep(sleepTime)
-            print('总共已爬取%d条' % sum)
+            # 所有公寓詳情頁面
+            roomsXml = soup.find_all(attrs={'class': 'zu-itemmod'})
+            # 獲取所有url
+            roomUrls = self.getAllRoomUrlByPage(roomsXml)
+            time.sleep(3)
+            # 獲取詳情頁面
+            self.handleDetailPage(roomUrls, city, sleepTime, stopFlag, startPage, sum)
 
     # 獲取社區列表
     def getCommunityLinkListText(self, url):
@@ -345,7 +350,7 @@ class Spider:
     def getCityArea(self, city, cityName):
 
         pageUrl = city['url']
-        text = self.getHousingDetailPage(url=pageUrl)
+        text = self.getXmlByUrl(url=pageUrl)
         soup = BeautifulSoup(text, 'lxml')
         # 獲取區域url 如洪山區的url
         areaLinkList = []
@@ -386,7 +391,7 @@ class Spider:
             json.dump(areaLinkList, file_obj, ensure_ascii=False, indent=2)
 
     @staticmethod
-    def getAllCityArea( cityList, spider):
+    def getAllCityArea(cityList, spider):
         for i in range(cityList):
             cityItem = cityList[i]
             spider.getCityArea(city=cityList[i], cityName=cityItem['name'])
