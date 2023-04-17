@@ -446,36 +446,36 @@ E-R图:
 <image style="margin-bottom:10px" src='UI/1.png' />
 
 - 看房单
-<image style="margin-bottom:10px" src='ui/2.png' />
+<image style="margin-bottom:10px" src='UI/2.png' />
 
 - 服务
-<image style="margin-bottom:10px" src='ui/3.png' />
+<image style="margin-bottom:10px" src='UI/3.png' />
 
 - 社区
-<image style="margin-bottom:10px" src='ui/4.png' />
+<image style="margin-bottom:10px" src='UI/4.png' />
 
 - 公寓详情
-<image style="margin-bottom:10px" src='ui/6.png' />
+<image style="margin-bottom:10px" src='UI/6.png' />
 
 - 服务详情
-<image style="margin-bottom:10px" src='ui/7.png' />
+<image style="margin-bottom:10px" src='UI/7.png' />
 
 - 服务订单
-<image style="margin-bottom:10px" src='ui/8.png' />
+<image style="margin-bottom:10px" src='UI/8.png' />
 
 - 服务订单详情
-<image style="margin-bottom:10px" src='ui/9.png' />
+<image style="margin-bottom:10px" src='UI/9.png' />
 
 - 业主首页
-<image style="margin-bottom:10px" src='ui/10.png' />
+<image style="margin-bottom:10px" src='UI/10.png' />
 
 
 - 案例详情
-<image style="margin-bottom:10px" src='ui/11.png' />
+<image style="margin-bottom:10px" src='UI/11.png' />
 
 
 - 出租
-<image style="margin-bottom:10px" src='ui/12.png' />
+<image style="margin-bottom:10px" src='UI/12.png' />
 
 
 ## 备注
