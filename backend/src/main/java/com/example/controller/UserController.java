@@ -12,6 +12,7 @@ import com.example.state.Message;
 import com.example.utils.DataGenerator;
 import com.example.utils.IdsUtil;
 import com.example.utils.PageUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -33,7 +35,6 @@ public class UserController {
     UserServiceImpl userService;
     @Autowired
     UserMapper userMapper;
-
     @Autowired
     DataGenerator dataGenerator;
 
@@ -152,6 +153,8 @@ public class UserController {
                     null
             );
         }
+        User user = userList.get(0);
+        log.info("userId: " +user.getId()+" has logged in ");
         return new Result<>(
                 200,
                 Message.SUCCESS,

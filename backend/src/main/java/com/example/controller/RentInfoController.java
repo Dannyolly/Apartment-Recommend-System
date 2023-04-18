@@ -7,6 +7,9 @@ import com.example.pojo.RoomBooking;
 import com.example.state.Message;
 import com.example.utils.IDate;
 import com.example.utils.PageUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +20,14 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@Slf4j
 public class RentInfoController {
     @Autowired
     RentInfoMapper rentInfoMapper;
 
     @GetMapping("/rent/create")
     public Result<RentInfo> createRentOrder(RentInfo rentInfo,String time){
+
         Date timeT = IDate.getTime();
         rentInfo.setCheckinTime(IDate.toTime(Long.parseLong( time )));
         rentInfo.setCreateTime(timeT);

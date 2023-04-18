@@ -530,16 +530,4 @@ def evaluate():
 
 if __name__ == '__main__':
     RecommendModel.setup()
-    # RecommendModel.PreProcessor.transformRoomToDataSet()
-    # RecommendModel.cosineSimilarityRoomRes('武汉')
-    # 31, 1153, 120, 1836, 12, 30, 1719, 863, 751, 1694, 26, 1462, 1466, 643, 677, 848, 934, 1716, 93, 20
-    # 31, 1153, 120, 1836, 12, 30, 1719, 863, 751, 1694, 26, 1462, 1466, 643, 677, 848, 934, 1716, 93, 20
-    # print(getTopXSimilarityItems('武汉', 1, 20))
-    # df = pd.read_csv('../dataset/room_dataset_1.csv')
-    # selector = PCA(n_components=700)
-    # res = selector.fit_transform(df.values)
-    # resDf = pd.DataFrame(res)
-    # resDf.to_csv('../dataset/room_dataset_2.csv')
-    # RecommendModel.trainingCityDataByCity('武汉')
-    app.run(port=8088, debug=True)
-    # dataFrame = pd.read_csv('../dataset/room_dataset_1.csv', encoding='utf-8')
+    app.run(port=8088, debug=False)

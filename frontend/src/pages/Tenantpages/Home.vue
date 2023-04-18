@@ -120,6 +120,9 @@ const getPerferenceOptions = ()=>{
 } 
 
 onReachBottom(async ()=>{
+  if(status.value === 'nomore'){
+    return
+  }
   if(isNewUser.value){
     currentPage.value[0] ++;
     const temp = getPerferenceOptions()
@@ -128,6 +131,10 @@ onReachBottom(async ()=>{
       currentPage.value[0],
       pageSize.value
     )
+    if(res.result.length===0) {
+      status.value = 'nomore'
+      return
+    }
     dataList.value[0].data.push(...res.result)
     return
   }
@@ -140,6 +147,10 @@ onReachBottom(async ()=>{
     isLoading.value = true
     currentPage.value[1] ++;
     let res = await ServiceManager.RoomService.getHotRooms(currentPage.value[1],pageSize.value)
+    if(res.result.length===0) {
+      status.value = 'nomore'
+      return
+    }
     setTimeout(()=>{
       dataList.value[1].data= [...dataList.value[1].data,...res.result]
       isLoading.value = false
@@ -147,8 +158,13 @@ onReachBottom(async ()=>{
   }else{
     isLoading.value = true
     currentPage.value[0] ++;
+    const res = await rRecord.recommend()
+    if(res.length===0){
+      status.value = 'nomore'
+      return
+    }
     setTimeout(async ()=>{
-      dataList.value[0].data.push(...(await rRecord.recommend()))
+      dataList.value[0].data.push(...res)
       isLoading.value = false
     },1000)
     

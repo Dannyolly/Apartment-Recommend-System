@@ -4,6 +4,10 @@ server:
     session:
       timeout: 20m
 
+logging:
+  file:
+    path: /logs
+    name: history
 
 spring:
   datasource:

@@ -62,6 +62,16 @@ const submit = ()=>{
         lowestPrice:lowestPrice.value,
         highestPrice:highestPrice.value
     }
+    if(!lowestPrice.value){
+        lowestPrice.value = String(0)
+    }
+    if(highestPrice.value && Number(highestPrice.value) <= Number(lowestPrice.value)){
+        // 都为0的情况下
+        noti.value?.open(
+            '最大金额必需大于最小金額'
+        )
+        return
+    }
     const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
     LocalStorageManager.setLocalStorageInfo('perference',{
         perference:temp

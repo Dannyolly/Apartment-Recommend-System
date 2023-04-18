@@ -1,0 +1,30 @@
+2023-04-18 11:21:11.926  INFO 46404 --- [main] c.e.MySpringBootWebSocketApplication     : Starting MySpringBootWebSocketApplication using Java 18.0.1.1 on DESKTOP-O80KC04 with PID 46404 (D:\vscode\test\Apartment-Recommend-System\backend\target\classes started by Lenovo in D:\vscode\test\Apartment-Recommend-System\backend)
+2023-04-18 11:21:11.936  INFO 46404 --- [main] c.e.MySpringBootWebSocketApplication     : No active profile set, falling back to default profiles: default
+2023-04-18 11:21:13.528  INFO 46404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-04-18 11:21:13.541  INFO 46404 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18 11:21:13.542  INFO 46404 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2023-04-18 11:21:13.820  INFO 46404 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18 11:21:13.820  INFO 46404 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1796 ms
+2023-04-18 11:21:14.283  WARN 46404 --- [main] c.b.m.core.metadata.TableInfoHelper      : This primary key of "id" is primitive !不建议如此请使用包装类 in Class: "com.example.pojo.LeaseOrder"
+2023-04-18 11:21:14.621  WARN 46404 --- [main] c.b.m.core.metadata.TableInfoHelper      : This primary key of "id" is primitive !不建议如此请使用包装类 in Class: "com.example.pojo.BrowseHistory"
+2023-04-18 11:21:15.038  INFO 46404 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-04-18 11:21:15.298  WARN 46404 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8087 is already in use
+2023-04-18 11:21:15.302  INFO 46404 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+2023-04-18 11:21:15.304  INFO 46404 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-04-18 11:21:15.327  INFO 46404 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-18 11:21:15.343 ERROR 46404 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8087 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8087 or configure this application to listen on another port.
+
