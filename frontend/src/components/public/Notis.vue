@@ -6,13 +6,13 @@ import { onLoad , onPageScroll} from '@dcloudio/uni-app';
 interface NotisProps {
   offset?:number,
   duration?: number,
-  isTabbar?:boolean
+  //isTabbar?:boolean
 }
-const {isTabbar,duration} = withDefaults(
+const {duration} = withDefaults(
     defineProps<NotisProps>(),
     {
-        duration: 2000,
-        isTabbar:false
+        duration: 2000
+        //isTabbar:false
     }
 )
 const { isMove , info } = useState({
@@ -47,7 +47,7 @@ onMounted(()=>{
 
 </script>
 <template>
-<div :class="{move1:isTabbar && isMove , move:!isTabbar && isMove}" class="notification-container">
+<div :class="{ move:isMove}" class="notification-container">
     <div  class="notification">
         <u-icon name="info-circle" :size="35"/>
         <div class="info">{{ info }}</div>

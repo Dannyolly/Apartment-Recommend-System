@@ -42,11 +42,15 @@ function deletePic(event:any) {
 }
 async function uploadPostAction(){
     let urls =  fileList.value.map(v=>v.url)
-    console.log(urls);
+    
     const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
     const { result } = await ServiceManager.PostService.uploadPost(urls,userId,title.value,desc.value,isQAndA.value)
     pubsub.publish('post',JSON.stringify(result))
-    uni.navigateBack()
+    console.log('publish');
+    
+    setTimeout(() => {
+        uni.navigateBack()
+    }, 0);
 }   
 onMounted(()=>{
     

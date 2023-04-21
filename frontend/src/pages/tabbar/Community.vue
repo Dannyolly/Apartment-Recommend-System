@@ -18,12 +18,13 @@ import { usePubSub } from '@/hooks/usePubSub';
 import { baseUrl } from '@/api/config';
 import Tabbar from '@/components/Tabbar.vue';
 import { UserInfo } from '@/types/serviceEntity/user';
+import { useNoti } from '@/hooks/useNoti';
 interface CommunityProps {}
 const {} = defineProps<CommunityProps>()
 const height = getDimension().height 
 const scrollTopMax = 70
 const pubsub = usePubSub();
-const { opacity,navigationHeight,dataList,fdRecommendList,fdRecommendIndex,info ,showAllPostOpton} = useState({
+const { opacity,navigationHeight,dataList,fdRecommendList,fdRecommendIndex,info,noti ,showAllPostOpton} = useState({
   opacity:0,
   navigationHeight:0,
   dataList: [
@@ -42,10 +43,9 @@ const { opacity,navigationHeight,dataList,fdRecommendList,fdRecommendIndex,info 
   ] as Array<DataList<FormattedPost>>,
   fdRecommendList:[] as UserInfo[],
   fdRecommendIndex:0,
-  info:'',
-  showAllPostOpton:false
+  showAllPostOpton:false,
+  ...useNoti()
 })
-const Noti = ref<NotificationType>();
 // actionSheet
 const { title , list ,show } = useState({
     title:'Options',
@@ -90,11 +90,11 @@ const follow = async (state:boolean,followId:number)=>{
   if(state){
     //const { result } = await ServiceManager.UserService.follow(userId,followId)
     //info.value = result
-    Noti.value?.open('follow')
+    noti.value?.open('follow')
   }else{
     //const { result } = await ServiceManager.UserService.unFollow(userId,followId)
     //info.value = result
-    Noti.value?.open('unfollow')
+    noti.value?.open('unfollow')
   }
 }
 const goPublishPost = (type:PostType)=>{
@@ -111,6 +111,7 @@ onPageScroll(({scrollTop})=>{
   opacity.value = scrollTop / scrollTopMax
 })
 onMounted(async ()=>{
+  
   // 獲取所有post
   dataList.value[0].data =  (await ServiceManager.PostService.getAllPosts({userId:1,page:0,pageSize:5,type:PostType.NORMAL})).result
   dataList.value[1].data = (await ServiceManager.PostService.getAllPosts({userId:1,page:0,pageSize:5,type:PostType.QANDA})).result
@@ -123,7 +124,8 @@ onMounted(async ()=>{
   const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
   const res = await  ServiceManager.UserService.getRecommendUser(userId)
   fdRecommendList.value = res
-
+  
+  
   // 訂閱發布事件
   pubsub.subscribe('post',(msg,data)=>{
     let post:FormattedPost = JSON.parse(data)
@@ -133,8 +135,15 @@ onMounted(async ()=>{
       dataList.value[0].data.unshift(post)
       :
       dataList.value[1].data.unshift(post)
-    Noti.value?.open("upload Post successfully")
+    setTimeout(() => {
+      noti.value?.open("upload Post successfully")
+      console.log('upload new post');
+    }, 0);
+    
   })
+  
+  
+  
 })
 
 onUnmounted(()=>{
@@ -241,7 +250,7 @@ onUnmounted(()=>{
   <div @click="()=>goPublishPost(PostType.QANDA)" class="publish-3" :class="{move3:showAllPostOpton}">
     <image class="qanda" src="/static/community/qanda.png"/>
   </div>
-  <Notis  ref="Noti" :info="info" isTabbar />
+  <Notis  ref="noti" :info="info"  />
   <Tabbar/>
 </template>
 
