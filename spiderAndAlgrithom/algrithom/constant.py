@@ -20,10 +20,12 @@ cities = {
     '武汉': 'Wuhan'
 }
 
+
 DataMapKey = {
     'fileName': 'fileName',
     'tableName': 'tableName'
 }
+
 
 
 class DataMap:
@@ -39,3 +41,4 @@ class DataMap:
         'fileName': 'room',
         'tableName': 'room_dataset'
     }
+

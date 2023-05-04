@@ -34,22 +34,25 @@ function getUsersByIds(ids:string){
 }
 
 
-function getRecommendUser(userId:number):Promise<UserInfo[]>{
-    return new Promise((resolve,rej)=>{
-        uni.request({
-            url:`http://${algrithomUrl}/expect/user/1`,
-            method:'GET',
-            success:async ({data,statusCode,header,cookies})=>{
-                // @ts-ignore
-                let ids = data.userIds as unknown as number[]
-                let userIds = ids.join(',')
-                const { result } = await getUsersByIds(userIds);
-                resolve(result)
-            },
-            fail:({errMsg})=>{
-                rej(errMsg)
-            }
-        })
+function getRecommendUser(userId:number){
+    // return new Promise((resolve,rej)=>{
+    //     uni.request({
+    //         url:`http://${algrithomUrl}/expect/user/1`,
+    //         method:'GET',
+    //         success:async ({data,statusCode,header,cookies})=>{
+    //             // @ts-ignore
+    //             let ids = data.userIds as unknown as number[]
+    //             let userIds = ids.join(',')
+    //             const { result } = await getUsersByIds(userIds);
+    //             resolve(result)
+    //         },
+    //         fail:({errMsg})=>{
+    //             rej(errMsg)
+    //         }
+    //     })
+    // })
+    return get<UserInfo[]>('/getSimilarUser',{
+        userId
     })
 }
 

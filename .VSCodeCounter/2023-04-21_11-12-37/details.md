@@ -1,0 +1,166 @@
+# Details
+
+Date : 2023-04-21 11:12:37
+
+Directory d:\\vscode\\test\\Apartment-Recommend-System\\admin-v1
+
+Total : 151 files,  12435 codes, 382 comments, 1582 blanks, all 14399 lines
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [admin-v1/.VSCodeCounter/2023-04-12_16-10-51/details.md](/admin-v1/.VSCodeCounter/2023-04-12_16-10-51/details.md) | Markdown | 136 | 0 | 6 | 142 |
+| [admin-v1/.VSCodeCounter/2023-04-12_16-10-51/diff-details.md](/admin-v1/.VSCodeCounter/2023-04-12_16-10-51/diff-details.md) | Markdown | 9 | 0 | 6 | 15 |
+| [admin-v1/.VSCodeCounter/2023-04-12_16-10-51/diff.md](/admin-v1/.VSCodeCounter/2023-04-12_16-10-51/diff.md) | Markdown | 12 | 0 | 7 | 19 |
+| [admin-v1/.VSCodeCounter/2023-04-12_16-10-51/results.json](/admin-v1/.VSCodeCounter/2023-04-12_16-10-51/results.json) | JSON | 1 | 0 | 0 | 1 |
+| [admin-v1/.VSCodeCounter/2023-04-12_16-10-51/results.md](/admin-v1/.VSCodeCounter/2023-04-12_16-10-51/results.md) | Markdown | 100 | 0 | 7 | 107 |
+| [admin-v1/.eslintrc.js](/admin-v1/.eslintrc.js) | JavaScript | 78 | 7 | 1 | 86 |
+| [admin-v1/.github/workflows/deploy.yml](/admin-v1/.github/workflows/deploy.yml) | YAML | 29 | 0 | 7 | 36 |
+| [admin-v1/README.md](/admin-v1/README.md) | Markdown | 114 | 0 | 47 | 161 |
+| [admin-v1/README.zh-CN.md](/admin-v1/README.zh-CN.md) | Markdown | 114 | 0 | 47 | 161 |
+| [admin-v1/index.html](/admin-v1/index.html) | HTML | 16 | 0 | 1 | 17 |
+| [admin-v1/package.json](/admin-v1/package.json) | JSON | 106 | 0 | 1 | 107 |
+| [admin-v1/pnpm-lock.yaml](/admin-v1/pnpm-lock.yaml) | YAML | 4,580 | 0 | 706 | 5,286 |
+| [admin-v1/prettier.config.js](/admin-v1/prettier.config.js) | JavaScript | 11 | 10 | 1 | 22 |
+| [admin-v1/public/app-loading.css](/admin-v1/public/app-loading.css) | CSS | 59 | 0 | 7 | 66 |
+| [admin-v1/src/App.vue](/admin-v1/src/App.vue) | vue | 30 | 0 | 5 | 35 |
+| [admin-v1/src/api/config.ts](/admin-v1/src/api/config.ts) | TypeScript | 6 | 1 | 4 | 11 |
+| [admin-v1/src/api/login/index.ts](/admin-v1/src/api/login/index.ts) | TypeScript | 21 | 3 | 4 | 28 |
+| [admin-v1/src/api/login/types/login.ts](/admin-v1/src/api/login/types/login.ts) | TypeScript | 8 | 3 | 4 | 15 |
+| [admin-v1/src/api/request.ts](/admin-v1/src/api/request.ts) | TypeScript | 18 | 0 | 7 | 25 |
+| [admin-v1/src/assets/error-page/403.svg](/admin-v1/src/assets/error-page/403.svg) | XML | 1 | 0 | 0 | 1 |
+| [admin-v1/src/assets/error-page/404.svg](/admin-v1/src/assets/error-page/404.svg) | XML | 1 | 0 | 0 | 1 |
+| [admin-v1/src/components/Notify/NotifyList.vue](/admin-v1/src/components/Notify/NotifyList.vue) | vue | 57 | 0 | 4 | 61 |
+| [admin-v1/src/components/Notify/data.ts](/admin-v1/src/components/Notify/data.ts) | TypeScript | 63 | 0 | 4 | 67 |
+| [admin-v1/src/components/Notify/index.vue](/admin-v1/src/components/Notify/index.vue) | vue | 93 | 0 | 7 | 100 |
+| [admin-v1/src/components/Screenfull/index.vue](/admin-v1/src/components/Screenfull/index.vue) | vue | 57 | 0 | 9 | 66 |
+| [admin-v1/src/components/SvgIcon/index.vue](/admin-v1/src/components/SvgIcon/index.vue) | vue | 27 | 0 | 5 | 32 |
+| [admin-v1/src/components/ThemeSwitch/index.vue](/admin-v1/src/components/ThemeSwitch/index.vue) | vue | 31 | 0 | 4 | 35 |
+| [admin-v1/src/config/async-route.ts](/admin-v1/src/config/async-route.ts) | TypeScript | 9 | 10 | 3 | 22 |
+| [admin-v1/src/config/layout.ts](/admin-v1/src/config/layout.ts) | TypeScript | 23 | 10 | 3 | 36 |
+| [admin-v1/src/config/white-list.ts](/admin-v1/src/config/white-list.ts) | TypeScript | 2 | 1 | 2 | 5 |
+| [admin-v1/src/constants/cacheKey.ts](/admin-v1/src/constants/cacheKey.ts) | TypeScript | 7 | 1 | 3 | 11 |
+| [admin-v1/src/directives/index.ts](/admin-v1/src/directives/index.ts) | TypeScript | 5 | 1 | 2 | 8 |
+| [admin-v1/src/directives/permission/index.ts](/admin-v1/src/directives/permission/index.ts) | TypeScript | 19 | 1 | 2 | 22 |
+| [admin-v1/src/hooks/useFetchSelect.ts](/admin-v1/src/hooks/useFetchSelect.ts) | TypeScript | 40 | 4 | 10 | 54 |
+| [admin-v1/src/hooks/useFullscreenLoading.ts](/admin-v1/src/hooks/useFullscreenLoading.ts) | TypeScript | 47 | 12 | 5 | 64 |
+| [admin-v1/src/hooks/usePagination.ts](/admin-v1/src/hooks/usePagination.ts) | TypeScript | 32 | 4 | 8 | 44 |
+| [admin-v1/src/hooks/useState.ts](/admin-v1/src/hooks/useState.ts) | TypeScript | 9 | 0 | 10 | 19 |
+| [admin-v1/src/hooks/useTheme.ts](/admin-v1/src/hooks/useTheme.ts) | TypeScript | 40 | 5 | 10 | 55 |
+| [admin-v1/src/icons/index.ts](/admin-v1/src/icons/index.ts) | TypeScript | 6 | 0 | 2 | 8 |
+| [admin-v1/src/icons/svg/404.svg](/admin-v1/src/icons/svg/404.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/bug.svg](/admin-v1/src/icons/svg/bug.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/component.svg](/admin-v1/src/icons/svg/component.svg) | XML | 1 | 0 | 0 | 1 |
+| [admin-v1/src/icons/svg/dashboard.svg](/admin-v1/src/icons/svg/dashboard.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/fullscreen-exit.svg](/admin-v1/src/icons/svg/fullscreen-exit.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/fullscreen.svg](/admin-v1/src/icons/svg/fullscreen.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/link.svg](/admin-v1/src/icons/svg/link.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/lock.svg](/admin-v1/src/icons/svg/lock.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/menu.svg](/admin-v1/src/icons/svg/menu.svg) | XML | 1 | 0 | 1 | 2 |
+| [admin-v1/src/icons/svg/unocss.svg](/admin-v1/src/icons/svg/unocss.svg) | XML | 11 | 0 | 1 | 12 |
+| [admin-v1/src/layout/components/AppMain.vue](/admin-v1/src/layout/components/AppMain.vue) | vue | 43 | 0 | 7 | 50 |
+| [admin-v1/src/layout/components/Breadcrumb/index.vue](/admin-v1/src/layout/components/Breadcrumb/index.vue) | vue | 64 | 0 | 11 | 75 |
+| [admin-v1/src/layout/components/Hamburger/index.vue](/admin-v1/src/layout/components/Hamburger/index.vue) | vue | 28 | 0 | 6 | 34 |
+| [admin-v1/src/layout/components/NavigationBar/index.vue](/admin-v1/src/layout/components/NavigationBar/index.vue) | vue | 113 | 0 | 6 | 119 |
+| [admin-v1/src/layout/components/RightPanel/index.vue](/admin-v1/src/layout/components/RightPanel/index.vue) | vue | 40 | 0 | 5 | 45 |
+| [admin-v1/src/layout/components/Settings/index.vue](/admin-v1/src/layout/components/Settings/index.vue) | vue | 63 | 0 | 4 | 67 |
+| [admin-v1/src/layout/components/Sidebar/SidebarItem.vue](/admin-v1/src/layout/components/Sidebar/SidebarItem.vue) | vue | 117 | 0 | 10 | 127 |
+| [admin-v1/src/layout/components/Sidebar/SidebarItemLink.vue](/admin-v1/src/layout/components/Sidebar/SidebarItemLink.vue) | vue | 17 | 0 | 3 | 20 |
+| [admin-v1/src/layout/components/Sidebar/SidebarLogo.vue](/admin-v1/src/layout/components/Sidebar/SidebarLogo.vue) | vue | 49 | 0 | 4 | 53 |
+| [admin-v1/src/layout/components/Sidebar/index.vue](/admin-v1/src/layout/components/Sidebar/index.vue) | vue | 123 | 0 | 14 | 137 |
+| [admin-v1/src/layout/components/TagsView/ScrollPane.vue](/admin-v1/src/layout/components/TagsView/ScrollPane.vue) | vue | 146 | 0 | 15 | 161 |
+| [admin-v1/src/layout/components/TagsView/index.vue](/admin-v1/src/layout/components/TagsView/index.vue) | vue | 248 | 0 | 21 | 269 |
+| [admin-v1/src/layout/components/index.ts](/admin-v1/src/layout/components/index.ts) | TypeScript | 6 | 0 | 1 | 7 |
+| [admin-v1/src/layout/hooks/useResize.ts](/admin-v1/src/layout/hooks/useResize.ts) | TypeScript | 41 | 2 | 9 | 52 |
+| [admin-v1/src/layout/index.vue](/admin-v1/src/layout/index.vue) | vue | 145 | 0 | 18 | 163 |
+| [admin-v1/src/main.ts](/admin-v1/src/main.ts) | TypeScript | 20 | 6 | 4 | 30 |
+| [admin-v1/src/plugins/element-plus-icon/index.ts](/admin-v1/src/plugins/element-plus-icon/index.ts) | TypeScript | 7 | 1 | 2 | 10 |
+| [admin-v1/src/plugins/element-plus/index.ts](/admin-v1/src/plugins/element-plus/index.ts) | TypeScript | 5 | 1 | 2 | 8 |
+| [admin-v1/src/plugins/index.ts](/admin-v1/src/plugins/index.ts) | TypeScript | 9 | 0 | 2 | 11 |
+| [admin-v1/src/plugins/vxe-table/index.ts](/admin-v1/src/plugins/vxe-table/index.ts) | TypeScript | 48 | 15 | 4 | 67 |
+| [admin-v1/src/router/index.ts](/admin-v1/src/router/index.ts) | TypeScript | 236 | 10 | 7 | 253 |
+| [admin-v1/src/router/permission.ts](/admin-v1/src/router/permission.ts) | TypeScript | 55 | 13 | 4 | 72 |
+| [admin-v1/src/service/ClientOrderService.ts](/admin-v1/src/service/ClientOrderService.ts) | TypeScript | 30 | 0 | 7 | 37 |
+| [admin-v1/src/service/ClientService.ts](/admin-v1/src/service/ClientService.ts) | TypeScript | 30 | 0 | 6 | 36 |
+| [admin-v1/src/service/LeaseService.ts](/admin-v1/src/service/LeaseService.ts) | TypeScript | 20 | 0 | 5 | 25 |
+| [admin-v1/src/service/PostService.ts](/admin-v1/src/service/PostService.ts) | TypeScript | 17 | 0 | 6 | 23 |
+| [admin-v1/src/service/RentInfoService.ts](/admin-v1/src/service/RentInfoService.ts) | TypeScript | 61 | 0 | 15 | 76 |
+| [admin-v1/src/service/RoomBookingService.ts](/admin-v1/src/service/RoomBookingService.ts) | TypeScript | 51 | 0 | 10 | 61 |
+| [admin-v1/src/service/RoomService.ts](/admin-v1/src/service/RoomService.ts) | TypeScript | 45 | 0 | 7 | 52 |
+| [admin-v1/src/service/UserSerivce.ts](/admin-v1/src/service/UserSerivce.ts) | TypeScript | 37 | 0 | 8 | 45 |
+| [admin-v1/src/service/index.ts](/admin-v1/src/service/index.ts) | TypeScript | 21 | 0 | 1 | 22 |
+| [admin-v1/src/store/index.ts](/admin-v1/src/store/index.ts) | TypeScript | 3 | 0 | 3 | 6 |
+| [admin-v1/src/store/modules/app.ts](/admin-v1/src/store/modules/app.ts) | TypeScript | 36 | 0 | 6 | 42 |
+| [admin-v1/src/store/modules/permission.ts](/admin-v1/src/store/modules/permission.ts) | TypeScript | 50 | 1 | 7 | 58 |
+| [admin-v1/src/store/modules/settings.ts](/admin-v1/src/store/modules/settings.ts) | TypeScript | 25 | 0 | 3 | 28 |
+| [admin-v1/src/store/modules/tags-view.ts](/admin-v1/src/store/modules/tags-view.ts) | TypeScript | 76 | 11 | 8 | 95 |
+| [admin-v1/src/store/modules/user.ts](/admin-v1/src/store/modules/user.ts) | TypeScript | 88 | 10 | 6 | 104 |
+| [admin-v1/src/styles/element-plus.scss](/admin-v1/src/styles/element-plus.scss) | SCSS | 16 | 5 | 3 | 24 |
+| [admin-v1/src/styles/index.scss](/admin-v1/src/styles/index.scss) | SCSS | 37 | 6 | 8 | 51 |
+| [admin-v1/src/styles/mixins.scss](/admin-v1/src/styles/mixins.scss) | SCSS | 7 | 0 | 1 | 8 |
+| [admin-v1/src/styles/theme/core/element-plus.scss](/admin-v1/src/styles/theme/core/element-plus.scss) | SCSS | 17 | 2 | 2 | 21 |
+| [admin-v1/src/styles/theme/core/error-page.scss](/admin-v1/src/styles/theme/core/error-page.scss) | SCSS | 3 | 1 | 2 | 6 |
+| [admin-v1/src/styles/theme/core/index.scss](/admin-v1/src/styles/theme/core/index.scss) | SCSS | 8 | 0 | 1 | 9 |
+| [admin-v1/src/styles/theme/core/layout.scss](/admin-v1/src/styles/theme/core/layout.scss) | SCSS | 55 | 6 | 6 | 67 |
+| [admin-v1/src/styles/theme/core/login.scss](/admin-v1/src/styles/theme/core/login.scss) | SCSS | 7 | 1 | 2 | 10 |
+| [admin-v1/src/styles/theme/core/other.scss](/admin-v1/src/styles/theme/core/other.scss) | SCSS | 6 | 2 | 2 | 10 |
+| [admin-v1/src/styles/theme/core/vxe-table.scss](/admin-v1/src/styles/theme/core/vxe-table.scss) | SCSS | 29 | 16 | 14 | 59 |
+| [admin-v1/src/styles/theme/dark-blue/element-plus.css](/admin-v1/src/styles/theme/dark-blue/element-plus.css) | CSS | 18 | 10 | 2 | 30 |
+| [admin-v1/src/styles/theme/dark-blue/index.scss](/admin-v1/src/styles/theme/dark-blue/index.scss) | SCSS | 3 | 0 | 1 | 4 |
+| [admin-v1/src/styles/theme/dark-blue/variables.scss](/admin-v1/src/styles/theme/dark-blue/variables.scss) | SCSS | 7 | 8 | 2 | 17 |
+| [admin-v1/src/styles/theme/dark/index.scss](/admin-v1/src/styles/theme/dark/index.scss) | SCSS | 2 | 0 | 1 | 3 |
+| [admin-v1/src/styles/theme/dark/variables.scss](/admin-v1/src/styles/theme/dark/variables.scss) | SCSS | 7 | 8 | 2 | 17 |
+| [admin-v1/src/styles/theme/register.scss](/admin-v1/src/styles/theme/register.scss) | SCSS | 2 | 1 | 1 | 4 |
+| [admin-v1/src/styles/transition.scss](/admin-v1/src/styles/transition.scss) | SCSS | 20 | 3 | 3 | 26 |
+| [admin-v1/src/styles/variables.css](/admin-v1/src/styles/variables.css) | CSS | 26 | 8 | 2 | 36 |
+| [admin-v1/src/styles/vxe-table.scss](/admin-v1/src/styles/vxe-table.scss) | SCSS | 30 | 5 | 4 | 39 |
+| [admin-v1/src/types/serviceEntity/Room.ts](/admin-v1/src/types/serviceEntity/Room.ts) | TypeScript | 133 | 1 | 8 | 142 |
+| [admin-v1/src/types/serviceEntity/Service.ts](/admin-v1/src/types/serviceEntity/Service.ts) | TypeScript | 84 | 1 | 8 | 93 |
+| [admin-v1/src/types/serviceEntity/lease.ts](/admin-v1/src/types/serviceEntity/lease.ts) | TypeScript | 19 | 0 | 2 | 21 |
+| [admin-v1/src/types/serviceEntity/page.ts](/admin-v1/src/types/serviceEntity/page.ts) | TypeScript | 7 | 0 | 1 | 8 |
+| [admin-v1/src/types/serviceEntity/post.ts](/admin-v1/src/types/serviceEntity/post.ts) | TypeScript | 51 | 0 | 6 | 57 |
+| [admin-v1/src/types/serviceEntity/user.ts](/admin-v1/src/types/serviceEntity/user.ts) | TypeScript | 25 | 0 | 4 | 29 |
+| [admin-v1/src/utils/Date.ts](/admin-v1/src/utils/Date.ts) | TypeScript | 24 | 10 | 7 | 41 |
+| [admin-v1/src/utils/cache/cookies.ts](/admin-v1/src/utils/cache/cookies.ts) | TypeScript | 11 | 1 | 3 | 15 |
+| [admin-v1/src/utils/cache/localStorage.ts](/admin-v1/src/utils/cache/localStorage.ts) | TypeScript | 14 | 1 | 4 | 19 |
+| [admin-v1/src/utils/index.ts](/admin-v1/src/utils/index.ts) | TypeScript | 17 | 3 | 3 | 23 |
+| [admin-v1/src/utils/permission.ts](/admin-v1/src/utils/permission.ts) | TypeScript | 13 | 1 | 2 | 16 |
+| [admin-v1/src/utils/requestTransform.ts](/admin-v1/src/utils/requestTransform.ts) | TypeScript | 20 | 0 | 4 | 24 |
+| [admin-v1/src/utils/service.ts](/admin-v1/src/utils/service.ts) | TypeScript | 91 | 16 | 5 | 112 |
+| [admin-v1/src/utils/validate.ts](/admin-v1/src/utils/validate.ts) | TypeScript | 21 | 0 | 4 | 25 |
+| [admin-v1/src/views/Property/Service.vue](/admin-v1/src/views/Property/Service.vue) | vue | 304 | 1 | 23 | 328 |
+| [admin-v1/src/views/Property/ServiceOrder.vue](/admin-v1/src/views/Property/ServiceOrder.vue) | vue | 256 | 3 | 16 | 275 |
+| [admin-v1/src/views/dashboard/admin/index.vue](/admin-v1/src/views/dashboard/admin/index.vue) | vue | 13 | 0 | 2 | 15 |
+| [admin-v1/src/views/dashboard/user/index.vue](/admin-v1/src/views/dashboard/user/index.vue) | vue | 198 | 1 | 18 | 217 |
+| [admin-v1/src/views/error-page/403.vue](/admin-v1/src/views/error-page/403.vue) | vue | 9 | 0 | 2 | 11 |
+| [admin-v1/src/views/error-page/404.vue](/admin-v1/src/views/error-page/404.vue) | vue | 9 | 0 | 2 | 11 |
+| [admin-v1/src/views/error-page/components/ErrorPageLayout.vue](/admin-v1/src/views/error-page/components/ErrorPageLayout.vue) | vue | 23 | 0 | 2 | 25 |
+| [admin-v1/src/views/lease/index.vue](/admin-v1/src/views/lease/index.vue) | vue | 244 | 3 | 16 | 263 |
+| [admin-v1/src/views/login/index.vue](/admin-v1/src/views/login/index.vue) | vue | 177 | 0 | 6 | 183 |
+| [admin-v1/src/views/permission/components/SwitchRoles.vue](/admin-v1/src/views/permission/components/SwitchRoles.vue) | vue | 32 | 0 | 5 | 37 |
+| [admin-v1/src/views/permission/directive.vue](/admin-v1/src/views/permission/directive.vue) | vue | 81 | 0 | 6 | 87 |
+| [admin-v1/src/views/permission/page.vue](/admin-v1/src/views/permission/page.vue) | vue | 19 | 0 | 4 | 23 |
+| [admin-v1/src/views/post/index.vue](/admin-v1/src/views/post/index.vue) | vue | 270 | 0 | 22 | 292 |
+| [admin-v1/src/views/redirect/index.vue](/admin-v1/src/views/redirect/index.vue) | vue | 9 | 0 | 4 | 13 |
+| [admin-v1/src/views/rent/appointment/index.vue](/admin-v1/src/views/rent/appointment/index.vue) | vue | 238 | 1 | 17 | 256 |
+| [admin-v1/src/views/rent/rentOrder/index.vue](/admin-v1/src/views/rent/rentOrder/index.vue) | vue | 267 | 3 | 14 | 284 |
+| [admin-v1/src/views/rent/room/index.vue](/admin-v1/src/views/rent/room/index.vue) | vue | 317 | 1 | 24 | 342 |
+| [admin-v1/src/views/table/element-plus/index.vue](/admin-v1/src/views/table/element-plus/index.vue) | vue | 236 | 1 | 13 | 250 |
+| [admin-v1/src/views/table/vxe-table/index.vue](/admin-v1/src/views/table/vxe-table/index.vue) | vue | 375 | 5 | 9 | 389 |
+| [admin-v1/src/views/table/vxe-table/tsx/RoleColumnSolts.tsx](/admin-v1/src/views/table/vxe-table/tsx/RoleColumnSolts.tsx) | TypeScript React | 9 | 0 | 3 | 12 |
+| [admin-v1/src/views/table/vxe-table/tsx/StatusColumnSolts.tsx](/admin-v1/src/views/table/vxe-table/tsx/StatusColumnSolts.tsx) | TypeScript React | 14 | 0 | 3 | 17 |
+| [admin-v1/src/views/unocss/index.vue](/admin-v1/src/views/unocss/index.vue) | vue | 16 | 0 | 1 | 17 |
+| [admin-v1/tests/components/Notify.test.ts](/admin-v1/tests/components/Notify.test.ts) | TypeScript | 32 | 0 | 3 | 35 |
+| [admin-v1/tests/demo.test.ts](/admin-v1/tests/demo.test.ts) | TypeScript | 19 | 9 | 5 | 33 |
+| [admin-v1/tests/utils/validate.test.ts](/admin-v1/tests/utils/validate.test.ts) | TypeScript | 31 | 0 | 2 | 33 |
+| [admin-v1/tsconfig.json](/admin-v1/tsconfig.json) | JSON with Comments | 39 | 10 | 1 | 50 |
+| [admin-v1/types/api.d.ts](/admin-v1/types/api.d.ts) | TypeScript | 8 | 1 | 1 | 10 |
+| [admin-v1/types/env.d.ts](/admin-v1/types/env.d.ts) | TypeScript | 5 | 2 | 2 | 9 |
+| [admin-v1/types/shims-vue.d.ts](/admin-v1/types/shims-vue.d.ts) | TypeScript | 9 | 0 | 2 | 11 |
+| [admin-v1/types/vue-router.d.ts](/admin-v1/types/vue-router.d.ts) | TypeScript | 15 | 36 | 2 | 53 |
+| [admin-v1/unocss.config.ts](/admin-v1/unocss.config.ts) | TypeScript | 15 | 6 | 2 | 23 |
+| [admin-v1/vite.config.ts](/admin-v1/vite.config.ts) | TypeScript | 66 | 40 | 3 | 109 |
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

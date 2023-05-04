@@ -1,5 +1,7 @@
 import json
+import random
 from datetime import datetime
+from typing import List
 
 import numpy as np
 import pandas as pd
@@ -14,6 +16,8 @@ from sklearn.metrics.pairwise import pairwise_distances
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, LabelEncoder
 from sklearn.datasets import load_iris
 from sklearn.linear_model import LogisticRegression
+from traitlets import Int
+
 from cache import cfFileCache, roomFileCache, followFileCache
 from constant import cities, DataMapKey, DataMap
 from spiderRoot.database.sqldb import DataBase
@@ -66,6 +70,7 @@ def dataCollection():
 @scheduler.task('cron', id='preprocessing_stage', day='*', hour='5', minute='55', second='0')
 def preprocessing():
     # 基于内容
+    RecommendModel.DataCleaner.clean('room_data')
     RecommendModel.PreProcessor.transformRoomToDataSet()
 
     # 基于用户的协同过滤
@@ -76,8 +81,8 @@ def preprocessing():
 @scheduler.task('cron', id='train_stage', day='*', hour='6', minute='0', second='0')
 def Training():
     RecommendModel.trainingCityDataByCity(city='武汉')
-    RecommendModel.trainingBrowseHistoryData()
-    RecommendModel.trainingFollowData()
+    # RecommendModel.trainingBrowseHistoryData()
+    # RecommendModel.trainingFollowData()
 
 
 class RecommendModel:
@@ -111,8 +116,8 @@ class RecommendModel:
             roomFileCache[cityName]['ids'] = pd.read_csv(f'../trainedData/{city}_cosineIds.csv')
             roomFileCache[cityName]['trainedData'] = pd.read_csv(f'../trainedData/{city}_cosineRes.csv')
             endTime = datetime.now()
-            print((endTime - startTime))
-            print('Loaded city ')
+            # print((endTime - startTime))
+            # print('Loaded city ')
 
         # 加载用户推荐
         @staticmethod
@@ -121,8 +126,8 @@ class RecommendModel:
             followFileCache['userSimilarity'] = pd.read_csv('../trainedData/user_similarity.csv')
             followFileCache['followDataset'] = pd.read_csv('../dataset/follow_dataset.csv')
             endTime = datetime.now()
-            print((endTime - startTime))
-            print('Loaded user similarity metrics ')
+            # print((endTime - startTime))
+            # print('Loaded user similarity metrics ')
 
         # 加载基于协同过滤的公寓推荐
         @staticmethod
@@ -131,8 +136,8 @@ class RecommendModel:
             cfFileCache['user_based'] = pd.read_csv('../trainedData/user_based_room_similarity.csv')
             cfFileCache['browse_history'] = pd.read_csv('../dataset/browse_history_dataset.csv')
             endTime = datetime.now()
-            print((endTime - startTime))
-            print('Loaded user-based room similarity metrics ')
+            # print((endTime - startTime))
+            # print('Loaded user-based room similarity metrics ')
 
         @staticmethod
         def preLoadingAll():
@@ -145,26 +150,36 @@ class RecommendModel:
             RecommendModel.DataLoader.preLoadingByCity('武汉')
             RecommendModel.DataLoader.preLoadingUserBasedCF()
             endTime = datetime.now()
-            print((endTime - startTime))
+            # print((endTime - startTime))
             print('Loaded all trainedData ')
 
     # 數據清洗
     class DataCleaner:
         @staticmethod
         def clean(fileName):
+            """
+            data clean
+            """
             path = f'../dataset/{fileName}.csv'
+            print(path)
             # 讀取
-            df = pd.DataFrame(path)
+            df = pd.read_csv(path)
             # 行列數
             row, col = df.shape
+            print(f'ori_row: {row} , ori_col: {col}')
             # 刪除缺失值較多的列
             rowThreshold = int(row / 2)
-            df.dropna(axis=1, thresh=rowThreshold)
+            dropCol = df.dropna(axis=1, thresh=rowThreshold)
+            print('----dropCol')
+            print(df.head())
 
             # 刪除重覆行
-            df.drop_duplicates('title', inplace=True)
+            df.drop_duplicates(inplace=True)
+
+            print('----dropDup')
+            print(df.head())
             # 寫入
-            df.to_csv(path)
+            df.to_csv(f'../dataset/{fileName}_cleaned.csv')
 
     # 预处理
     class PreProcessor:
@@ -219,6 +234,7 @@ class RecommendModel:
             for key in dict.keys():
                 dataList.append(dict[key])
             df = pd.DataFrame(dataList)
+            print(df.head())
             df.to_csv('../dataset/browse_history_dataset.csv')
 
         # 这里是对room 做一些预处理
@@ -235,14 +251,20 @@ class RecommendModel:
             idListDf.to_csv(f'../trainedData/Wuhan_cosineIds_1.csv')
             # one - hot
             one_hot = RecommendModel.FeatureEngineering.onehot(data)
+            print('after one-hot ')
+            print(one_hot.head())
             # 列标签
             ori_columns = one_hot.columns
             # 归一化
             standardizedNdarray = RecommendModel.FeatureEngineering.minMaxStandardization(one_hot)
             dataframe = pd.DataFrame(data=standardizedNdarray[0:, 0:])
+            print('after min-max standardized ')
+            print(dataframe.head())
             dataframe.columns = ori_columns
             # 选取向量
             filter_df = RecommendModel.FeatureEngineering.featureSelectionByFilter(dataframe)
+            print('after Variance filter ')
+            print(filter_df.head())
             # embedding
             # RecommendModel.FeatureEngineering.embedding(dataframe)
             # 保存到dataset
@@ -284,8 +306,8 @@ class RecommendModel:
 
             ori_columns_pd = pd.DataFrame(ori_columns)
             filterDf = maskPd[maskPd[0] == False]
-            print(f'before_feature_length: {len(df.columns)}')
-            print(f'after_feature_length: {len(filterDf)}')
+            # print(f'before_feature_length: {len(df.columns)}')
+            # print(f'after_feature_length: {len(filterDf)}')
 
             filterIds = filterDf.index.tolist()
             title_list = ori_columns_pd.loc[filterIds].values.tolist()
@@ -329,15 +351,18 @@ class RecommendModel:
     def setup():
         db.initConnect()
         RecommendModel.DataLoader.preLoadingAll()
-        scheduler.api_enabled = True
-        scheduler.init_app(app)
-        scheduler.start()
+        # RecommendModel.DataCleaner.clean
+        # scheduler.api_enabled = True
+        # scheduler.init_app(app)
+        # scheduler.start()
 
     @staticmethod
     def calculateFollowSimilarity():
         data: DataFrame = pd.read_csv('../dataset/follow_dataset.csv')
         userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
         df = pd.DataFrame(data=userSimilarity)
+        print('--- jaccard_similarity follow')
+        print(df.head())
         df.to_csv('../trainedData/user_similarity.csv')
 
     @staticmethod
@@ -345,12 +370,14 @@ class RecommendModel:
         data: DataFrame = pd.read_csv('../dataset/browse_history_dataset.csv')
         userSimilarity: ndarray = 1 - pairwise_distances(data.values.astype(bool), metric='jaccard')
         df = pd.DataFrame(data=userSimilarity)
+        print('--- jaccard_similarity browseHistory')
+        print(df.head())
         df.to_csv('../trainedData/user_based_room_similarity.csv')
 
     @staticmethod
     def cosineSimilarityRoomRes(city: str, isSave=True):
         # 读取文件
-        data = pd.read_csv('../dataset/room_dataset_2.csv')
+        data = pd.read_csv('../dataset/room_dataset_1.csv')
         # 选择城市
         # city_room: DataFrame = data[data['city'] == city]
         # 重置索引
@@ -365,7 +392,8 @@ class RecommendModel:
         itemSimilarity: ndarray = cosine_similarity(data)
 
         dataframe = pd.DataFrame(data=itemSimilarity[0:, 0:])
-
+        print('--- cosine_similarity room')
+        print(dataframe.head())
         # idListDf = pd.DataFrame(ids)
         # print(dataframe)
         if isSave:
@@ -385,8 +413,7 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
         roomFileCache[city]['trainedData'] = pd.read_csv(f'../trainedData/{cities[city]}_cosineRes.csv')
         roomFileCache[city]['ids'] = pd.read_csv(f'../trainedData/{cities[city]}_cosineIds.csv')
         resDF = roomFileCache[city]['trainedData']
-    endTime = datetime.now()
-    print((endTime - startTime))
+
     # 把id转为list
     realIds = roomFileCache[city]['ids']['id'].tolist()
     # 获取对应行的index
@@ -405,7 +432,9 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
     ids = []
     originIds = [houseIdIndex]
     values = []
-
+    # filterList = list(filter(lambda x: x >= 0.6, res))[0:20]
+    # print('filter_list:', len(filterList))
+    # print('ori_list:', len(originRes))
     for index in range(0, num + 1):
         target = res[index]
         targetIndex = originRes.index(target)
@@ -414,6 +443,8 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
             ids.append(realIds[targetIndex])
             originIds.append(targetIndex)
 
+    return ids
+    print((endTime - startTime))
     return json.dumps({
         'code': 200,
         'state': 1,
@@ -431,7 +462,6 @@ def getTopXSimilarityUser(userId, num=9):
     user_df: DataFrame = user_df.loc[userId - 1]
     user_df_sorted = user_df.sort_values(ascending=False)
     top5 = list(user_df_sorted.index[2:5])
-
     # 找出原本用户所关注的人
     origin_user_df_row: DataFrame = follow_df.loc[userId - 1]
     origin_user_df_row: Index = origin_user_df_row.replace(0, np.nan).dropna().index
@@ -482,15 +512,15 @@ def getItemByTopXSimilarityUser(userId, page):
     user_df: DataFrame = user_df.loc[userId - 1]
     user_df_sorted = user_df.sort_values(ascending=False)
     top5 = list(user_df_sorted.index[1:6])
-
-    # 找出原本用户所关注的人
+    # print(top5)
+    # 找出原本用户所瀏覽過的公寓
     origin_user_df_row: DataFrame = browse_df.loc[userId - 1]
     origin_user_df_row: Index = origin_user_df_row.replace(0, np.nan).dropna().index
     origin_user_df_row_list: list = origin_user_df_row.tolist()
     origin_user_df_row_list.remove(origin_user_df_row_list[0])
 
     # 结果集
-    # 提取top3相似的人
+    # 提取top5相似的人
     # 每个list都取前9位
     res_list = []
 
@@ -504,14 +534,19 @@ def getItemByTopXSimilarityUser(userId, page):
         similar_user_df_row_list: list = similar_user_df_row.tolist()
         # 删除首列
         similar_user_df_row_list.remove(similar_user_df_row_list[0])
+        similar_user_df_row_list = list(map(lambda x: int(x), similar_user_df_row_list))
         res = res.union(OrderedSet(similar_user_df_row_list))
+        # 　print(res)
+        # print(res_list)
         # 过滤已浏览的
         res -= OrderedSet(origin_user_df_row_list)
         # 存到数组
-        res_list.extend(list(res)[:40])
+        res_list.extend(list(res))
     # 去重 有可能重复
 
     res_list = list(OrderedSet(res_list))
+    # random.shuffle(res_list)
+    return res_list[0:50]
     # 全部转为int
     res_list = list(map(lambda x: int(x) + 1, res_list[:maxLen]))
     start = page * 3
@@ -524,10 +559,145 @@ def getItemByTopXSimilarityUser(userId, page):
     })
 
 
+"""
+@date 2023/5/4
+@desc evaluate RecommendModel
+"""
+
+
+# test Model Coverage
+def evaluateModelCoverage():
+    """
+        用戶數: 500
+        基于內容 -- 每個用戶取前5條記錄,分別相似推薦各10條       -> 50
+        基于用戶 -- 每個用戶取前5個相似用戶,分別推薦10條         -> 50
+        基于混合 -- 內容-25 用戶- 25                         -> 50
+        """
+    room_df = pd.read_csv('../dataset/room_data.csv')
+    ori_row, col = room_df.shape
+    user_id_list = list(range(1, 500))
+    content_df = pd.read_csv('../dataset/browse_history_top5.csv')
+    room_id_df = content_df['room_id']
+    distinct_list = list(set(room_id_df.tolist()))
+
+    print(f'ori_count:{ori_row}')
+    # # 基于內容
+
+    content_ids_arr = list()
+    for room_id in distinct_list:
+        ids = getTopXSimilarityItems('武汉', room_id, 5)
+        content_ids_arr.extend(ids)
+    real_ids_content_based_count = len(list(set(content_ids_arr)))
+    # print(f'content_based_count:{real_ids_content_based_count}')
+    # 基于用戶
+
+    cf_ids_arr = list()
+    for user_id in user_id_list:
+        ids = getItemByTopXSimilarityUser(user_id, 1)
+        # print(ids)
+        cf_ids_arr.extend(ids)
+    collaborative_filter_count = len(list(set(cf_ids_arr)))
+    # print(f'collaborative_filter_count:{collaborative_filter_count}')
+
+    # 混合推薦
+    i = 0
+    all_ids = []
+    for user_id in user_id_list:
+        curNum = 0
+        ids = getItemByTopXSimilarityUser(user_id, 1)[0:25]
+        while curNum < 5:
+            if i >= len(distinct_list):
+                break
+            room_cur_id = distinct_list[i]
+            content_room_ids = getTopXSimilarityItems('武汉', room_cur_id)
+            all_ids.extend(content_room_ids)
+            i = i + 1
+            curNum = curNum + 1
+        all_ids.extend(ids)
+    hybrid_recommendation_count = len(list(set(all_ids)))
+    # print(f'hybrid_recommendation_count:{hybrid_recommendation_count}')
+
+    # coverage
+    print('OK-----')
+    print(f'content_based_coverage         :%.3f' % (real_ids_content_based_count / ori_row))
+    print(f'collaborative_filter_coverage  :%.3f' % (collaborative_filter_count / ori_row))
+    print(f'hybrid_recommendation_coverage :%.3f' % (hybrid_recommendation_count / ori_row))
+    #     ids_arr.extend(ids)
+
+
+def evaluateModelDiversity():
+    room_df = pd.read_csv('../dataset/room_data.csv')
+    ori_row, col = room_df.shape
+    user_id_list = list(range(1, 500))
+    content_df = pd.read_csv('../dataset/browse_history_top5.csv')
+    room_id_df = content_df['room_id']
+    distinct_list = list(set(room_id_df.tolist()))
+    # 以用戶1 為例
+    room_id_arr = [1143, 430, 812, 1121, 1933]
+    user_id = 1
+    # 基于內容
+    content_ids_arr = list()
+    for room_id in room_id_arr:
+        ids = getTopXSimilarityItems('武汉', room_id, 10)
+        content_ids_arr.extend(ids)
+    # 去重
+    content_ids_arr = list(set(content_ids_arr))
+
+
+    # 基于用戶
+    cf_ids_arr = list()
+    cf_ids_arr.extend(getItemByTopXSimilarityUser(1, 1))
+    cf_ids_arr = list(set(cf_ids_arr))
+
+
+    # 基于混合
+    hybrid_ids_arr = list()
+    for room_id in room_id_arr:
+        ids = getTopXSimilarityItems('武汉', room_id, 5)
+        hybrid_ids_arr.extend(ids)
+    hybrid_ids_arr.extend(getItemByTopXSimilarityUser(1, 1)[0:25])
+    hybrid_ids_arr = list(set(hybrid_ids_arr))
+    print(f'content_based_ILS:          {ILS(content_ids_arr)}')
+    print(f'collaborative_filter_ILS:   {ILS(cf_ids_arr)}')
+    print(f'hybrid_ILS:                 {ILS(hybrid_ids_arr)}')
+
 def evaluate():
+    # evaluateModelCoverage()
+    evaluateModelDiversity()
     pass
+
+
+def ILS(roomIdArr: List):
+    """
+    intra-list similarity , this method can test  the diversity of recommend list
+    :param roomIdArr
+    :return:
+    """
+    arrLen = len(roomIdArr)
+    sim_sum = 0.0
+    for i in range(0, arrLen - 1):
+        for j in range(0, arrLen - 1):
+            if i != j:
+                sim_sum += calculateSimilarity(roomIdArr[i], roomIdArr[j])
+    return (sim_sum * 2) / (arrLen * (arrLen - 1))
+
+
+def calculateSimilarity(id1, id2):
+    """
+    :param id1: row
+    :param id2: col
+    :return:
+    """
+    df = roomFileCache['武汉']['trainedData']
+    return df.loc[id1 - 1][id2]
 
 
 if __name__ == '__main__':
     RecommendModel.setup()
-    app.run(port=8088, debug=False)
+    # print(getTopXSimilarityItems('武汉', 4, 20))
+    # print('1- %.3f' % (5/3))
+    # print(getItemByTopXSimilarityUser(343, 1))
+    # evaluate()
+    # print(getTopXSimilarityItems('武汉', 12, 30))
+    # app.run(port=8091, debug=False)
+    Training()

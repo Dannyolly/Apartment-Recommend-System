@@ -1,4 +1,4 @@
-import { UserInfo } from "./serviceEntity/uuserviceEntity/user";
+import { UserInfo } from "./user";
 
 enum PostType {
   NORMAL =1,

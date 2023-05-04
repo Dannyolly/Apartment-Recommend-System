@@ -396,7 +396,6 @@ class Spider:
             cityItem = cityList[i]
             spider.getCityArea(city=cityList[i], cityName=cityItem['name'])
 
-
 def setup():
     db = DataBase(host='127.0.0.1', user='root', password='123456', database='house')
     house = RoomField()

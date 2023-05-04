@@ -39,7 +39,6 @@ class RecommendRecordHandler{
         const historyT = getHistory(userId) ?? []
         const userBasedCfPage = getUserBasedPage(userId) ?? 1
         let recommendRecord = getRecommendRecord(userId) ?? {} as RecommendRecord
-        
         // 新用戶
         if(historyT.length === 0){
             this.isNewUser = true
@@ -83,13 +82,15 @@ class RecommendRecordHandler{
             if( this.recommendRecord[roomId].showed + pageSize <= end ){
                 houseId = roomId;
                 start = this.recommendRecord[roomId].showed
+                console.log(start);
+                
                 break
             }else{
                 continue
             }
         }
         // contentbased 的當前頁數..
-        let contentBasedPage = start === 0 ? 1 : start/5
+        let contentBasedPage = start === 0 ? 1 : start/5 + 1
         let userBasedCfPage = this.userBasedCfPage 
         // content-based
         const result = ServiceManager.RoomService.getRecommendRooms(houseId,contentBasedPage,userBasedCfPage)

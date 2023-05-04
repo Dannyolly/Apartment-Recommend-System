@@ -1,0 +1,306 @@
+Date : 2023-04-21 11:12:37
+Directory : d:\vscode\test\Apartment-Recommend-System\admin-v1
+Total : 167 files,  -118485 codes, 138 comments, 1388 blanks, all -116959 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| YAML               |          2 |      4,609 |          0 |        713 |      5,322 |
+| vue                |         39 |      4,584 |         19 |        364 |      4,967 |
+| TypeScript         |         64 |      2,102 |        254 |        299 |      2,655 |
+| Markdown           |          6 |        485 |          0 |        120 |        605 |
+| SCSS               |         17 |        256 |         64 |         55 |        375 |
+| CSS                |          3 |        103 |         18 |         11 |        132 |
+| JavaScript         |          2 |         89 |         17 |          2 |        108 |
+| JSON with Comments |          1 |         39 |         10 |          1 |         50 |
+| TypeScript React   |          2 |         23 |          0 |          6 |         29 |
+| HTML               |          1 |         16 |          0 |          1 |         17 |
+| XML                |         20 |        -57 |          0 |          9 |        -48 |
+| JSON               |          3 |       -126 |          0 |          1 |       -125 |
+| Python             |          6 |       -811 |       -211 |       -119 |     -1,141 |
+| SQL                |          1 |   -129,797 |        -33 |        -75 |   -129,905 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                        | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                           |        167 |   -118,485 |        138 |      1,388 |   -116,959 |
+| . (Files)                                                                                                   |         10 |      5,139 |         73 |        810 |      6,022 |
+| ..                                                                                                          |         16 |   -130,920 |       -244 |       -194 |   -131,358 |
+| ..\spiderAndAlgrithom                                                                                       |         16 |   -130,920 |       -244 |       -194 |   -131,358 |
+| ..\spiderAndAlgrithom\.idea                                                                                 |          8 |        -79 |          0 |          0 |        -79 |
+| ..\spiderAndAlgrithom\.idea (Files)                                                                         |          6 |        -44 |          0 |          0 |        -44 |
+| ..\spiderAndAlgrithom\.idea\inspectionProfiles                                                              |          2 |        -35 |          0 |          0 |        -35 |
+| ..\spiderAndAlgrithom\algrithom                                                                             |          3 |       -393 |       -141 |        -80 |       -614 |
+| ..\spiderAndAlgrithom\spiderRoot                                                                            |          5 |   -130,448 |       -103 |       -114 |   -130,665 |
+| ..\spiderAndAlgrithom\spiderRoot\database                                                                   |          1 |   -129,797 |        -33 |        -75 |   -129,905 |
+| ..\spiderAndAlgrithom\spiderRoot\spider                                                                     |          4 |       -651 |        -70 |        -39 |       -760 |
+| .VSCodeCounter                                                                                              |          5 |        258 |          0 |         26 |        284 |
+| .VSCodeCounter\2023-04-12_16-10-51                                                                          |          5 |        258 |          0 |         26 |        284 |
+| .github                                                                                                     |          1 |         29 |          0 |          7 |         36 |
+| .github\workflows                                                                                           |          1 |         29 |          0 |          7 |         36 |
+| public                                                                                                      |          1 |         59 |          0 |          7 |         66 |
+| src                                                                                                         |        127 |      6,831 |        261 |        715 |      7,807 |
+| src (Files)                                                                                                 |          2 |         50 |          6 |          9 |         65 |
+| src\api                                                                                                     |          4 |         53 |          7 |         19 |         79 |
+| src\api (Files)                                                                                             |          2 |         24 |          1 |         11 |         36 |
+| src\api\login                                                                                               |          2 |         29 |          6 |          8 |         43 |
+| src\api\login (Files)                                                                                       |          1 |         21 |          3 |          4 |         28 |
+| src\api\login\types                                                                                         |          1 |          8 |          3 |          4 |         15 |
+| src\assets                                                                                                  |          2 |          2 |          0 |          0 |          2 |
+| src\assets\error-page                                                                                       |          2 |          2 |          0 |          0 |          2 |
+| src\components                                                                                              |          6 |        328 |          0 |         33 |        361 |
+| src\components\Notify                                                                                       |          3 |        213 |          0 |         15 |        228 |
+| src\components\Screenfull                                                                                   |          1 |         57 |          0 |          9 |         66 |
+| src\components\SvgIcon                                                                                      |          1 |         27 |          0 |          5 |         32 |
+| src\components\ThemeSwitch                                                                                  |          1 |         31 |          0 |          4 |         35 |
+| src\config                                                                                                  |          3 |         34 |         21 |          8 |         63 |
+| src\constants                                                                                               |          1 |          7 |          1 |          3 |         11 |
+| src\directives                                                                                              |          2 |         24 |          2 |          4 |         30 |
+| src\directives (Files)                                                                                      |          1 |          5 |          1 |          2 |          8 |
+| src\directives\permission                                                                                   |          1 |         19 |          1 |          2 |         22 |
+| src\hooks                                                                                                   |          5 |        168 |         25 |         43 |        236 |
+| src\icons                                                                                                   |         11 |         26 |          0 |         11 |         37 |
+| src\icons (Files)                                                                                           |          1 |          6 |          0 |          2 |          8 |
+| src\icons\svg                                                                                               |         10 |         20 |          0 |          9 |         29 |
+| src\layout                                                                                                  |         15 |      1,243 |          2 |        134 |      1,379 |
+| src\layout (Files)                                                                                          |          1 |        145 |          0 |         18 |        163 |
+| src\layout\components                                                                                       |         13 |      1,057 |          0 |        107 |      1,164 |
+| src\layout\components (Files)                                                                               |          2 |         49 |          0 |          8 |         57 |
+| src\layout\components\Breadcrumb                                                                            |          1 |         64 |          0 |         11 |         75 |
+| src\layout\components\Hamburger                                                                             |          1 |         28 |          0 |          6 |         34 |
+| src\layout\components\NavigationBar                                                                         |          1 |        113 |          0 |          6 |        119 |
+| src\layout\components\RightPanel                                                                            |          1 |         40 |          0 |          5 |         45 |
+| src\layout\components\Settings                                                                              |          1 |         63 |          0 |          4 |         67 |
+| src\layout\components\Sidebar                                                                               |          4 |        306 |          0 |         31 |        337 |
+| src\layout\components\TagsView                                                                              |          2 |        394 |          0 |         36 |        430 |
+| src\layout\hooks                                                                                            |          1 |         41 |          2 |          9 |         52 |
+| src\plugins                                                                                                 |          4 |         69 |         17 |         10 |         96 |
+| src\plugins (Files)                                                                                         |          1 |          9 |          0 |          2 |         11 |
+| src\plugins\element-plus                                                                                    |          1 |          5 |          1 |          2 |          8 |
+| src\plugins\element-plus-icon                                                                               |          1 |          7 |          1 |          2 |         10 |
+| src\plugins\vxe-table                                                                                       |          1 |         48 |         15 |          4 |         67 |
+| src\router                                                                                                  |          2 |        291 |         23 |         11 |        325 |
+| src\service                                                                                                 |          9 |        312 |          0 |         65 |        377 |
+| src\store                                                                                                   |          6 |        278 |         22 |         33 |        333 |
+| src\store (Files)                                                                                           |          1 |          3 |          0 |          3 |          6 |
+| src\store\modules                                                                                           |          5 |        275 |         22 |         30 |        327 |
+| src\styles                                                                                                  |         19 |        300 |         82 |         59 |        441 |
+| src\styles (Files)                                                                                          |          6 |        136 |         27 |         21 |        184 |
+| src\styles\theme                                                                                            |         13 |        164 |         55 |         38 |        257 |
+| src\styles\theme (Files)                                                                                    |          1 |          2 |          1 |          1 |          4 |
+| src\styles\theme\core                                                                                       |          7 |        125 |         28 |         29 |        182 |
+| src\styles\theme\dark                                                                                       |          2 |          9 |          8 |          3 |         20 |
+| src\styles\theme\dark-blue                                                                                  |          3 |         28 |         18 |          5 |         51 |
+| src\types                                                                                                   |          6 |        319 |          2 |         29 |        350 |
+| src\types\serviceEntity                                                                                     |          6 |        319 |          2 |         29 |        350 |
+| src\utils                                                                                                   |          8 |        211 |         32 |         32 |        275 |
+| src\utils (Files)                                                                                           |          6 |        186 |         30 |         25 |        241 |
+| src\utils\cache                                                                                             |          2 |         25 |          2 |          7 |         34 |
+| src\views                                                                                                   |         22 |      3,116 |         19 |        212 |      3,347 |
+| src\views\Property                                                                                          |          2 |        560 |          4 |         39 |        603 |
+| src\views\dashboard                                                                                         |          2 |        211 |          1 |         20 |        232 |
+| src\views\dashboard\admin                                                                                   |          1 |         13 |          0 |          2 |         15 |
+| src\views\dashboard\user                                                                                    |          1 |        198 |          1 |         18 |        217 |
+| src\views\error-page                                                                                        |          3 |         41 |          0 |          6 |         47 |
+| src\views\error-page (Files)                                                                                |          2 |         18 |          0 |          4 |         22 |
+| src\views\error-page\components                                                                             |          1 |         23 |          0 |          2 |         25 |
+| src\views\lease                                                                                             |          1 |        244 |          3 |         16 |        263 |
+| src\views\login                                                                                             |          1 |        177 |          0 |          6 |        183 |
+| src\views\permission                                                                                        |          3 |        132 |          0 |         15 |        147 |
+| src\views\permission (Files)                                                                                |          2 |        100 |          0 |         10 |        110 |
+| src\views\permission\components                                                                             |          1 |         32 |          0 |          5 |         37 |
+| src\views\post                                                                                              |          1 |        270 |          0 |         22 |        292 |
+| src\views\redirect                                                                                          |          1 |          9 |          0 |          4 |         13 |
+| src\views\rent                                                                                              |          3 |        822 |          5 |         55 |        882 |
+| src\views\rent\appointment                                                                                  |          1 |        238 |          1 |         17 |        256 |
+| src\views\rent\rentOrder                                                                                    |          1 |        267 |          3 |         14 |        284 |
+| src\views\rent\room                                                                                         |          1 |        317 |          1 |         24 |        342 |
+| src\views\table                                                                                             |          4 |        634 |          6 |         28 |        668 |
+| src\views\table\element-plus                                                                                |          1 |        236 |          1 |         13 |        250 |
+| src\views\table\vxe-table                                                                                   |          3 |        398 |          5 |         15 |        418 |
+| src\views\table\vxe-table (Files)                                                                           |          1 |        375 |          5 |          9 |        389 |
+| src\views\table\vxe-table\tsx                                                                               |          2 |         23 |          0 |          6 |         29 |
+| src\views\unocss                                                                                            |          1 |         16 |          0 |          1 |         17 |
+| tests                                                                                                       |          3 |         82 |          9 |         10 |        101 |
+| tests (Files)                                                                                               |          1 |         19 |          9 |          5 |         33 |
+| tests\components                                                                                            |          1 |         32 |          0 |          3 |         35 |
+| tests\utils                                                                                                 |          1 |         31 |          0 |          2 |         33 |
+| types                                                                                                       |          4 |         37 |         39 |          7 |         83 |
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                    | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.VSCodeCounter\2023-04-12_16-10-51\details.md            | Markdown           |        136 |          0 |          6 |        142 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.VSCodeCounter\2023-04-12_16-10-51\diff-details.md       | Markdown           |          9 |          0 |          6 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.VSCodeCounter\2023-04-12_16-10-51\diff.md               | Markdown           |         12 |          0 |          7 |         19 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.VSCodeCounter\2023-04-12_16-10-51\results.json          | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.VSCodeCounter\2023-04-12_16-10-51\results.md            | Markdown           |        100 |          0 |          7 |        107 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.eslintrc.js                                             | JavaScript         |         78 |          7 |          1 |         86 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\.github\workflows\deploy.yml                             | YAML               |         29 |          0 |          7 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\README.md                                                | Markdown           |        114 |          0 |         47 |        161 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\README.zh-CN.md                                          | Markdown           |        114 |          0 |         47 |        161 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\index.html                                               | HTML               |         16 |          0 |          1 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\package.json                                             | JSON               |        106 |          0 |          1 |        107 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\pnpm-lock.yaml                                           | YAML               |      4,580 |          0 |        706 |      5,286 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\prettier.config.js                                       | JavaScript         |         11 |         10 |          1 |         22 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\public\app-loading.css                                   | CSS                |         59 |          0 |          7 |         66 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\App.vue                                              | vue                |         30 |          0 |          5 |         35 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\api\config.ts                                        | TypeScript         |          6 |          1 |          4 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\api\login\index.ts                                   | TypeScript         |         21 |          3 |          4 |         28 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\api\login\types\login.ts                             | TypeScript         |          8 |          3 |          4 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\api\request.ts                                       | TypeScript         |         18 |          0 |          7 |         25 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\assets\error-page\403.svg                            | XML                |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\assets\error-page\404.svg                            | XML                |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\Notify\NotifyList.vue                     | vue                |         57 |          0 |          4 |         61 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\Notify\data.ts                            | TypeScript         |         63 |          0 |          4 |         67 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\Notify\index.vue                          | vue                |         93 |          0 |          7 |        100 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\Screenfull\index.vue                      | vue                |         57 |          0 |          9 |         66 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\SvgIcon\index.vue                         | vue                |         27 |          0 |          5 |         32 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\components\ThemeSwitch\index.vue                     | vue                |         31 |          0 |          4 |         35 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\config\async-route.ts                                | TypeScript         |          9 |         10 |          3 |         22 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\config\layout.ts                                     | TypeScript         |         23 |         10 |          3 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\config\white-list.ts                                 | TypeScript         |          2 |          1 |          2 |          5 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\constants\cacheKey.ts                                | TypeScript         |          7 |          1 |          3 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\directives\index.ts                                  | TypeScript         |          5 |          1 |          2 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\directives\permission\index.ts                       | TypeScript         |         19 |          1 |          2 |         22 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\hooks\useFetchSelect.ts                              | TypeScript         |         40 |          4 |         10 |         54 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\hooks\useFullscreenLoading.ts                        | TypeScript         |         47 |         12 |          5 |         64 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\hooks\usePagination.ts                               | TypeScript         |         32 |          4 |          8 |         44 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\hooks\useState.ts                                    | TypeScript         |          9 |          0 |         10 |         19 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\hooks\useTheme.ts                                    | TypeScript         |         40 |          5 |         10 |         55 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\index.ts                                       | TypeScript         |          6 |          0 |          2 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\404.svg                                    | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\bug.svg                                    | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\component.svg                              | XML                |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\dashboard.svg                              | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\fullscreen-exit.svg                        | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\fullscreen.svg                             | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\link.svg                                   | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\lock.svg                                   | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\menu.svg                                   | XML                |          1 |          0 |          1 |          2 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\icons\svg\unocss.svg                                 | XML                |         11 |          0 |          1 |         12 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\AppMain.vue                        | vue                |         43 |          0 |          7 |         50 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Breadcrumb\index.vue               | vue                |         64 |          0 |         11 |         75 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Hamburger\index.vue                | vue                |         28 |          0 |          6 |         34 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\NavigationBar\index.vue            | vue                |        113 |          0 |          6 |        119 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\RightPanel\index.vue               | vue                |         40 |          0 |          5 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Settings\index.vue                 | vue                |         63 |          0 |          4 |         67 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Sidebar\SidebarItem.vue            | vue                |        117 |          0 |         10 |        127 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Sidebar\SidebarItemLink.vue        | vue                |         17 |          0 |          3 |         20 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Sidebar\SidebarLogo.vue            | vue                |         49 |          0 |          4 |         53 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\Sidebar\index.vue                  | vue                |        123 |          0 |         14 |        137 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\TagsView\ScrollPane.vue            | vue                |        146 |          0 |         15 |        161 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\TagsView\index.vue                 | vue                |        248 |          0 |         21 |        269 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\components\index.ts                           | TypeScript         |          6 |          0 |          1 |          7 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\hooks\useResize.ts                            | TypeScript         |         41 |          2 |          9 |         52 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\layout\index.vue                                     | vue                |        145 |          0 |         18 |        163 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\main.ts                                              | TypeScript         |         20 |          6 |          4 |         30 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\plugins\element-plus-icon\index.ts                   | TypeScript         |          7 |          1 |          2 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\plugins\element-plus\index.ts                        | TypeScript         |          5 |          1 |          2 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\plugins\index.ts                                     | TypeScript         |          9 |          0 |          2 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\plugins\vxe-table\index.ts                           | TypeScript         |         48 |         15 |          4 |         67 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\router\index.ts                                      | TypeScript         |        236 |         10 |          7 |        253 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\router\permission.ts                                 | TypeScript         |         55 |         13 |          4 |         72 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\ClientOrderService.ts                        | TypeScript         |         30 |          0 |          7 |         37 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\ClientService.ts                             | TypeScript         |         30 |          0 |          6 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\LeaseService.ts                              | TypeScript         |         20 |          0 |          5 |         25 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\PostService.ts                               | TypeScript         |         17 |          0 |          6 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\RentInfoService.ts                           | TypeScript         |         61 |          0 |         15 |         76 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\RoomBookingService.ts                        | TypeScript         |         51 |          0 |         10 |         61 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\RoomService.ts                               | TypeScript         |         45 |          0 |          7 |         52 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\UserSerivce.ts                               | TypeScript         |         37 |          0 |          8 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\service\index.ts                                     | TypeScript         |         21 |          0 |          1 |         22 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\index.ts                                       | TypeScript         |          3 |          0 |          3 |          6 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\modules\app.ts                                 | TypeScript         |         36 |          0 |          6 |         42 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\modules\permission.ts                          | TypeScript         |         50 |          1 |          7 |         58 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\modules\settings.ts                            | TypeScript         |         25 |          0 |          3 |         28 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\modules\tags-view.ts                           | TypeScript         |         76 |         11 |          8 |         95 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\store\modules\user.ts                                | TypeScript         |         88 |         10 |          6 |        104 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\element-plus.scss                             | SCSS               |         16 |          5 |          3 |         24 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\index.scss                                    | SCSS               |         37 |          6 |          8 |         51 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\mixins.scss                                   | SCSS               |          7 |          0 |          1 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\element-plus.scss                  | SCSS               |         17 |          2 |          2 |         21 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\error-page.scss                    | SCSS               |          3 |          1 |          2 |          6 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\index.scss                         | SCSS               |          8 |          0 |          1 |          9 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\layout.scss                        | SCSS               |         55 |          6 |          6 |         67 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\login.scss                         | SCSS               |          7 |          1 |          2 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\other.scss                         | SCSS               |          6 |          2 |          2 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\core\vxe-table.scss                     | SCSS               |         29 |         16 |         14 |         59 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\dark-blue\element-plus.css              | CSS                |         18 |         10 |          2 |         30 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\dark-blue\index.scss                    | SCSS               |          3 |          0 |          1 |          4 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\dark-blue\variables.scss                | SCSS               |          7 |          8 |          2 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\dark\index.scss                         | SCSS               |          2 |          0 |          1 |          3 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\dark\variables.scss                     | SCSS               |          7 |          8 |          2 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\theme\register.scss                           | SCSS               |          2 |          1 |          1 |          4 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\transition.scss                               | SCSS               |         20 |          3 |          3 |         26 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\variables.css                                 | CSS                |         26 |          8 |          2 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\styles\vxe-table.scss                                | SCSS               |         30 |          5 |          4 |         39 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\Room.ts                          | TypeScript         |        133 |          1 |          8 |        142 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\Service.ts                       | TypeScript         |         84 |          1 |          8 |         93 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\lease.ts                         | TypeScript         |         19 |          0 |          2 |         21 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\page.ts                          | TypeScript         |          7 |          0 |          1 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\post.ts                          | TypeScript         |         51 |          0 |          6 |         57 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\types\serviceEntity\user.ts                          | TypeScript         |         25 |          0 |          4 |         29 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\Date.ts                                        | TypeScript         |         24 |         10 |          7 |         41 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\cache\cookies.ts                               | TypeScript         |         11 |          1 |          3 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\cache\localStorage.ts                          | TypeScript         |         14 |          1 |          4 |         19 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\index.ts                                       | TypeScript         |         17 |          3 |          3 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\permission.ts                                  | TypeScript         |         13 |          1 |          2 |         16 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\requestTransform.ts                            | TypeScript         |         20 |          0 |          4 |         24 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\service.ts                                     | TypeScript         |         91 |         16 |          5 |        112 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\utils\validate.ts                                    | TypeScript         |         21 |          0 |          4 |         25 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\Property\Service.vue                           | vue                |        304 |          1 |         23 |        328 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\Property\ServiceOrder.vue                      | vue                |        256 |          3 |         16 |        275 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\dashboard\admin\index.vue                      | vue                |         13 |          0 |          2 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\dashboard\user\index.vue                       | vue                |        198 |          1 |         18 |        217 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\error-page\403.vue                             | vue                |          9 |          0 |          2 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\error-page\404.vue                             | vue                |          9 |          0 |          2 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\error-page\components\ErrorPageLayout.vue      | vue                |         23 |          0 |          2 |         25 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\lease\index.vue                                | vue                |        244 |          3 |         16 |        263 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\login\index.vue                                | vue                |        177 |          0 |          6 |        183 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\permission\components\SwitchRoles.vue          | vue                |         32 |          0 |          5 |         37 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\permission\directive.vue                       | vue                |         81 |          0 |          6 |         87 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\permission\page.vue                            | vue                |         19 |          0 |          4 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\post\index.vue                                 | vue                |        270 |          0 |         22 |        292 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\redirect\index.vue                             | vue                |          9 |          0 |          4 |         13 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\rent\appointment\index.vue                     | vue                |        238 |          1 |         17 |        256 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\rent\rentOrder\index.vue                       | vue                |        267 |          3 |         14 |        284 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\rent\room\index.vue                            | vue                |        317 |          1 |         24 |        342 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\table\element-plus\index.vue                   | vue                |        236 |          1 |         13 |        250 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\table\vxe-table\index.vue                      | vue                |        375 |          5 |          9 |        389 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\table\vxe-table\tsx\RoleColumnSolts.tsx        | TypeScript React   |          9 |          0 |          3 |         12 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\table\vxe-table\tsx\StatusColumnSolts.tsx      | TypeScript React   |         14 |          0 |          3 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\src\views\unocss\index.vue                               | vue                |         16 |          0 |          1 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\tests\components\Notify.test.ts                          | TypeScript         |         32 |          0 |          3 |         35 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\tests\demo.test.ts                                       | TypeScript         |         19 |          9 |          5 |         33 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\tests\utils\validate.test.ts                             | TypeScript         |         31 |          0 |          2 |         33 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\tsconfig.json                                            | JSON with Comments |         39 |         10 |          1 |         50 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\types\api.d.ts                                           | TypeScript         |          8 |          1 |          1 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\types\env.d.ts                                           | TypeScript         |          5 |          2 |          2 |          9 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\types\shims-vue.d.ts                                     | TypeScript         |          9 |          0 |          2 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\types\vue-router.d.ts                                    | TypeScript         |         15 |         36 |          2 |         53 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\unocss.config.ts                                         | TypeScript         |         15 |          6 |          2 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\admin-v1\vite.config.ts                                           | TypeScript         |         66 |         40 |          3 |        109 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\content-based-recommendation.iml         | XML                |         -8 |          0 |          0 |         -8 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\dataSources.xml                          | XML                |        -12 |          0 |          0 |        -12 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\inspectionProfiles\Project_Default.xml   | XML                |        -29 |          0 |          0 |        -29 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\inspectionProfiles\profiles_settings.xml | XML                |         -6 |          0 |          0 |         -6 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\misc.xml                                 | XML                |         -4 |          0 |          0 |         -4 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\modules.xml                              | XML                |         -8 |          0 |          0 |         -8 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\other.xml                                | XML                |         -6 |          0 |          0 |         -6 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\.idea\vcs.xml                                  | XML                |         -6 |          0 |          0 |         -6 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\algrithom\RecommendSystem.py                   | Python             |       -331 |       -129 |        -74 |       -534 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\algrithom\cache.py                             | Python             |        -30 |         -6 |         -2 |        -38 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\algrithom\constant.py                          | Python             |        -32 |         -6 |         -4 |        -42 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\spiderRoot\database\room.sql                   | SQL                |   -129,797 |        -33 |        -75 |   -129,905 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\spiderRoot\spider\anjuke.py                    | Python             |       -321 |        -69 |        -33 |       -423 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\spiderRoot\spider\city.py                      | Python             |        -11 |          0 |         -2 |        -13 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\spiderRoot\spider\room.py                      | Python             |        -86 |         -1 |         -4 |        -91 |
+| d:\vscode\test\Apartment-Recommend-System\spiderAndAlgrithom\spiderRoot\spider\武汉.json                      | JSON               |       -233 |          0 |          0 |       -233 |
+| Total                                                                                                       |                    |   -118,485 |        138 |      1,388 |   -116,959 |
++-------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

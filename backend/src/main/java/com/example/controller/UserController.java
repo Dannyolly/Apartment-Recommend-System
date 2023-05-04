@@ -12,6 +12,7 @@ import com.example.state.Message;
 import com.example.utils.DataGenerator;
 import com.example.utils.IdsUtil;
 import com.example.utils.PageUtil;
+import com.example.utils.Request;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,6 +39,20 @@ public class UserController {
     @Autowired
     DataGenerator dataGenerator;
 
+    @Autowired
+    Request request;
+    //
+    @GetMapping("/getSimilarUser")
+    public Result<List<User>> getSimilarUser(int userId){
+        return new Result<>(
+                200,
+                Message.SUCCESS,
+                "OK",
+                userService.listByIds(request.getSimilarUser(userId))
+        );
+    }
+
+
     public void updateUserWhenAction(int userId,int followId,boolean isFollow){
         List<User> users = new ArrayList<>();
         User user = userService.getById(userId);
@@ -48,6 +63,8 @@ public class UserController {
         followUser.setFans( isFollow? user.getFans()-1 : user.getFans()+1 );
         userService.saveBatch(users);
     }
+
+
     // follow
     @GetMapping("/user/follow")
     public Result<String> follow(int userId,int followId){

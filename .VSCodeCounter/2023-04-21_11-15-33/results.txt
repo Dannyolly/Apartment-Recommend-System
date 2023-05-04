@@ -1,0 +1,261 @@
+Date : 2023-04-21 11:15:33
+Directory : d:\vscode\test\Apartment-Recommend-System\frontend
+Total : 182 files,  16270 codes, 221 comments, 1284 blanks, all 17775 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| vue                |         86 |     11,524 |         21 |        729 |     12,274 |
+| TypeScript         |         60 |      2,093 |        159 |        351 |      2,603 |
+| Markdown           |         20 |      1,690 |          0 |        130 |      1,820 |
+| JSON               |         11 |        867 |          9 |         38 |        914 |
+| SCSS               |          1 |         38 |         25 |         13 |         76 |
+| Less               |          2 |         28 |          1 |         21 |         50 |
+| HTML               |          1 |         18 |          2 |          1 |         21 |
+| JSON with Comments |          1 |         12 |          4 |          1 |         17 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                  | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                     |        182 |     16,270 |        221 |      1,284 |     17,775 |
+| . (Files)                                                                                             |          4 |        137 |          8 |          6 |        151 |
+| .VSCodeCounter                                                                                        |         25 |      1,695 |          0 |        130 |      1,825 |
+| .VSCodeCounter\2023-03-22_17-19-03                                                                    |          5 |        262 |          0 |         26 |        288 |
+| .VSCodeCounter\2023-03-23_15-55-06                                                                    |          5 |        262 |          0 |         26 |        288 |
+| .VSCodeCounter\2023-03-31_15-51-55                                                                    |          5 |        287 |          0 |         26 |        313 |
+| .VSCodeCounter\2023-04-04_12-10-23                                                                    |          5 |        242 |          0 |         26 |        268 |
+| .VSCodeCounter\2023-04-04_16-15-12                                                                    |          5 |        642 |          0 |         26 |        668 |
+| src                                                                                                   |        153 |     14,438 |        213 |      1,148 |     15,799 |
+| src (Files)                                                                                           |         10 |        586 |         39 |         91 |        716 |
+| src\api                                                                                               |          3 |        127 |          3 |         19 |        149 |
+| src\components                                                                                        |         43 |      3,690 |          4 |        247 |      3,941 |
+| src\components (Files)                                                                                |          1 |         68 |          0 |          1 |         69 |
+| src\components\Appointment                                                                            |          3 |        376 |          0 |         27 |        403 |
+| src\components\FilterBar                                                                              |          8 |        827 |          0 |         41 |        868 |
+| src\components\House                                                                                  |          4 |        279 |          0 |         18 |        297 |
+| src\components\HouseService                                                                           |          4 |        759 |          0 |         78 |        837 |
+| src\components\Navigation                                                                             |         10 |        450 |          0 |         21 |        471 |
+| src\components\case                                                                                   |          1 |         53 |          0 |          1 |         54 |
+| src\components\public                                                                                 |          9 |        527 |          0 |         42 |        569 |
+| src\components\user                                                                                   |          3 |        351 |          4 |         18 |        373 |
+| src\constant                                                                                          |          2 |         45 |         18 |         15 |         78 |
+| src\data                                                                                              |          3 |        362 |          0 |          0 |        362 |
+| src\hooks                                                                                             |         10 |        172 |          6 |         38 |        216 |
+| src\hooks (Files)                                                                                     |          8 |        131 |          6 |         36 |        173 |
+| src\hooks\component                                                                                   |          2 |         41 |          0 |          2 |         43 |
+| src\pages                                                                                             |         42 |      7,805 |         17 |        472 |      8,294 |
+| src\pages (Files)                                                                                     |         15 |      2,250 |          1 |        121 |      2,372 |
+| src\pages\Appointment                                                                                 |          2 |        418 |          0 |         17 |        435 |
+| src\pages\HouseSearch                                                                                 |          1 |        283 |          0 |         16 |        299 |
+| src\pages\Rent                                                                                        |          1 |        367 |          0 |         15 |        382 |
+| src\pages\Tenantpages                                                                                 |          2 |        587 |          0 |         57 |        644 |
+| src\pages\booking                                                                                     |          2 |        625 |          0 |         24 |        649 |
+| src\pages\houseOrder                                                                                  |          2 |        390 |          0 |         36 |        426 |
+| src\pages\index                                                                                       |          1 |         36 |          0 |          5 |         41 |
+| src\pages\map                                                                                         |          1 |         82 |          0 |          2 |         84 |
+| src\pages\ownerpages                                                                                  |          5 |        761 |          1 |         39 |        801 |
+| src\pages\serviceDetail                                                                               |          2 |        541 |          0 |         27 |        568 |
+| src\pages\serviceOrder                                                                                |          2 |        358 |          0 |         31 |        389 |
+| src\pages\tabbar                                                                                      |          5 |        918 |         15 |         65 |        998 |
+| src\pages\user                                                                                        |          1 |        189 |          0 |         17 |        206 |
+| src\service                                                                                           |          8 |        402 |         11 |         68 |        481 |
+| src\store                                                                                             |          6 |        222 |         13 |         43 |        278 |
+| src\types                                                                                             |         12 |        399 |          8 |         39 |        446 |
+| src\types (Files)                                                                                     |          5 |         93 |          6 |         15 |        114 |
+| src\types\Entity                                                                                      |          2 |         13 |          0 |          1 |         14 |
+| src\types\serviceEntity                                                                               |          5 |        293 |          2 |         23 |        318 |
+| src\utils                                                                                             |         13 |        566 |         94 |        105 |        765 |
+| src\websocket                                                                                         |          1 |         62 |          0 |         11 |         73 |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                              | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-22_17-19-03\details.md      | Markdown           |        141 |          0 |          6 |        147 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-22_17-19-03\diff-details.md | Markdown           |         35 |          0 |          6 |         41 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-22_17-19-03\diff.md         | Markdown           |         32 |          0 |          7 |         39 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-22_17-19-03\results.json    | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-22_17-19-03\results.md      | Markdown           |         53 |          0 |          7 |         60 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-23_15-55-06\details.md      | Markdown           |        142 |          0 |          6 |        148 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-23_15-55-06\diff-details.md | Markdown           |         32 |          0 |          6 |         38 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-23_15-55-06\diff.md         | Markdown           |         34 |          0 |          7 |         41 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-23_15-55-06\results.json    | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-23_15-55-06\results.md      | Markdown           |         53 |          0 |          7 |         60 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-31_15-51-55\details.md      | Markdown           |        157 |          0 |          6 |        163 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-31_15-51-55\diff-details.md | Markdown           |         39 |          0 |          6 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-31_15-51-55\diff.md         | Markdown           |         33 |          0 |          7 |         40 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-31_15-51-55\results.json    | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-03-31_15-51-55\results.md      | Markdown           |         57 |          0 |          7 |         64 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_12-10-23\details.md      | Markdown           |        162 |          0 |          6 |        168 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_12-10-23\diff-details.md | Markdown           |          9 |          0 |          6 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_12-10-23\diff.md         | Markdown           |         12 |          0 |          7 |         19 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_12-10-23\results.json    | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_12-10-23\results.md      | Markdown           |         58 |          0 |          7 |         65 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_16-15-12\details.md      | Markdown           |        162 |          0 |          6 |        168 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_16-15-12\diff-details.md | Markdown           |        315 |          0 |          6 |        321 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_16-15-12\diff.md         | Markdown           |        106 |          0 |          7 |        113 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_16-15-12\results.json    | JSON               |          1 |          0 |          0 |          1 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\.VSCodeCounter\2023-04-04_16-15-12\results.md      | Markdown           |         58 |          0 |          7 |         65 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\index.html                                         | HTML               |         18 |          2 |          1 |         21 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\package.json                                       | JSON               |         86 |          0 |          1 |         87 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\App.vue                                        | vue                |         29 |          0 |         10 |         39 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\api\config.ts                                  | TypeScript         |          7 |          1 |          5 |         13 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\api\login.ts                                   | TypeScript         |         47 |          2 |          3 |         52 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\api\request.ts                                 | TypeScript         |         73 |          0 |         11 |         84 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\app.less                                       | Less               |         12 |          0 |          0 |         12 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Appointment\AppointmentBill.vue     | vue                |         51 |          0 |          3 |         54 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Appointment\AppointmentDetail.vue   | vue                |        162 |          0 |         12 |        174 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Appointment\AppointmentHistory.vue  | vue                |        163 |          0 |         12 |        175 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\Direction.vue             | vue                |         60 |          0 |          1 |         61 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\FilterBar.vue             | vue                |        119 |          0 |          5 |        124 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\House.vue                 | vue                |        106 |          0 |          4 |        110 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\Location.vue              | vue                |        210 |          0 |         18 |        228 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\More.vue                  | vue                |        124 |          0 |          5 |        129 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\Rent.vue                  | vue                |         79 |          0 |          3 |         82 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\Sort.vue                  | vue                |         64 |          0 |          2 |         66 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\FilterBar\SubmitBar.vue             | vue                |         65 |          0 |          3 |         68 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\HouseService\AdditionalOrder.vue    | vue                |        212 |          0 |         28 |        240 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\HouseService\HousingService.vue     | vue                |        125 |          0 |          4 |        129 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\HouseService\OrderServiceDetail.vue | vue                |        201 |          0 |         32 |        233 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\HouseService\orderService.vue       | vue                |        221 |          0 |         14 |        235 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\House\HouseBillDetail.vue           | vue                |         22 |          0 |          4 |         26 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\House\HouseCollection.vue           | vue                |         67 |          0 |          4 |         71 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\House\HouseHistory.vue              | vue                |         55 |          0 |          5 |         60 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\House\HousePost.vue                 | vue                |        135 |          0 |          5 |        140 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\Appointment.vue          | vue                |         34 |          0 |          2 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\AppointmentDetail.vue    | vue                |         41 |          0 |          1 |         42 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\AppointmentPage.vue      | vue                |         41 |          0 |          1 |         42 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\Community.vue            | vue                |         34 |          0 |          2 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\Home.vue                 | vue                |         73 |          0 |          5 |         78 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\NavigationBar.vue        | vue                |         60 |          0 |          5 |         65 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\OrderDetail.vue          | vue                |         41 |          0 |          1 |         42 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\OwnerHome.vue            | vue                |         34 |          0 |          2 |         36 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\UserInfo.vue             | vue                |         46 |          0 |          1 |         47 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Navigation\service.vue              | vue                |         46 |          0 |          1 |         47 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\Tabbar.vue                          | vue                |         68 |          0 |          1 |         69 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\case\Case.vue                       | vue                |         53 |          0 |          1 |         54 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\IconBtn.vue                  | vue                |         47 |          0 |          4 |         51 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\Input.vue                    | vue                |         92 |          0 |          7 |         99 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\NoMore.vue                   | vue                |         43 |          0 |          4 |         47 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\Notis.vue                    | vue                |         83 |          0 |          8 |         91 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\SafeBottom.vue               | vue                |          7 |          0 |          3 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\StatusBar.vue                | vue                |         13 |          0 |          4 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\SwiperList.vue               | vue                |        165 |          0 |          7 |        172 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\Tag.vue                      | vue                |         35 |          0 |          2 |         37 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\public\Tags.vue                     | vue                |         42 |          0 |          3 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\user\Friend.vue                     | vue                |        128 |          0 |          4 |        132 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\user\UserComment.vue                | vue                |         83 |          4 |          2 |         89 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\components\user\UserPost.vue                   | vue                |        140 |          0 |         12 |        152 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\constant\chat.ts                               | TypeScript         |         10 |         15 |          7 |         32 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\constant\publish.ts                            | TypeScript         |         35 |          3 |          8 |         46 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\data\cases.json                                | JSON               |         82 |          0 |          0 |         82 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\data\house.json                                | JSON               |         47 |          0 |          0 |         47 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\data\wuhan.json                                | JSON               |        233 |          0 |          0 |        233 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\env.d.ts                                       | TypeScript         |          5 |          2 |          2 |          9 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\component\useActionSheet.ts              | TypeScript         |         15 |          0 |          1 |         16 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\component\useMapState.ts                 | TypeScript         |         26 |          0 |          1 |         27 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\useInteract.ts                           | TypeScript         |         47 |          5 |          7 |         59 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\useNavigation.ts                         | TypeScript         |         11 |          0 |          2 |         13 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\useNoti.ts                               | TypeScript         |         11 |          0 |          0 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\usePage.ts                               | TypeScript         |          9 |          0 |          1 |         10 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\usePicker.ts                             | TypeScript         |         13 |          0 |          3 |         16 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\usePubSub.ts                             | TypeScript         |         11 |          1 |         11 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\useScroll.ts                             | TypeScript         |         20 |          0 |          2 |         22 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\hooks\useState.ts                              | TypeScript         |          9 |          0 |         10 |         19 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\main.ts                                        | TypeScript         |         20 |          2 |          2 |         24 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\manifest.json                                  | JSON               |         72 |          8 |          3 |         83 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages.json                                     | JSON               |        342 |          1 |         34 |        377 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Appointment\AppointmentDetail.vue        | vue                |        263 |          0 |          7 |        270 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Appointment\AppointmentPage.vue          | vue                |        155 |          0 |         10 |        165 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Booking.vue                              | vue                |         77 |          0 |          4 |         81 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\CaseDetail.vue                           | vue                |        168 |          0 |          3 |        171 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Collection.vue                           | vue                |         64 |          0 |          6 |         70 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\History.vue                              | vue                |         82 |          0 |          3 |         85 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\HouseDetail.vue                          | vue                |        509 |          0 |         19 |        528 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\HouseSearch\Search.vue                   | vue                |        283 |          0 |         16 |        299 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Lease.vue                                | vue                |        218 |          1 |          7 |        226 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Location.vue                             | vue                |        104 |          0 |         10 |        114 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\PostDetail.vue                           | vue                |        214 |          0 |         19 |        233 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Preference.vue                           | vue                |        222 |          0 |          7 |        229 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Process.vue                              | vue                |         88 |          0 |          7 |         95 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\PublishPost.vue                          | vue                |        138 |          0 |          8 |        146 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Rent\Rent.vue                            | vue                |        367 |          0 |         15 |        382 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Search.vue                               | vue                |        186 |          0 |         15 |        201 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\SimilarRoom.vue                          | vue                |         46 |          0 |          6 |         52 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Switch.vue                               | vue                |         67 |          0 |          3 |         70 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Tenantpages\Home.vue                     | vue                |        358 |          0 |         41 |        399 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\Tenantpages\UserInfo.vue                 | vue                |        229 |          0 |         16 |        245 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\booking\HouseBooking.vue                 | vue                |        324 |          0 |          9 |        333 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\booking\ServiceBooking.vue               | vue                |        301 |          0 |         15 |        316 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\houseOrder\Order.vue                     | vue                |        105 |          0 |          3 |        108 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\houseOrder\OrderDetail.vue               | vue                |        285 |          0 |         33 |        318 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\index\index.vue                          | vue                |         36 |          0 |          5 |         41 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\login.vue                                | vue                |         67 |          0 |          4 |         71 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\map\community.vue                        | vue                |         82 |          0 |          2 |         84 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\ownerpages\Home.vue                      | vue                |        111 |          0 |          8 |        119 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\ownerpages\orderDetail.vue               | vue                |        256 |          1 |          8 |        265 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\ownerpages\orderPage.vue                 | vue                |         74 |          0 |          2 |         76 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\ownerpages\orderPageItem.vue             | vue                |        114 |          0 |          7 |        121 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\ownerpages\userInfo.vue                  | vue                |        206 |          0 |         14 |        220 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\serviceDetail\serviceComment.vue         | vue                |        139 |          0 |          5 |        144 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\serviceDetail\serviceDetail.vue          | vue                |        402 |          0 |         22 |        424 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\serviceOrder\Order.vue                   | vue                |         93 |          0 |          1 |         94 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\serviceOrder\OrderDetail.vue             | vue                |        265 |          0 |         30 |        295 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\tabbar\Appointment.vue                   | vue                |        207 |          0 |         15 |        222 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\tabbar\Community.vue                     | vue                |        378 |          4 |         23 |        405 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\tabbar\HomeContainer.vue                 | vue                |         82 |          0 |          8 |         90 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\tabbar\Service.vue                       | vue                |        224 |         11 |         14 |        249 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\tabbar\UserInfoContainer.vue             | vue                |         27 |          0 |          5 |         32 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\pages\user\UserInfo.vue                        | vue                |        189 |          0 |         17 |        206 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\ClientService.ts                       | TypeScript         |         60 |          1 |         11 |         72 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\LeaseService.ts                        | TypeScript         |         24 |          0 |          5 |         29 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\PostService.ts                         | TypeScript         |         70 |          2 |         10 |         82 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\RentInfoService.ts                     | TypeScript         |         35 |          0 |          9 |         44 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\RoomBookingService.ts                  | TypeScript         |         28 |          0 |          5 |         33 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\RoomService.ts                         | TypeScript         |        101 |          7 |         17 |        125 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\UserSerivce.ts                         | TypeScript         |         65 |          1 |         10 |         76 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\service\index.ts                               | TypeScript         |         19 |          0 |          1 |         20 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\shime-uni.d.ts                                 | TypeScript         |          5 |          0 |          1 |          6 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\Chat.ts                                  | TypeScript         |         37 |          0 |          8 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\Filter.ts                                | TypeScript         |         49 |          0 |          7 |         56 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\HouseAppointment.ts                      | TypeScript         |         67 |          6 |          6 |         79 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\Notification.ts                          | TypeScript         |         35 |          0 |         10 |         45 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\Tabbar.ts                                | TypeScript         |         13 |          0 |          3 |         16 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\store\user.ts                                  | TypeScript         |         21 |          7 |          9 |         37 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\tabbar.ts                                      | TypeScript         |         47 |          0 |          5 |         52 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\Case.ts                                  | TypeScript         |         11 |          0 |          1 |         12 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\Entity\DataList.ts                       | TypeScript         |          7 |          0 |          1 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\Entity\UserPost.ts                       | TypeScript         |          6 |          0 |          0 |          6 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\Icon.ts                                  | TypeScript         |         18 |          0 |          2 |         20 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\Notification.ts                          | TypeScript         |         36 |          3 |          5 |         44 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\PublicCompType.ts                        | TypeScript         |          5 |          0 |          3 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\chat.ts                                  | TypeScript         |         23 |          3 |          4 |         30 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\serviceEntity\Room.ts                    | TypeScript         |        129 |          1 |          6 |        136 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\serviceEntity\Service.ts                 | TypeScript         |         79 |          1 |          7 |         87 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\serviceEntity\lease.ts                   | TypeScript         |         14 |          0 |          1 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\serviceEntity\post.ts                    | TypeScript         |         46 |          0 |          5 |         51 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\types\serviceEntity\user.ts                    | TypeScript         |         25 |          0 |          4 |         29 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\uni.scss                                       | SCSS               |         38 |         25 |         13 |         76 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\Date.ts                                  | TypeScript         |         24 |         10 |          7 |         41 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\Equipment.ts                             | TypeScript         |         42 |          1 |         10 |         53 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\Measure.ts                               | TypeScript         |         13 |          0 |          3 |         16 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\Notification.ts                          | TypeScript         |         36 |          0 |         10 |         46 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\Num.ts                                   | TypeScript         |          6 |          0 |          2 |          8 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\RecommendRecordHandler.ts                | TypeScript         |        106 |          9 |         11 |        126 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\array.ts                                 | TypeScript         |         13 |          1 |          9 |         23 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\chat.ts                                  | TypeScript         |         54 |          1 |         15 |         70 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\file.ts                                  | TypeScript         |         14 |          0 |          1 |         15 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\localStorage.ts                          | TypeScript         |         94 |         59 |         24 |        177 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\location.ts                              | TypeScript         |        148 |         13 |         12 |        173 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\room.ts                                  | TypeScript         |          5 |          0 |          1 |          6 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\utils\uuid.ts                                  | TypeScript         |         11 |          0 |          0 |         11 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\var.less                                       | Less               |         16 |          1 |         21 |         38 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\src\websocket\index.ts                             | TypeScript         |         62 |          0 |         11 |         73 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\tsconfig.json                                      | JSON with Comments |         12 |          4 |          1 |         17 |
+| d:\vscode\test\Apartment-Recommend-System\frontend\vite.config.ts                                     | TypeScript         |         21 |          2 |          3 |         26 |
+| Total                                                                                                 |                    |     16,270 |        221 |      1,284 |     17,775 |
++-------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

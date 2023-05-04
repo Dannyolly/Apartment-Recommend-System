@@ -122,7 +122,7 @@ onMounted(async ()=>{
 
   // 加載所有好友推薦列表..
   const userId = LocalStorageManager.getLocalStorageInfo('userInfo').id
-  const res = await  ServiceManager.UserService.getRecommendUser(userId)
+  const res = (await  ServiceManager.UserService.getRecommendUser(userId)).result
   fdRecommendList.value = res
   
   

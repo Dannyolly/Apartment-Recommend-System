@@ -1,11 +1,11 @@
-type TabBar = Array<{
+type TabBar = {
     pagePath:string,
     iconPath:string,
     selectedIconPath:string,
     text:string
-}>
+}
 
-const tenant:TabBar = [{
+const tenant:TabBar[] = [{
     "pagePath": "/pages/tabbar/HomeContainer",
     "iconPath": "/static/tabbar/home.png",
     "selectedIconPath": "/static/tabbar/home-filling.png",
@@ -33,7 +33,7 @@ const tenant:TabBar = [{
     "text": "我的"
 }]
 
-const owner:TabBar = [{
+const owner:TabBar[] = [{
     "pagePath": "/pages/tabbar/HomeContainer",
     "iconPath": "/static/tabbar/home.png",
     "selectedIconPath": "/static/tabbar/home-filling.png",

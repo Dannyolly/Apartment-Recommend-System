@@ -75,7 +75,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/rentOrder",
     name: "Rent",
     meta: {
-      title: "租赁管理",
+      title: "公寓管理",
       svgIcon: "menu"
     },
     children: [
@@ -100,7 +100,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/rent/room/index.vue"),
         name: "Room",
         meta: {
-          title: "公寓管理"
+          title: "公寓信息管理"
         }
       },
     ]

@@ -3,13 +3,14 @@ package com.example.controller;
 import com.example.mapper.RoomMapper;
 import com.example.msg.Options;
 import com.example.msg.Result;
+import com.example.pojo.BrowseHistory;
 import com.example.pojo.Room;
 import com.example.service.BrowseHistoryService;
 import com.example.service.RoomService;
-import com.example.service.impl.RoomServiceImpl;
 import com.example.state.Message;
 import com.example.utils.IdsUtil;
 import com.example.utils.PageUtil;
+import com.example.utils.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,19 +32,52 @@ public class RoomController {
     @Autowired
     BrowseHistoryService browseHistoryService;
 
-    @GetMapping("/getRecommendRooms")
-    public Result<List<Room>> getRecommendRooms(String ids, int page, int pageSize, Date date){
-        Map<String, Object> params = new HashMap<>();
-        List<Integer> idsArr = IdsUtil.toList(ids);
-        params.put("ids",idsArr);
-        params.put("page", PageUtil.cal(page,pageSize));
-        params.put("pageSize",pageSize);
+    @Autowired
+    Request request;
+
+    @GetMapping("/getSimilarRooms")
+    public Result<List<Room>> getSimilarRooms(int houseId ,int page){
         return new Result<>(
                 200,
                 Message.SUCCESS,
                 "OK",
-                roomMapper.recommendRooms(params)
+                roomService.listByIds(request.getRecommendRoomsByContentBased(houseId, page))
         );
+    }
+    @GetMapping("/getRecommendRooms")
+    public Result<List<Room>> getRecommendRooms(int userId,int houseId,int contentBasedPage , int userBasedPage,int hotPage){
+        List<Integer> recommendRoomsIds = new ArrayList<>();
+        Map<String,Object> params = new HashMap<>();
+        params.put("user_id",userId);
+        List<BrowseHistory> userHistory = browseHistoryService.getBaseMapper().selectByMap(params);
+        int userHistoryNum = userHistory.size();
+        if(userHistoryNum == 0){
+            // 新用戶
+            return getHotRooms(hotPage,5);
+        }
+
+        List<Integer> recommendRoomsByUserBased = request.getRecommendRoomsByUserBased(userBasedPage);
+        List<Integer> recommendRoomsByContentBased = request.getRecommendRoomsByContentBased(houseId, contentBasedPage);
+        if(userHistoryNum >0 && userHistoryNum <=10){
+            // 有記錄,但暫時只用基于內容的
+            recommendRoomsIds.addAll(recommendRoomsByContentBased);
+            return new Result<>(
+                    200,
+                    Message.SUCCESS,
+                    "OK",
+                    roomService.listByIds(recommendRoomsIds)
+            );
+        }
+        // 使用混合推薦
+        recommendRoomsIds.addAll(recommendRoomsByContentBased);
+        recommendRoomsIds.addAll(recommendRoomsByUserBased);
+        return new Result<>(
+                200,
+                Message.SUCCESS,
+                "OK",
+                roomService.listByIds(recommendRoomsIds)
+        );
+
     }
 
     @GetMapping("/getHotRooms")
