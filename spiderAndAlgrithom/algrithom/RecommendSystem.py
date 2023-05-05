@@ -49,6 +49,17 @@ def calTime(cb):
     print((endTime - startTime))
 
 
+def calculateSimilarity(id1, id2):
+    """
+    計算兩公寓相似度
+    :param id1: row
+    :param id2: col
+    :return:
+    """
+    df = roomFileCache['武汉']['trainedData']
+    return df.loc[id1 - 1][id2]
+
+
 @scheduler.task('cron', id='data_collection_stage', day='*', hour='5', minute='50', second='0')
 def dataCollection():
     RecommendModel.DataLoader.loadInfoFromMysql(
@@ -443,8 +454,8 @@ def getTopXSimilarityItems(city: str, houseId: int, num=5):
             ids.append(realIds[targetIndex])
             originIds.append(targetIndex)
 
-    return ids
-    print((endTime - startTime))
+    # return ids
+    # print((endTime - startTime))
     return json.dumps({
         'code': 200,
         'state': 1,
@@ -545,8 +556,8 @@ def getItemByTopXSimilarityUser(userId, page):
     # 去重 有可能重复
 
     res_list = list(OrderedSet(res_list))
-    # random.shuffle(res_list)
-    return res_list[0:50]
+
+    # return res_list[0:50]
     # 全部转为int
     res_list = list(map(lambda x: int(x) + 1, res_list[:maxLen]))
     start = page * 3
@@ -565,139 +576,124 @@ def getItemByTopXSimilarityUser(userId, page):
 """
 
 
-# test Model Coverage
-def evaluateModelCoverage():
+# test Model
+class Evaluator:
     """
-        用戶數: 500
-        基于內容 -- 每個用戶取前5條記錄,分別相似推薦各10條       -> 50
-        基于用戶 -- 每個用戶取前5個相似用戶,分別推薦10條         -> 50
-        基于混合 -- 內容-25 用戶- 25                         -> 50
+    userCount:500. \n
+    ContentBased - recommend 10 rooms for each user According their top 5 record.
+    UserBased    - recommend 10 rooms for each user According top 5 user.
+    MixedRecommend - CB-25 UB- 25
+    """
+    @staticmethod
+    def evaluateModelCoverage():
         """
-    room_df = pd.read_csv('../dataset/room_data.csv')
-    ori_row, col = room_df.shape
-    user_id_list = list(range(1, 500))
-    content_df = pd.read_csv('../dataset/browse_history_top5.csv')
-    room_id_df = content_df['room_id']
-    distinct_list = list(set(room_id_df.tolist()))
+        評估覆蓋率 ( Coverage )
+        """
+        room_df = pd.read_csv('../dataset/room_data.csv')
+        ori_row, col = room_df.shape
+        user_id_list = list(range(1, 500))
+        content_df = pd.read_csv('../dataset/browse_history_top5.csv')
+        room_id_df = content_df['room_id']
+        distinct_list = list(set(room_id_df.tolist()))
 
-    print(f'ori_count:{ori_row}')
-    # # 基于內容
+        print(f'ori_count:{ori_row}')
+        # # 基于內容
 
-    content_ids_arr = list()
-    for room_id in distinct_list:
-        ids = getTopXSimilarityItems('武汉', room_id, 5)
-        content_ids_arr.extend(ids)
-    real_ids_content_based_count = len(list(set(content_ids_arr)))
-    # print(f'content_based_count:{real_ids_content_based_count}')
-    # 基于用戶
+        content_ids_arr = list()
+        for room_id in distinct_list:
+            ids = getTopXSimilarityItems('武汉', room_id, 5)
+            content_ids_arr.extend(ids)
+        real_ids_content_based_count = len(list(set(content_ids_arr)))
+        # print(f'content_based_count:{real_ids_content_based_count}')
+        # 基于用戶
 
-    cf_ids_arr = list()
-    for user_id in user_id_list:
-        ids = getItemByTopXSimilarityUser(user_id, 1)
-        # print(ids)
-        cf_ids_arr.extend(ids)
-    collaborative_filter_count = len(list(set(cf_ids_arr)))
-    # print(f'collaborative_filter_count:{collaborative_filter_count}')
+        cf_ids_arr = list()
+        for user_id in user_id_list:
+            ids = getItemByTopXSimilarityUser(user_id, 1)
+            # print(ids)
+            cf_ids_arr.extend(ids)
+        collaborative_filter_count = len(list(set(cf_ids_arr)))
+        # print(f'collaborative_filter_count:{collaborative_filter_count}')
 
-    # 混合推薦
-    i = 0
-    all_ids = []
-    for user_id in user_id_list:
-        curNum = 0
-        ids = getItemByTopXSimilarityUser(user_id, 1)[0:25]
-        while curNum < 5:
-            if i >= len(distinct_list):
-                break
-            room_cur_id = distinct_list[i]
-            content_room_ids = getTopXSimilarityItems('武汉', room_cur_id)
-            all_ids.extend(content_room_ids)
-            i = i + 1
-            curNum = curNum + 1
-        all_ids.extend(ids)
-    hybrid_recommendation_count = len(list(set(all_ids)))
-    # print(f'hybrid_recommendation_count:{hybrid_recommendation_count}')
+        # 混合推薦
+        i = 0
+        all_ids = []
+        for user_id in user_id_list:
+            curNum = 0
+            ids = getItemByTopXSimilarityUser(user_id, 1)[0:25]
+            while curNum < 5:
+                if i >= len(distinct_list):
+                    break
+                room_cur_id = distinct_list[i]
+                content_room_ids = getTopXSimilarityItems('武汉', room_cur_id)
+                all_ids.extend(content_room_ids)
+                i = i + 1
+                curNum = curNum + 1
+            all_ids.extend(ids)
+        hybrid_recommendation_count = len(list(set(all_ids)))
+        # print(f'hybrid_recommendation_count:{hybrid_recommendation_count}')
 
-    # coverage
-    print('OK-----')
-    print(f'content_based_coverage         :%.3f' % (real_ids_content_based_count / ori_row))
-    print(f'collaborative_filter_coverage  :%.3f' % (collaborative_filter_count / ori_row))
-    print(f'hybrid_recommendation_coverage :%.3f' % (hybrid_recommendation_count / ori_row))
-    #     ids_arr.extend(ids)
+        # coverage
+        print('OK-----')
+        print(f'content_based_coverage         :%.3f' % (real_ids_content_based_count / ori_row))
+        print(f'collaborative_filter_coverage  :%.3f' % (collaborative_filter_count / ori_row))
+        print(f'hybrid_recommendation_coverage :%.3f' % (hybrid_recommendation_count / ori_row))
+        #     ids_arr.extend(ids)
 
+    @staticmethod
+    def evaluateModelDiversity():
+        """
+        評估多樣性 ( Diversity )
+        """
+        room_df = pd.read_csv('../dataset/room_data.csv')
+        ori_row, col = room_df.shape
+        user_id_list = list(range(1, 500))
+        content_df = pd.read_csv('../dataset/browse_history_top5.csv')
+        room_id_df = content_df['room_id']
+        distinct_list = list(set(room_id_df.tolist()))
+        # 以用戶1 為例
+        room_id_arr = [1143, 430, 812, 1121, 1933]
+        user_id = 1
+        # 基于內容
+        content_ids_arr = list()
+        for room_id in room_id_arr:
+            ids = getTopXSimilarityItems('武汉', room_id, 10)
+            content_ids_arr.extend(ids)
+        # 去重
+        content_ids_arr = list(set(content_ids_arr))
 
-def evaluateModelDiversity():
-    room_df = pd.read_csv('../dataset/room_data.csv')
-    ori_row, col = room_df.shape
-    user_id_list = list(range(1, 500))
-    content_df = pd.read_csv('../dataset/browse_history_top5.csv')
-    room_id_df = content_df['room_id']
-    distinct_list = list(set(room_id_df.tolist()))
-    # 以用戶1 為例
-    room_id_arr = [1143, 430, 812, 1121, 1933]
-    user_id = 1
-    # 基于內容
-    content_ids_arr = list()
-    for room_id in room_id_arr:
-        ids = getTopXSimilarityItems('武汉', room_id, 10)
-        content_ids_arr.extend(ids)
-    # 去重
-    content_ids_arr = list(set(content_ids_arr))
+        # 基于用戶
+        cf_ids_arr = list()
+        cf_ids_arr.extend(getItemByTopXSimilarityUser(1, 1))
+        cf_ids_arr = list(set(cf_ids_arr))
 
+        # 基于混合
+        hybrid_ids_arr = list()
+        for room_id in room_id_arr:
+            ids = getTopXSimilarityItems('武汉', room_id, 5)
+            hybrid_ids_arr.extend(ids)
+        hybrid_ids_arr.extend(getItemByTopXSimilarityUser(1, 1)[0:25])
+        hybrid_ids_arr = list(set(hybrid_ids_arr))
+        print(f'content_based_ILS:          {Evaluator.ILS(content_ids_arr)}')
+        print(f'collaborative_filter_ILS:   {Evaluator.ILS(cf_ids_arr)}')
+        print(f'hybrid_ILS:                 {Evaluator.ILS(hybrid_ids_arr)}')
 
-    # 基于用戶
-    cf_ids_arr = list()
-    cf_ids_arr.extend(getItemByTopXSimilarityUser(1, 1))
-    cf_ids_arr = list(set(cf_ids_arr))
-
-
-    # 基于混合
-    hybrid_ids_arr = list()
-    for room_id in room_id_arr:
-        ids = getTopXSimilarityItems('武汉', room_id, 5)
-        hybrid_ids_arr.extend(ids)
-    hybrid_ids_arr.extend(getItemByTopXSimilarityUser(1, 1)[0:25])
-    hybrid_ids_arr = list(set(hybrid_ids_arr))
-    print(f'content_based_ILS:          {ILS(content_ids_arr)}')
-    print(f'collaborative_filter_ILS:   {ILS(cf_ids_arr)}')
-    print(f'hybrid_ILS:                 {ILS(hybrid_ids_arr)}')
-
-def evaluate():
-    # evaluateModelCoverage()
-    evaluateModelDiversity()
-    pass
-
-
-def ILS(roomIdArr: List):
-    """
-    intra-list similarity , this method can test  the diversity of recommend list
-    :param roomIdArr
-    :return:
-    """
-    arrLen = len(roomIdArr)
-    sim_sum = 0.0
-    for i in range(0, arrLen - 1):
-        for j in range(0, arrLen - 1):
-            if i != j:
-                sim_sum += calculateSimilarity(roomIdArr[i], roomIdArr[j])
-    return (sim_sum * 2) / (arrLen * (arrLen - 1))
-
-
-def calculateSimilarity(id1, id2):
-    """
-    :param id1: row
-    :param id2: col
-    :return:
-    """
-    df = roomFileCache['武汉']['trainedData']
-    return df.loc[id1 - 1][id2]
+    @staticmethod
+    def ILS(roomIdArr: List):
+        """
+        intra-list similarity , this method can test  the diversity of recommend list
+        :param roomIdArr
+        :return:
+        """
+        arrLen = len(roomIdArr)
+        sim_sum = 0.0
+        for i in range(0, arrLen - 1):
+            for j in range(0, arrLen - 1):
+                if i != j:
+                    sim_sum += calculateSimilarity(roomIdArr[i], roomIdArr[j])
+        return (sim_sum * 2) / (arrLen * (arrLen - 1))
 
 
 if __name__ == '__main__':
     RecommendModel.setup()
-    # print(getTopXSimilarityItems('武汉', 4, 20))
-    # print('1- %.3f' % (5/3))
-    # print(getItemByTopXSimilarityUser(343, 1))
-    # evaluate()
-    # print(getTopXSimilarityItems('武汉', 12, 30))
-    # app.run(port=8091, debug=False)
-    Training()
+    app.run(port=8091, debug=False)

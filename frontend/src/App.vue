@@ -10,10 +10,10 @@ onLaunch(async () => {
   /**
    * changes something
    */
-  let promiseArr = []
-  for (let i = 0; i < 1000; i++) {
-    promiseArr.push(ServiceManager.RoomService.getRecommendRooms(1,1,1))
-  }
+  // let promiseArr = []
+  // for (let i = 0; i < 1000; i++) {
+  //   promiseArr.push(ServiceManager.RoomService.getRecommendRooms(1,1,1))
+  // }
 })
 
 
