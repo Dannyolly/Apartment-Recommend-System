@@ -6,6 +6,8 @@ import { RoomService } from '@/service/RoomService'
 import { UserService } from '@/service/UserSerivce'
 import { LeaseOrderService } from '@/service/LeaseService' 
 import { ClientOrderService } from '@/service/ClientOrderService'
+import { AdminService } from '@/service/AdminService'
+
 class ServiceManager{
     static ClientService = ClientService
     static ClientOrderSerivce = ClientOrderService
@@ -15,6 +17,7 @@ class ServiceManager{
     static RoomService = RoomService
     static UserService = UserService
     static LeaseOrderService = LeaseOrderService
+    static AdminService = AdminService
 }
 export {
     ServiceManager
