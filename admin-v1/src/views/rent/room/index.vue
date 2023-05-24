@@ -120,6 +120,8 @@ const handleUpdate = (row:Room) => {
   //@ts-ignore
   formData.ori  =row.ori
   //@ts-ignore
+  formData.community = row.community
+  //@ts-ignore
   formData.floorinfo = row.floorinfo
   dialogVisible.value = true
 }

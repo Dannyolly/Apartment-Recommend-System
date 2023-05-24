@@ -1,22 +1,29 @@
 //@ts-ignore
 import pubsub from 'pubsub-js'
 
-type SubscribeCallBack = (message: string, data: any) => void
+type SubscribeCallBack<Data> = (message: string, data: Data) => void
 type Message = 'post' | 'switch' | 'perference'
-interface PubSub {
-    
-    publish: (message: Message, data: any) => void;
+interface PubSub<T, D = string> {
 
-    subscribe: (message: Message, cb: SubscribeCallBack ) => void
+    publish: (message: Message | T, data: D) => void;
+
+    subscribe: (message: Message | T, cb: SubscribeCallBack<D>) => void
 
     clearAllSubscriptions: () => void
 
     clearSubscriptions: (message: Message) => void
 
-    unsubscribe: (message: Message ) => void;
+    unsubscribe: (message: Message) => void;
 }
 
 
-export const usePubSub = (): PubSub => pubsub
+
+export function usePubSub<T extends Message>(): PubSub<T> {
+    return pubsub;
+}
+
+
+
+// export const usePubSub = () : PubSub => pubsub
 
 

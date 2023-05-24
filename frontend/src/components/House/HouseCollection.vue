@@ -10,7 +10,7 @@ interface HouseCollectionProps {
   index:number
   cancelItem:(index:number)=>void
 }
-const { room, index , cancelItem} = defineProps<HouseCollectionProps>()
+const { room, index , cancelItem } = defineProps<HouseCollectionProps>()
 const { option, show} = useState({
     option:[
         {

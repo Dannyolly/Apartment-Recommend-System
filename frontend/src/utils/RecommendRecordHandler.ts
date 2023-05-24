@@ -8,10 +8,12 @@ type RecommendRecord = {
       max:30
     }
 }
+
 const getHistory =  (userId:number) => LocalStorageManager.getLocalStorageInfo('history',userId);
 const getUserId = ()=> LocalStorageManager.getLocalStorageInfo('userInfo').id
 const getRecommendRecord = (userId:number) => LocalStorageManager.getLocalStorageInfo('recommendRecord',userId);
 const getUserBasedPage = (userId:number) => LocalStorageManager.getLocalStorageInfo('userBasedCfPage',userId);
+
 class RecommendRecordHandler{
     
     private recommendRecord:RecommendRecord = {}
@@ -20,8 +22,9 @@ class RecommendRecordHandler{
     private userBasedCfPage = 0
     private debugMode = true
     private isNewUser = false
-    constructor(  debugMode = true){
+    constructor( debugMode = true ){
         this.debugMode = debugMode
+        
     }
 
     printInfo(){
@@ -61,6 +64,7 @@ class RecommendRecordHandler{
         this.recommendRecord = recommendRecord
         this.userBasedCfPage = userBasedCfPage
         this.printInfo()
+        
     }
 
     async recommend(){
@@ -121,6 +125,8 @@ class RecommendRecordHandler{
         this.setupRecord()
     }
 }
+
+
 export {
     RecommendRecord,
     RecommendRecordHandler

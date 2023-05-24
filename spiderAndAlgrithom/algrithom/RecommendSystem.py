@@ -579,7 +579,7 @@ def getItemByTopXSimilarityUser(userId, page):
 # test Model
 class Evaluator:
     """
-    userCount:500. \n
+    userCount:500 \n
     ContentBased - recommend 10 rooms for each user According their top 5 record.
     UserBased    - recommend 10 rooms for each user According top 5 user.
     MixedRecommend - CB-25 UB- 25
@@ -631,7 +631,6 @@ class Evaluator:
                 curNum = curNum + 1
             all_ids.extend(ids)
         hybrid_recommendation_count = len(list(set(all_ids)))
-        # print(f'hybrid_recommendation_count:{hybrid_recommendation_count}')
 
         # coverage
         print('OK-----')
@@ -696,4 +695,5 @@ class Evaluator:
 
 if __name__ == '__main__':
     RecommendModel.setup()
+    
     app.run(port=8091, debug=False)
