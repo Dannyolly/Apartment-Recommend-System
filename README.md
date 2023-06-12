@@ -7,7 +7,7 @@
 </h1>
 
 <h3 align="center">
-    Housing-Recommend-System
+    Apartment-Recommend-System
 </h3>
 
 ## 项目介绍
